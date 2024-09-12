@@ -1,3 +1,5 @@
+## Normalization
+
 Normalization is a database design process that organizes tables to reduce data redundancy and improve data integrity. The goal of normalization is to divide large tables into smaller, related tables and define relationships between them to ensure that data is stored efficiently and accurately.
 
 ### **Types of Normal Forms**
