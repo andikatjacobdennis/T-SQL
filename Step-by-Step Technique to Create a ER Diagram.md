@@ -1,4 +1,4 @@
-### Step-by-Step Technique
+### Step-by-Step Technique to Create a ER Diagram
 
 #### 1. **Identify Entities**
 
