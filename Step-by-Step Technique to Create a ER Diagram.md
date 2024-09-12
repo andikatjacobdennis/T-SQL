@@ -70,64 +70,7 @@
 
 #### 5. **Create the Diagram**
 
-Use PlantUML or another diagram tool. Here's how to write it in PlantUML:
-
-```plantuml
-@startuml
-
-' Define the entities
-entity "Customer" as customer {
-    +CustomerID: int
-    Name: string
-    Email: string
-    PhoneNumber: string
-}
-
-entity "Order" as order {
-    +OrderID: int
-    OrderDate: date
-    Status: string
-    *CustomerID: int
-}
-
-entity "Product" as product {
-    +ProductID: int
-    Name: string
-    Description: string
-    Price: decimal
-    StockQuantity: int
-}
-
-entity "Sales" as sales {
-    +SaleID: int
-    SaleDate: date
-    TotalAmount: decimal
-    *OrderID: int
-    *ProductID: int
-}
-
-entity "Supplier" as supplier {
-    +SupplierID: int
-    Name: string
-    ContactInfo: string
-}
-
-' Define relationships
-customer --{ order : Places
-order --{ product : Contains
-product --{ supplier : SuppliedBy
-sales --{ order : Includes
-sales --{ product : Records
-
-' Define cardinality
-customer "1" -- "0..*" order : Places
-order "1" -- "0..*" product : Contains
-product "0..*" -- "0..*" supplier : SuppliedBy
-order "1" -- "0..*" sales : Includes
-product "1" -- "0..*" sales : Records
-
-@enduml
-```
+Use PlantUML or another diagram tool. Here's how to write it in PlantUML.
 
 #### 6. **Review and Adjust**
 
