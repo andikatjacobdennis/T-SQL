@@ -57,9 +57,7 @@
 | | Drop the index on the `ProductName` column. | `DROP INDEX idx_ProductName ON Products;` |
 | | Retrieve all indexes on the `Products` table. | `SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID('Products');` |
 | | Create a unique index on the `ProductCode` column in the `Products` table. | `CREATE UNIQUE INDEX idx_ProductCode ON Products (ProductCode);` |
-| | Create a clustered index on the `ProductID` column in the `Products` table. | `CREATE
-
- CLUSTERED INDEX idx_ProductID ON Products (ProductID);` |
+| | Create a clustered index on the `ProductID` column in the `Products` table. | `CREATE  CLUSTERED INDEX idx_ProductID ON Products (ProductID);` |
 | | Create a non-clustered index on the `ProductName` column. | `CREATE NONCLUSTERED INDEX idx_ProductName ON Products (ProductName);` |
 | **Keys & Constraints** | Ensure that the `ProductCode` column in the `Products` table is unique. | `ALTER TABLE Products ADD CONSTRAINT UQ_ProductCode UNIQUE (ProductCode);` |
 | | Add a primary key on the `ProductID` column in the `Products` table. | `ALTER TABLE Products ADD CONSTRAINT PK_ProductID PRIMARY KEY (ProductID);` |
