@@ -1,3 +1,5 @@
+## ACID
+
 ACID is a set of properties that guarantee database transactions are processed reliably. ACID stands for Atomicity, Consistency, Isolation, and Durability. Let's break down each property with an example involving the `Products` and `Sales` tables:
 
 ### Atomicity
