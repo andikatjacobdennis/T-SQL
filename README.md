@@ -43,34 +43,6 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 1. Refer to the [Step-by-Step_Technique_to_Create_a_DFD](Step-by-Step_Technique_to_Create_a_DFD.md) for guidance on creating Data Flow Diagrams (DFDs), which will help in visualizing processes, data flows, and interactions.
 2. Consult the [Step-by-Step_Technique_to_Create_an_ER_Diagram](Step-by-Step_Technique_to_Create_an_ER_Diagram.md) to learn how to create Entity-Relationship diagrams, focusing on defining entities, attributes, relationships, and cardinality.
 
-## Example Queries
-
-Here are a few example queries from the [SQL_Exercises_and_Examples](SQL_Exercises_and_Examples.md) file to get you started:
-
-- Retrieve all products with their prices:
-  ```sql
-  SELECT ProductName, Price FROM Products;
-  ```
-
-- Find total sales amount:
-  ```sql
-  SELECT SUM(SaleAmount) AS TotalSales FROM Sales;
-  ```
-
-- Update the price of a specific product:
-  ```sql
-  UPDATE Products SET Price = 349.99 WHERE ProductName = 'Smartphone';
-  ```
-
-- Create a view to show total sales by product:
-  ```sql
-  CREATE VIEW ProductSalesView AS
-  SELECT ProductName, SUM(SaleAmount) AS TotalSales
-  FROM Products
-  LEFT JOIN Sales ON Products.ProductID = Sales.ProductID
-  GROUP BY ProductName;
-  ```
-
 ## Contributing
 
 Contributions are welcome! If you have additional T-SQL exercises or improvements to suggest, please feel free to submit a pull request. You can also open issues for any questions or feedback.
