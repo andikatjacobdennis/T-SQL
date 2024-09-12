@@ -1,0 +1,61 @@
+@startuml
+
+' Define external entities on the left
+left to right direction
+actor Customer
+actor Salesperson
+actor Supplier
+actor WarehouseManager
+
+' Define processes in the center
+rectangle "Place Order" as PO
+rectangle "Process Sale" as PS
+rectangle "Update Inventory" as UI
+rectangle "Generate Report" as GR
+rectangle "Approve Order" as AO
+rectangle "Reorder Stock" as RS
+rectangle "Cancel Order" as CO
+rectangle "Handle Damaged Products" as HDP
+
+' Define data stores in the center
+database "Products" as Products
+database "Sales" as Sales
+database "Reports" as Reports
+database "Suppliers" as Suppliers
+database "Warehouse" as Warehouse
+
+' Define data flows
+Customer --> PO : "Order Details"
+Salesperson --> PO : "Sales Info"
+Supplier --> RS : "Stock Details"
+
+PO --> PS : "Order Data"
+PS --> Products : "Check Inventory"
+PS --> Sales : "Record Sale"
+PS --> UI : "Sale Data"
+UI --> Products : "Update Stock"
+PS --> GR : "Sales Data"
+GR --> Reports : "Generate Report"
+Products --> PS : "Product Info"
+
+' Define additional data flows for comprehensive DFD
+PS --> AO : "Order Info for Approval"
+AO --> PS : "Approval Status"
+UI --> RS : "Reorder Request"
+RS --> Suppliers : "Reorder Stock Details"
+
+' Add cancellation and damaged products handling
+Customer --> CO : "Cancel Request"
+CO --> PS : "Cancellation Data"
+CO --> Sales : "Update Cancellation"
+PS --> Warehouse : "Notify Cancellation"
+
+WarehouseManager --> HDP : "Manage Damaged Products"
+HDP --> Products : "Update Inventory for Damaged Products"
+HDP --> Sales : "Update Sales Records for Damaged Products"
+
+WarehouseManager --> UI : "Manage Inventory"
+UI --> Warehouse : "Inventory Data"
+UI --> Products : "Update Stock"
+
+@enduml
