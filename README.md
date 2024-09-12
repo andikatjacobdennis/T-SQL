@@ -12,6 +12,10 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 4. **Normalization.md**: Explains database normalization, including different normal forms and practical examples.
 
+5. **Step-by-Step_Technique_to_Create_a_DFD.md**: Provides a detailed technique for creating Data Flow Diagrams (DFDs) from scratch, including defining processes, data stores, data flows, and external entities.
+
+6. **Step-by-Step_Technique_to_Create_an_ER_Diagram.md**: Offers a step-by-step guide to creating Entity-Relationship (ER) diagrams, including identifying entities, attributes, relationships, and cardinality.
+
 ## Getting Started
 
 ### 1. Set Up the Database
@@ -33,6 +37,11 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 1. Review the `ACID.md` file for a detailed explanation of ACID properties and how they apply to database transactions.
 2. Consult the `Normalization.md` file to understand database normalization, its importance, and how to implement it.
+
+### 4. Create Diagrams
+
+1. Refer to the `Step-by-Step_Technique_to_Create_a_DFD.md` for guidance on creating Data Flow Diagrams (DFDs), which will help in visualizing processes, data flows, and interactions.
+2. Consult the `Step-by-Step_Technique_to_Create_an_ER_Diagram.md` to learn how to create Entity-Relationship diagrams, focusing on defining entities, attributes, relationships, and cardinality.
 
 ## Example Queries
 
