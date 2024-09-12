@@ -1,6 +1,3 @@
-Here's a sample README for your GitHub repository that includes the SQL starter database setup and practice queries:
-
-```markdown
 # T-SQL Practice and Starter Database
 
 Welcome to the T-SQL Practice repository! This repository contains SQL scripts and exercises designed to help you practice and master T-SQL queries. It includes a starter database with sample tables and data to get you started with various SQL concepts.
@@ -56,25 +53,3 @@ SELECT ProductName, SUM(SaleAmount) AS TotalSales
 FROM Products
 LEFT JOIN Sales ON Products.ProductID = Sales.ProductID
 GROUP BY ProductName;
-```
-
-## Contributing
-
-Feel free to contribute to this repository by adding new SQL exercises, improving documentation, or submitting pull requests with enhancements. 
-
-## License
-
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-
-If you have any questions or feedback, please open an issue or contact me directly at [your email].
-
-Happy querying!
-```
-
-### Additional Notes:
-- **License**: Add a `LICENSE` file to specify the license under which your repository is distributed.
-- **Contact Information**: Replace `[your email]` with your actual contact information or preferred method for receiving feedback.
-
-This README provides a clear overview of the repository’s contents and usage instructions, making it easier for others to understand and contribute to your project.
