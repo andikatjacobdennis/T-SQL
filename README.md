@@ -8,6 +8,10 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 2. **SQL_Exercises_and_Examples.md**: A comprehensive collection of T-SQL queries and exercises. This file includes examples and practice queries ranging from basic database operations to advanced topics like indexing, constraints, and stored procedures.
 
+3. **ACID.md**: Provides a detailed explanation of ACID properties (Atomicity, Consistency, Isolation, Durability) with T-SQL examples.
+
+4. **Normalization.md**: Explains database normalization, including different normal forms and practical examples.
+
 ## Getting Started
 
 ### 1. Set Up the Database
@@ -24,6 +28,11 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
    - Aggregations and groupings
    - Indexes, constraints, and triggers
    - Stored procedures and functions
+
+### 3. Learn About ACID and Normalization
+
+1. Review the `ACID.md` file for a detailed explanation of ACID properties and how they apply to database transactions.
+2. Consult the `Normalization.md` file to understand database normalization, its importance, and how to implement it.
 
 ## Example Queries
 
