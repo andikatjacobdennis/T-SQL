@@ -1,5 +1,3 @@
-To create a Data Flow Diagram (DFD) from scratch, follow these step-by-step techniques, using the example provided:
-
 ### **Step-by-Step Technique to Create a DFD**
 
 #### **1. Define the Scope and Purpose**
