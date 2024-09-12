@@ -75,3 +75,5 @@ ID` column in the `Products` table. | `CREATE CLUSTERED INDEX idx_ProductID ON P
 | **Advanced Concepts** | Write a loop to update prices for all products that meet a specific condition. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2) SET @NewPrice = 100; DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products WHERE Price < @NewPrice OPEN ProductCursor FETCH NEXT FROM ProductCursor INTO @ProductID WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = @NewPrice WHERE ProductID = @ProductID FETCH NEXT FROM ProductCursor INTO @ProductID END CLOSE ProductCursor DEALLOCATE ProductCursor;` |
 | | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
 | | Grant a user permission to view the `Products` table but revoke their ability to delete records. | `GRANT SELECT ON Products TO [username]; REVOKE DELETE ON Products FROM [username];` |
+
+---
