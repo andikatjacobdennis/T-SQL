@@ -75,3 +75,5 @@ To create a Data Flow Diagram (DFD) from scratch, follow these step-by-step tech
   - **Warehouse**: Data on warehouse inventory.
 
 By following these steps, you can create a clear and effective DFD to represent a product and sales model or any other system.
+
+[DFD](DFD.png)
