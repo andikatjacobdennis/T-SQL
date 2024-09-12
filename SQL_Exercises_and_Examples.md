@@ -57,7 +57,9 @@
 | | Drop the index on the `ProductName` column. | `DROP INDEX idx_ProductName ON Products;` |
 | | Retrieve all indexes on the `Products` table. | `SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID('Products');` |
 | | Create a unique index on the `ProductCode` column in the `Products` table. | `CREATE UNIQUE INDEX idx_ProductCode ON Products (ProductCode);` |
-| | Create a clustered index on the `ProductID` column in the `Products` table. | `CREATE CLUSTERED INDEX idx_ProductID ON Products (ProductID);` |
+| | Create a clustered index on the `ProductID` column in the `Products` table. | `CREATE
+
+ CLUSTERED INDEX idx_ProductID ON Products (ProductID);` |
 | | Create a non-clustered index on the `ProductName` column. | `CREATE NONCLUSTERED INDEX idx_ProductName ON Products (ProductName);` |
 | **Keys & Constraints** | Ensure that the `ProductCode` column in the `Products` table is unique. | `ALTER TABLE Products ADD CONSTRAINT UQ_ProductCode UNIQUE (ProductCode);` |
 | | Add a primary key on the `ProductID` column in the `Products` table. | `ALTER TABLE Products ADD CONSTRAINT PK_ProductID PRIMARY KEY (ProductID);` |
@@ -73,3 +75,7 @@
 | **Advanced Concepts** | Write a loop to update prices for all products that meet a specific condition. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2) SET @NewPrice = 100; DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products WHERE Price < @NewPrice OPEN ProductCursor FETCH NEXT FROM ProductCursor INTO @ProductID WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = @NewPrice WHERE ProductID = @ProductID FETCH NEXT FROM ProductCursor INTO @ProductID END CLOSE ProductCursor DEALLOCATE ProductCursor;` |
 | | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
 | | Grant a user permission to view the `Products` table but revoke their ability to delete records. | `GRANT SELECT ON Products TO [username]; REVOKE DELETE ON Products FROM [username];` |
+| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity. | `BEGIN TRANSACTION; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (2, 'Tablet', 199, 'Electronics'); UPDATE Products SET StockQuantity = StockQuantity + 10 WHERE ProductID = 2; COMMIT TRANSACTION;` |
+| | Rollback a transaction if an error occurs during multiple inserts. | `BEGIN TRANSACTION; BEGIN TRY INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (3, 'Laptop', 799, 'Electronics'); INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (4, 'Keyboard', 49, 'Accessories'); COMMIT TRANSACTION; END TRY BEGIN CATCH ROLLBACK TRANSACTION; END CATCH;` |
+| | Save a transaction state so that it can be rolled back later. | `BEGIN TRANSACTION; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (5, 'Mouse', 25, 'Accessories'); SAVE TRANSACTION SavePoint1; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (6, 'Monitor', 150, 'Electronics'); ROLLBACK TRANSACTION SavePoint1; COMMIT TRANSACTION;` |
+| | Check the status of the current transaction. | `SELECT @@TRANCOUNT;` |
