@@ -1,16 +1,31 @@
-### Step-by-Step Technique to Create a ER Diagram
+### Step-by-Step Technique to Create an ER Diagram
 
 #### 1. **Identify Entities**
 
-- **Entities** are the objects or concepts that have a distinct existence in your domain. For your example, you have two main entities: `Product` and `Sales`.
+- **Entities** are the objects or concepts with a distinct existence in your domain. In your example, you have five entities: `Customer`, `Order`, `Product`, `Sales`, and `Supplier`.
 
 **Entities:**
+- **Customer**: Represents individuals who place orders.
+- **Order**: Represents orders placed by customers.
 - **Product**: Represents items available for sale.
 - **Sales**: Represents transactions where products are sold.
+- **Supplier**: Represents entities that supply products.
 
 #### 2. **Determine Attributes**
 
-- **Attributes** are properties or details of an entity. For each entity, list its relevant attributes.
+- **Attributes** are properties or details of an entity. List the relevant attributes for each entity.
+
+**Attributes for `Customer`:**
+- CustomerID (Primary Key)
+- Name
+- Email
+- PhoneNumber
+
+**Attributes for `Order`:**
+- OrderID (Primary Key)
+- OrderDate
+- Status
+- CustomerID (Foreign Key)
 
 **Attributes for `Product`:**
 - ProductID (Primary Key)
@@ -23,38 +38,58 @@
 - SaleID (Primary Key)
 - SaleDate
 - TotalAmount
+- OrderID (Foreign Key)
+- ProductID (Foreign Key)
+
+**Attributes for `Supplier`:**
+- SupplierID (Primary Key)
+- Name
+- ContactInfo
 
 #### 3. **Define Relationships**
 
-- **Relationships** describe how entities interact with each other. Identify the interactions between `Product` and `Sales`.
+- **Relationships** describe how entities interact with each other.
 
-For instance:
-- A `Sale` involves one or more `Products`.
-- A `Product` can be part of multiple `Sales`.
-
-**Relationship:**
-- **Records**: A `Sale` records one or more `Products`.
+**Relationships:**
+- **Places**: A `Customer` places one or more `Orders`.
+- **Contains**: An `Order` can contain multiple `Products`.
+- **SuppliedBy**: A `Product` is supplied by one or more `Suppliers`.
+- **Includes**: A `Sales` transaction includes one or more `Orders`.
+- **Records**: A `Sales` transaction records one or more `Products`.
 
 #### 4. **Define Cardinality**
 
 - **Cardinality** specifies how many instances of one entity can be associated with instances of another entity.
 
-**Cardinality for `Product` and `Sales`:**
-- A `Sale` can include multiple `Products`.
-- A `Product` can appear in multiple `Sales`.
-
-Thus:
-- One `Sale` can involve many `Products`.
-- One `Product` can be part of many `Sales`.
+**Cardinality:**
+- A `Customer` can place multiple `Orders`.
+- An `Order` can contain multiple `Products`.
+- A `Product` can be supplied by multiple `Suppliers`.
+- A `Sales` transaction can include multiple `Orders` and multiple `Products`.
+- A `Product` can be part of multiple `Sales`.
 
 #### 5. **Create the Diagram**
 
-You can use PlantUML or other diagram tools. Here’s how to write it in PlantUML:
+Use PlantUML or another diagram tool. Here's how to write it in PlantUML:
 
 ```plantuml
 @startuml
 
 ' Define the entities
+entity "Customer" as customer {
+    +CustomerID: int
+    Name: string
+    Email: string
+    PhoneNumber: string
+}
+
+entity "Order" as order {
+    +OrderID: int
+    OrderDate: date
+    Status: string
+    *CustomerID: int
+}
+
 entity "Product" as product {
     +ProductID: int
     Name: string
@@ -67,14 +102,29 @@ entity "Sales" as sales {
     +SaleID: int
     SaleDate: date
     TotalAmount: decimal
+    *OrderID: int
+    *ProductID: int
+}
+
+entity "Supplier" as supplier {
+    +SupplierID: int
+    Name: string
+    ContactInfo: string
 }
 
 ' Define relationships
-product --{ sales : Records
+customer --{ order : Places
+order --{ product : Contains
+product --{ supplier : SuppliedBy
+sales --{ order : Includes
+sales --{ product : Records
 
 ' Define cardinality
+customer "1" -- "0..*" order : Places
+order "1" -- "0..*" product : Contains
+product "0..*" -- "0..*" supplier : SuppliedBy
+order "1" -- "0..*" sales : Includes
 product "1" -- "0..*" sales : Records
-sales "1" -- "0..*" product : Includes
 
 @enduml
 ```
@@ -82,6 +132,6 @@ sales "1" -- "0..*" product : Includes
 #### 6. **Review and Adjust**
 
 - **Review** the diagram for accuracy and completeness.
-- **Adjust** relationships and cardinalities if necessary.
+- **Adjust** relationships, attributes, and cardinalities if necessary.
 
 ![ER Diagram](ER_Diagram.png)
