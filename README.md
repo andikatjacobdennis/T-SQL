@@ -35,7 +35,7 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 ### 3. Learn About ACID and Normalization
 
-1. Review the [ACID.md](ACID.md) file for a detailed explanation of ACID properties and how they apply to database transactions.
+1. Review the [ACID](ACID.md) file for a detailed explanation of ACID properties and how they apply to database transactions.
 2. Consult the [Normalization](Normalization.md) file to understand database normalization, its importance, and how to implement it.
 
 ### 4. Create Diagrams
