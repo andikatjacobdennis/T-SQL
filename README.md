@@ -1,3 +1,5 @@
+Here’s a table with answers to each of the T-SQL practice questions, organized according to the previous sequence:
+
 | **Topic** | **Practice Question** | **T-SQL Answer** |
 |-----------|------------------------|------------------|
 | **Database Creation & Management** | Create a new database called `SalesDB`. | `CREATE DATABASE SalesDB;` |
@@ -77,3 +79,5 @@ ID` column in the `Products` table. | `CREATE CLUSTERED INDEX idx_ProductID ON P
 | | Grant a user permission to view the `Products` table but revoke their ability to delete records. | `GRANT SELECT ON Products TO [username]; REVOKE DELETE ON Products FROM [username];` |
 
 ---
+
+Feel free to adjust or expand upon these answers based on specific requirements or database platforms (SQL Server, MySQL, etc.).
