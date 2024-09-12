@@ -12,6 +12,7 @@ entity "Order" as order {
     +OrderID: int
     OrderDate: date
     Status: string
+    *CustomerID: int
 }
 
 entity "Product" as product {
@@ -26,6 +27,8 @@ entity "Sales" as sales {
     +SaleID: int
     SaleDate: date
     TotalAmount: decimal
+    *OrderID: int
+    *ProductID: int
 }
 
 entity "Supplier" as supplier {
