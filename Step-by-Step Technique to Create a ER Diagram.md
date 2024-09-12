@@ -83,3 +83,5 @@ sales "1" -- "0..*" product : Includes
 
 - **Review** the diagram for accuracy and completeness.
 - **Adjust** relationships and cardinalities if necessary.
+
+![ER Diagram](ER Diagram.png)
