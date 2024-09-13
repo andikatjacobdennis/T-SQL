@@ -1,6 +1,6 @@
-### T-SQL Data Types
+### SQL Data Types
 
-T-SQL offers various data types to store different kinds of data. These data types are grouped into several categories, each suited for a specific kind of information. Let’s break them down and apply them to **Product** and **Sales** examples.
+SQL offers various data types to store different kinds of data. These data types are grouped into several categories, each suited for a specific kind of information. Let’s break them down and apply them to **Product** and **Sales** examples.
 
 ### 1. **Numeric Data Types**
 Used to store numbers, such as prices, quantities, and discount rates.
