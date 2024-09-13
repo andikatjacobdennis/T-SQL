@@ -18,9 +18,11 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 7. **[Normalization](Normalization.md)**: Explains database normalization, including different normal forms and practical examples.
 
-8. **[Step-by-Step_Technique_to_Create_a_DFD](Step-by-Step_Technique_to_Create_a_DFD.md)**: Provides a detailed technique for creating Data Flow Diagrams (DFDs) from scratch, including defining processes, data stores, data flows, and external entities.
+9. **[Denormalization](Denormalization.md)**: Explains database denormalization.
 
-9. **[Step-by-Step_Technique_to_Create_an_ER_Diagram](Step-by-Step_Technique_to_Create_an_ER_Diagram.md)**: Offers a step-by-step guide to creating Entity-Relationship (ER) diagrams, including identifying entities, attributes, relationships, and cardinality.
+10. **[Step-by-Step_Technique_to_Create_a_DFD](Step-by-Step_Technique_to_Create_a_DFD.md)**: Provides a detailed technique for creating Data Flow Diagrams (DFDs) from scratch, including defining processes, data stores, data flows, and external entities.
+
+11. **[Step-by-Step_Technique_to_Create_an_ER_Diagram](Step-by-Step_Technique_to_Create_an_ER_Diagram.md)**: Offers a step-by-step guide to creating Entity-Relationship (ER) diagrams, including identifying entities, attributes, relationships, and cardinality.
 
 ## Contributing
 
