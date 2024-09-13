@@ -97,3 +97,13 @@
 | **Pivoting** | Pivot the sales data to show total sales by product for each year. | `SELECT * FROM (SELECT ProductID, YEAR(SaleDate) AS SaleYear, SaleAmount FROM Sales) AS SourceTable PIVOT (SUM(SaleAmount) FOR SaleYear IN ([2021], [2022], [2023])) AS PivotTable;` |
 | | Use `PIVOT` to display total sales for each product category. | `SELECT * FROM (SELECT Category, SaleAmount FROM Products P INNER JOIN Sales S ON P.ProductID = S.ProductID) AS SourceTable PIVOT (SUM(SaleAmount) FOR Category IN ('Electronics', 'Clothing', 'Accessories')) AS PivotTable;` |
 | **Unpivoting** | Unpivot sales data to display product sales for each year in rows. | `SELECT ProductID, SaleYear, SaleAmount FROM (SELECT ProductID, [2021], [2022], [2023] FROM SalesByYear) AS PivotTable UNPIVOT (SaleAmount FOR SaleYear IN ([2021], [2022], [2023])) AS UnpivotTable;` |
+| **XML Data Handling** | Create an XML column in a table to store product details. | `ALTER TABLE Products ADD ProductDetails XML;` |
+| | Insert XML data into the `ProductDetails` column of the `Products` table. | `UPDATE Products SET ProductDetails = '<Product><Name>Smartphone</Name><Price>299</Price></Product>' WHERE ProductID = 1;` |
+| | Query the `ProductDetails` XML column to retrieve the product name. | `SELECT ProductDetails.value('(/Product/Name)[1]', 'NVARCHAR(100)') AS ProductName FROM Products WHERE ProductID = 1;` |
+| | Extract the price from the `ProductDetails` XML column. | `SELECT ProductDetails.value('(/Product/Price)[1]', 'DECIMAL(10, 2)') AS Price FROM Products WHERE ProductID = 1;` |
+| | Update the `ProductDetails` XML to set a new price. | `UPDATE Products SET ProductDetails.modify('replace value of (/Product/Price/text())[1] with 350') WHERE ProductID = 1;` |
+| **JSON Data Handling** | Create a column in a table to store JSON data. | `ALTER TABLE Products ADD ProductAttributes NVARCHAR(MAX);` |
+| | Insert JSON data into the `ProductAttributes` column of the `Products` table. | `UPDATE Products SET ProductAttributes = '{"Color": "Black", "Warranty": "1 Year"}' WHERE ProductID = 1;` |
+| | Query the `ProductAttributes` JSON column to retrieve the warranty information. | `SELECT JSON_VALUE(ProductAttributes, '$.Warranty') AS Warranty FROM Products WHERE ProductID = 1;` |
+| | Extract the color from the `ProductAttributes` JSON column. | `SELECT JSON_VALUE(ProductAttributes, '$.Color') AS Color FROM Products WHERE ProductID = 1;` |
+| | Update the `ProductAttributes` JSON to add a new attribute. | `UPDATE Products SET ProductAttributes = JSON_MODIFY(ProductAttributes, '$.Weight', '150g') WHERE ProductID = 1;` |
