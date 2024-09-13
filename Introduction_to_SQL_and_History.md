@@ -28,4 +28,4 @@ SQL provides a standardized way to manage databases, allowing developers to work
 - **Data Manipulation**: Commands such as `INSERT`, `UPDATE`, and `DELETE` allow modification of the data.
 - **Data Definition**: SQL provides commands like `CREATE`, `ALTER`, and `DROP` to define or modify the structure of database objects such as tables.
 - **Data Control**: Commands like `GRANT` and `REVOKE` help control access to the database.
-- **Transaction Control (TCL)**:
+- **Transaction Control (TCL)**: SQL supports transaction management to ensure data consistency.
