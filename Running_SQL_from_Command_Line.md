@@ -72,3 +72,8 @@
    ```cmd
    sqlcmd -S localhost -E -Q "SELECT * FROM my_table" -o C:\output\results.txt
    ```
+   
+4. **Find SQL Server Version**:
+   ```cmd
+   sqlcmd -S localhost -E -Q "SELECT @@VERSION;"
+   ```
