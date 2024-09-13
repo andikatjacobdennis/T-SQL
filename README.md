@@ -10,13 +10,15 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 3. **[Running_SQL_from_Command_Line](Running_SQL_from_Command_Line.md)**: Provides instructions on how to execute SQL commands from the command line using SQLCMD. This file covers connecting to SQL Server, running SQL commands, executing scripts from files, and saving outputs.
 
-4. **[SQL_Starter_Database_Setup](SQL_Starter_Database_Setup.md)**: Contains instructions and SQL scripts for creating and populating a starter database. This file guides you through setting up the initial database and tables for practice.
+4. **[SQL_Data_Types_and_Examples](SQL_Data_Types_and_Examples.md)**: A detailed guide covering various T-SQL data types and practical examples using Product and Sales data.
 
-5. **[SQL_Exercises_and_Examples](SQL_Exercises_and_Examples.md)**: A comprehensive collection of T-SQL queries and exercises. This file includes examples and practice queries ranging from basic database operations to advanced topics like indexing, constraints, and stored procedures.
+5. **[SQL_Starter_Database_Setup](SQL_Starter_Database_Setup.md)**: Contains instructions and SQL scripts for creating and populating a starter database. This file guides you through setting up the initial database and tables for practice.
 
-6. **[ACID](ACID.md)**: Provides a detailed explanation of ACID properties (Atomicity, Consistency, Isolation, Durability) with T-SQL examples.
+6. **[SQL_Exercises_and_Examples](SQL_Exercises_and_Examples.md)**: A comprehensive collection of T-SQL queries and exercises. This file includes examples and practice queries ranging from basic database operations to advanced topics like indexing, constraints, and stored procedures.
 
-7. **[Normalization](Normalization.md)**: Explains database normalization, including different normal forms and practical examples.
+7. **[ACID](ACID.md)**: Provides a detailed explanation of ACID properties (Atomicity, Consistency, Isolation, Durability) with T-SQL examples.
+
+8. **[Normalization](Normalization.md)**: Explains database normalization, including different normal forms and practical examples.
 
 9. **[Denormalization](Denormalization.md)**: Explains database denormalization, including scenarios where denormalization is useful, trade-offs, and examples of how to denormalize tables to improve performance in read-heavy applications.
 
