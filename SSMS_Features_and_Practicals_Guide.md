@@ -187,9 +187,7 @@
 #### Practical:
 1. **Right-click on Database Diagrams**:
    - Expand your database and right-click on **Database Diagrams**.
-   -
-
- ![Screenshot of Database Diagrams option placeholder]
+   - ![Screenshot of Database Diagrams option placeholder]
 2. **Choose New Diagram**:
    - Select **New Database Diagram** from the context menu.
    - ![Screenshot of New Database Diagram placeholder]
