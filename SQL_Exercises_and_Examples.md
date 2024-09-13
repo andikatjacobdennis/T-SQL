@@ -5,7 +5,7 @@
 | | List all available databases on the server. | `SHOW DATABASES;` |
 | | Rename `OldSalesDB` to `NewSalesDB`. | `ALTER DATABASE OldSalesDB MODIFY NAME = NewSalesDB;` |
 | | Backup the `SalesDB` database. | `BACKUP DATABASE SalesDB TO DISK = 'C:\Backup\SalesDB.bak';` |
-| | Backup the `SalesDB` database. | `RESTORE DATABASE SalesDB FROM DISK = 'C:\Backup\SalesDB.bak' WITH REPLACE;` |
+| | Restore the `SalesDB` database. | `RESTORE DATABASE SalesDB FROM DISK = 'C:\Backup\SalesDB.bak' WITH REPLACE;` |
 | | Drop the database `TestDB`. | `DROP DATABASE TestDB;` |
 | **Table Creation & Management** | Create a table `Products` with columns `ProductID`, `ProductName`, `Price`, and `Category`. | `CREATE TABLE Products (ProductID INT PRIMARY KEY, ProductName NVARCHAR(100), Price DECIMAL(10, 2), Category NVARCHAR(50));` |
 | | Retrieve all tables from the `SalesDB` database. | `SELECT * FROM INFORMATION_SCHEMA.TABLES;` |
