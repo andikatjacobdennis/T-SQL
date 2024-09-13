@@ -18,7 +18,7 @@ Welcome to the T-SQL Practice Repository! This repository offers resources for p
 
 7. **[Normalization](Normalization.md)**: Explains database normalization, including different normal forms and practical examples.
 
-9. **[Denormalization](Denormalization.md)**: Explains database denormalization.
+9. **[Denormalization](Denormalization.md)**: Explains database denormalization, including scenarios where denormalization is useful, trade-offs, and examples of how to denormalize tables to improve performance in read-heavy applications.
 
 10. **[Step-by-Step_Technique_to_Create_a_DFD](Step-by-Step_Technique_to_Create_a_DFD.md)**: Provides a detailed technique for creating Data Flow Diagrams (DFDs) from scratch, including defining processes, data stores, data flows, and external entities.
 
