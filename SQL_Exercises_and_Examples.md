@@ -1,8 +1,8 @@
 | **Topic** | **Practice Question** | **T-SQL Answer** |
 |-----------|------------------------|------------------|
-| **Database Creation & Management** | Create a new database called `SalesDB`. | `CREATE DATABASE SalesDB;` |
+| **Database Creation & Management** | List all available databases on the server. | `SHOW DATABASES;` |
 | | Select and use the `SalesDB` database. | `USE SalesDB;` |
-| | List all available databases on the server. | `SHOW DATABASES;` |
+| | Create a new database called `SalesDB`. | `CREATE DATABASE SalesDB;` |
 | | Rename `OldSalesDB` to `NewSalesDB`. | `ALTER DATABASE OldSalesDB MODIFY NAME = NewSalesDB;` |
 | | Backup the `SalesDB` database. | `BACKUP DATABASE SalesDB TO DISK = 'C:\Backup\SalesDB.bak';` |
 | | Restore the `SalesDB` database. | `RESTORE DATABASE SalesDB FROM DISK = 'C:\Backup\SalesDB.bak' WITH REPLACE;` |
