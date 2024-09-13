@@ -24,8 +24,8 @@ SQL provides a standardized way to manage databases, allowing developers to work
 
 ### Key features of SQL include:
 
-- **Data Querying**: SQL allows users to retrieve specific data using commands like `SELECT`.
-- **Data Manipulation**: Commands such as `INSERT`, `UPDATE`, and `DELETE` allow modification of the data.
 - **Data Definition**: SQL provides commands like `CREATE`, `ALTER`, and `DROP` to define or modify the structure of database objects such as tables.
+- **Data Manipulation**: Commands such as `INSERT`, `UPDATE`, and `DELETE` allow modification of the data.
+- **Data Querying**: SQL allows users to retrieve specific data using commands like `SELECT`.
 - **Data Control**: Commands like `GRANT` and `REVOKE` help control access to the database.
 - **Transaction Control (TCL)**: SQL supports transaction management to ensure data consistency.
