@@ -22,6 +22,7 @@
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
+| | Use COALESCE to return the first non-null value from a list. | SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products; |
 | | Retrieve all products where the price is greater than 50. | `SELECT * FROM Products WHERE Price > 50;` |
 | | Retrieve all sales records sorted by sale date in descending order. | `SELECT * FROM Sales ORDER BY SaleDate DESC;` |
 | | Retrieve the top 5 most expensive products. | `SELECT TOP 5 * FROM Products ORDER BY Price DESC;` |
@@ -110,8 +111,6 @@
 | | Update the `ProductAttributes` JSON to add a new attribute. | `UPDATE Products SET ProductAttributes = JSON_MODIFY(ProductAttributes, '$.Weight', '150g') WHERE ProductID = 1;` |
 | **Views & Permissions** | Create a view to show product details and grant select permissions to a user. | CREATE VIEW vw_ProductDetails AS SELECT * FROM Products; GRANT SELECT ON vw_ProductDetails TO UserName; |
 | | Revoke select permissions on the view from the user. | REVOKE SELECT ON vw_ProductDetails FROM UserName; |
-| **COALESCE** | Use COALESCE to return the first non-null value from a list. | SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products; |
-| **CHECK Constraints** | Add a CHECK constraint to ensure the price is always greater than 0. | ALTER TABLE Products ADD CONSTRAINT CHK_Price CHECK (Price > 0); |
 | **User-Defined Functions** | Create a scalar-valued function to calculate the total price after a discount. | CREATE FUNCTION dbo.ApplyDiscount (@Price DECIMAL(10, 2), @Discount DECIMAL(5, 2)) RETURNS DECIMAL(10, 2) AS BEGIN RETURN @Price - (@Price * @Discount / 100); END; |
 | | Use the function to calculate the final price with a 10% discount. | SELECT dbo.ApplyDiscount(100, 10) AS FinalPrice; |
 
