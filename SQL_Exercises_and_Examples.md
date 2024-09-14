@@ -20,7 +20,6 @@
 | | Drop the `#TempSales` table. | ```sql DROP TABLE #TempSales; ``` |
 | **Inserting Data into Tables** | Insert a new product into the `Products` table with name 'Smartphone' and price 299. | `INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (1, 'Smartphone', 299, 'Electronics');` |
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
-| | Create a backup table of the `Sales` table with only records where the sale amount is greater than 500. | `SELECT * INTO SalesBackup FROM Sales WHERE SaleAmount > 500;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
 | | Retrieve all products where the price is greater than 50. | `SELECT * FROM Products WHERE Price > 50;` |
