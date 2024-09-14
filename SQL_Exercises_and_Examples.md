@@ -7,17 +7,17 @@
 | | Backup the `SalesDB` database. | `BACKUP DATABASE SalesDB TO DISK = 'C:\Backup\SalesDB.bak';` |
 | | Restore the `SalesDB` database. | `RESTORE DATABASE SalesDB FROM DISK = 'C:\Backup\SalesDB.bak' WITH REPLACE;` |
 | | Drop the database `TestDB`. | `DROP DATABASE TestDB;` |
-| **Table Creation & Management** | Create a `Products` table with `ProductID` as the primary key, `ProductName` as unique, `Price` not null, and `Category` with a check constraint. | ```sql CREATE TABLE Products ( ProductID INT PRIMARY KEY, ProductName NVARCHAR(100) UNIQUE, Price DECIMAL(10, 2) NOT NULL, Category NVARCHAR(50) CHECK (Category IN ('Electronics', 'Clothing', 'Food', 'Furniture')) ); ``` |
-| | Create a temporary table for storing product sales during a session. | ```sql CREATE TABLE #TempSales ( SaleID INT, ProductID INT, SaleAmount DECIMAL(10, 2) ); ``` |
-| | Create a clone of the `Products` table including the schema and data. | ```sql SELECT * INTO Products_Clone FROM Products; ``` |
-| | Rename the table `OldProducts` to `NewProducts`. | ```sql EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
-| | Add a new column `StockQuantity` to the `Products` table. | ```sql ALTER TABLE Products ADD StockQuantity INT; ``` |
-| | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```sql ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
-| | Add a unique key constraint on the `ProductName` column in the `Products` table. | ```sql ALTER TABLE Products ADD CONSTRAINT UQ_ProductName UNIQUE (ProductName); ``` |
-| | Drop the unique key constraint on the `ProductName` column. | ```sql ALTER TABLE Products DROP CONSTRAINT UQ_ProductName; ``` |
-| | Truncate all records from the `Sales` table. | ```sql TRUNCATE TABLE Sales; ``` |
-| | Permanently delete the `OldProducts` table. | ```sql DROP TABLE OldProducts; ``` |
-| | Drop the `#TempSales` table. | ```sql DROP TABLE #TempSales; ``` |
+| **Table Creation & Management** | Create a `Products` table with `ProductID` as the primary key, `ProductName` as unique, `Price` not null, and `Category` with a check constraint. | ```CREATE TABLE Products ( ProductID INT PRIMARY KEY, ProductName NVARCHAR(100) UNIQUE, Price DECIMAL(10, 2) NOT NULL, Category NVARCHAR(50) CHECK (Category IN ('Electronics', 'Clothing', 'Food', 'Furniture')) ); ``` |
+| | Create a temporary table for storing product sales during a session. | ```CREATE TABLE #TempSales ( SaleID INT, ProductID INT, SaleAmount DECIMAL(10, 2) ); ``` |
+| | Create a clone of the `Products` table including the schema and data. | ```SELECT * INTO Products_Clone FROM Products; ``` |
+| | Rename the table `OldProducts` to `NewProducts`. | ```EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
+| | Add a new column `StockQuantity` to the `Products` table. | ```ALTER TABLE Products ADD StockQuantity INT; ``` |
+| | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
+| | Add a unique key constraint on the `ProductName` column in the `Products` table. | ```ALTER TABLE Products ADD CONSTRAINT UQ_ProductName UNIQUE (ProductName); ``` |
+| | Drop the unique key constraint on the `ProductName` column. | ```ALTER TABLE Products DROP CONSTRAINT UQ_ProductName; ``` |
+| | Truncate all records from the `Sales` table. | ```TRUNCATE TABLE Sales; ``` |
+| | Permanently delete the `OldProducts` table. | ```DROP TABLE OldProducts; ``` |
+| | Drop the `#TempSales` table. | ```DROP TABLE #TempSales; ``` |
 | **Inserting Data into Tables** | Insert a new product into the `Products` table with name 'Smartphone' and price 299. | `INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (1, 'Smartphone', 299, 'Electronics');` |
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
