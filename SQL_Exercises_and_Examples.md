@@ -7,16 +7,15 @@
 | | Backup the `SalesDB` database. | `BACKUP DATABASE SalesDB TO DISK = 'C:\Backup\SalesDB.bak';` |
 | | Restore the `SalesDB` database. | `RESTORE DATABASE SalesDB FROM DISK = 'C:\Backup\SalesDB.bak' WITH REPLACE;` |
 | | Drop the database `TestDB`. | `DROP DATABASE TestDB;` |
-Here's an updated version of the SQL table management tasks that includes additional constraints like `UNIQUE`, `NOT NULL`, and `FOREIGN KEY`:
-| **Create a table `Products` with constraints** | Create a `Products` table with `ProductID` as the primary key, `ProductName` as unique, `Price` not null, and `Category` with a check constraint. | ```sql CREATE TABLE Products ( ProductID INT PRIMARY KEY, ProductName NVARCHAR(100) UNIQUE, Price DECIMAL(10, 2) NOT NULL, Category NVARCHAR(50) CHECK (Category IN ('Electronics', 'Clothing', 'Food', 'Furniture')) ); ``` |
-| **Temporary Table** | Create a temporary table for storing product sales during a session. | ```sql CREATE TABLE #TempSales ( SaleID INT, ProductID INT, SaleAmount DECIMAL(10, 2) ); ``` |
-| **Clone Table** | Create a clone of the `Products` table including the schema and data. | ```sql SELECT * INTO Products_Clone FROM Products; ``` |
-| **Rename Table** | Rename the table `OldProducts` to `NewProducts`. | ```sql EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
-| **Add Column** | Add a new column `StockQuantity` to the `Products` table. | ```sql ALTER TABLE Products ADD StockQuantity INT; ``` |
-| **Foreign Key Constraint** | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```sql ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
-| **Truncate Table** | Truncate all records from the `Sales` table. | ```sql TRUNCATE TABLE Sales; ``` |
-| **Drop Table Permanently** | Permanently delete the `OldProducts` table. | ```sql DROP TABLE OldProducts; ``` |
-| **Drop Temporary Table** | Drop the `#TempSales` table. | ```sql DROP TABLE #TempSales; ``` |
+| **Table Creation & Management** | Create a `Products` table with `ProductID` as the primary key, `ProductName` as unique, `Price` not null, and `Category` with a check constraint. | ```sql CREATE TABLE Products ( ProductID INT PRIMARY KEY, ProductName NVARCHAR(100) UNIQUE, Price DECIMAL(10, 2) NOT NULL, Category NVARCHAR(50) CHECK (Category IN ('Electronics', 'Clothing', 'Food', 'Furniture')) ); ``` |
+| | Create a temporary table for storing product sales during a session. | ```sql CREATE TABLE #TempSales ( SaleID INT, ProductID INT, SaleAmount DECIMAL(10, 2) ); ``` |
+| | Create a clone of the `Products` table including the schema and data. | ```sql SELECT * INTO Products_Clone FROM Products; ``` |
+| | Rename the table `OldProducts` to `NewProducts`. | ```sql EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
+| | Add a new column `StockQuantity` to the `Products` table. | ```sql ALTER TABLE Products ADD StockQuantity INT; ``` |
+| | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```sql ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
+| | Truncate all records from the `Sales` table. | ```sql TRUNCATE TABLE Sales; ``` |
+| | Permanently delete the `OldProducts` table. | ```sql DROP TABLE OldProducts; ``` |
+| | Drop the `#TempSales` table. | ```sql DROP TABLE #TempSales; ``` |
 | **Inserting Data into Tables** | Insert a new product into the `Products` table with name 'Smartphone' and price 299. | `INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (1, 'Smartphone', 299, 'Electronics');` |
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
 | | Create a backup table of the `Sales` table with only records where the sale amount is greater than 500. | `SELECT * INTO SalesBackup FROM Sales WHERE SaleAmount > 500;` |
