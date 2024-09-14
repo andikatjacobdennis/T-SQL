@@ -13,6 +13,8 @@
 | | Rename the table `OldProducts` to `NewProducts`. | ```sql EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
 | | Add a new column `StockQuantity` to the `Products` table. | ```sql ALTER TABLE Products ADD StockQuantity INT; ``` |
 | | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```sql ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
+| | Add a unique key constraint on the `ProductName` column in the `Products` table. | ```sql ALTER TABLE Products ADD CONSTRAINT UQ_ProductName UNIQUE (ProductName); ``` |
+| | Drop the unique key constraint on the `ProductName` column. | ```sql ALTER TABLE Products DROP CONSTRAINT UQ_ProductName; ``` |
 | | Truncate all records from the `Sales` table. | ```sql TRUNCATE TABLE Sales; ``` |
 | | Permanently delete the `OldProducts` table. | ```sql DROP TABLE OldProducts; ``` |
 | | Drop the `#TempSales` table. | ```sql DROP TABLE #TempSales; ``` |
