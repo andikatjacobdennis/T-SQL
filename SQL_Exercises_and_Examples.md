@@ -17,8 +17,12 @@
 | | Truncate all records from the `Sales` table. | ```TRUNCATE TABLE Sales; ``` |
 | | Permanently delete the `OldProducts` table. | ```DROP TABLE OldProducts; ``` |
 | | Drop the `#TempSales` table. | ```DROP TABLE #TempSales; ``` |
-| **Inserting Data into Tables** | Insert a new product into the `Products` table with name 'Smartphone' and price 299. | `INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (1, 'Smartphone', 299, 'Electronics');` |
+| **Data Manipulation** | Insert a new product into the `Products` table with name 'Smartphone' and price 299. | `INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (1, 'Smartphone', 299, 'Electronics');` |
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
+| | Update the price of the product 'Smartphone' to 350. | `UPDATE Products SET Price = 350 WHERE ProductName = 'Smartphone';` |
+| | Delete all products where the price is below 10. | `DELETE FROM Products WHERE Price < 10;` |
+| | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
+| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
 | | Use COALESCE to return the first non-null value from a list. | `SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products;` |
@@ -36,10 +40,6 @@
 | | Find the average price of all products. | `SELECT AVG(Price) AS AveragePrice FROM Products;` |
 | | Group all products by category and count how many products exist in each category. | `SELECT Category, COUNT(*) AS ProductCount FROM Products GROUP BY Category;` |
 | | Retrieve product categories having more than 5 products. | `SELECT Category FROM Products GROUP BY Category HAVING COUNT(*) > 5;` |
-| **Data Manipulation** | Update the price of the product 'Smartphone' to 350. | `UPDATE Products SET Price = 350 WHERE ProductName = 'Smartphone';` |
-| | Delete all products where the price is below 10. | `DELETE FROM Products WHERE Price < 10;` |
-| | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
-| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Joins & Set Operations** | Retrieve all sales with the corresponding product name by joining `Sales` and `Products` tables. | `SELECT Sales.*, Products.ProductName FROM Sales INNER JOIN Products ON Sales.ProductID = Products.ProductID;` |
 | | Retrieve the customer name and the corresponding sales amount by joining `Customers` and `Sales` tables. | `SELECT Customers.CustomerName, Sales.SaleAmount FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID;` |
 | | Retrieve all products and their sales data, showing NULL for products that haven’t been sold. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products LEFT JOIN Sales ON Products.ProductID = Sales.ProductID;` |
