@@ -32,14 +32,14 @@
 | | Retrieve all products where the category is either 'Electronics' or 'Clothing'. | `SELECT * FROM Products WHERE Category = 'Electronics' OR Category = 'Clothing';` |
 | | Retrieve all products that are not in the 'Clothing' category. | `SELECT * FROM Products WHERE Category <> 'Clothing';` |
 | | Retrieve all product names that start with the letter 'S'. | `SELECT ProductName FROM Products WHERE ProductName LIKE 'S%';` |
-| | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
-| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Aggregations and Grouping** | Find the total sales amount from the `Sales` table. | `SELECT SUM(SaleAmount) AS TotalSales FROM Sales;` |
 | | Retrieve the minimum and maximum product prices. | `SELECT MIN(Price) AS MinPrice, MAX(Price) AS MaxPrice FROM Products;` |
 | | Count the total number of products in the `Products` table. | `SELECT COUNT(*) AS TotalProducts FROM Products;` |
 | | Find the average price of all products. | `SELECT AVG(Price) AS AveragePrice FROM Products;` |
 | | Group all products by category and count how many products exist in each category. | `SELECT Category, COUNT(*) AS ProductCount FROM Products GROUP BY Category;` |
 | | Retrieve product categories having more than 5 products. | `SELECT Category FROM Products GROUP BY Category HAVING COUNT(*) > 5;` |
+| | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
+| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Joins & Set Operations** | Retrieve all sales with the corresponding product name by joining `Sales` and `Products` tables. | `SELECT Sales.*, Products.ProductName FROM Sales INNER JOIN Products ON Sales.ProductID = Products.ProductID;` |
 | | Retrieve the customer name and the corresponding sales amount by joining `Customers` and `Sales` tables. | `SELECT Customers.CustomerName, Sales.SaleAmount FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID;` |
 | | Retrieve all products and their sales data, showing NULL for products that haven’t been sold. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products LEFT JOIN Sales ON Products.ProductID = Sales.ProductID;` |
