@@ -21,7 +21,7 @@
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
-| | Use COALESCE to return the first non-null value from a list. | SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products; |
+| | Use COALESCE to return the first non-null value from a list. | `SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products;` |
 | | Retrieve all products where the price is greater than 50. | `SELECT * FROM Products WHERE Price > 50;` |
 | | Retrieve all sales records sorted by sale date in descending order. | `SELECT * FROM Sales ORDER BY SaleDate DESC;` |
 | | Retrieve the top 5 most expensive products. | `SELECT TOP 5 * FROM Products ORDER BY Price DESC;` |
