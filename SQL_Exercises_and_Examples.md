@@ -9,7 +9,6 @@
 | | Drop the database `TestDB`. | `DROP DATABASE TestDB;` |
 | **Table Creation & Management** | Create a `Products` table with `ProductID` as the primary key, `ProductName` as unique, `Price` not null, and `Category` with a check constraint. | ```CREATE TABLE Products ( ProductID INT PRIMARY KEY, ProductName NVARCHAR(100) UNIQUE, Price DECIMAL(10, 2) NOT NULL, Category NVARCHAR(50) CHECK (Category IN ('Electronics', 'Clothing', 'Food', 'Furniture')) ); ``` |
 | | Create a temporary table for storing product sales during a session. | ```CREATE TABLE #TempSales ( SaleID INT, ProductID INT, SaleAmount DECIMAL(10, 2) ); ``` |
-| | Create a clone of the `Products` table including the schema and data. | ```SELECT * INTO Products_Clone FROM Products; ``` |
 | | Rename the table `OldProducts` to `NewProducts`. | ```EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
 | | Add a new column `StockQuantity` to the `Products` table. | ```ALTER TABLE Products ADD StockQuantity INT; ``` |
 | | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
