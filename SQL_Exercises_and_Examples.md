@@ -33,7 +33,6 @@
 | **Aggregations and Grouping** | Find the total sales amount from the `Sales` table. | `SELECT SUM(SaleAmount) AS TotalSales FROM Sales;` |
 | | Retrieve the minimum and maximum product prices. | `SELECT MIN(Price) AS MinPrice, MAX(Price) AS MaxPrice FROM Products;` |
 | | Count the total number of products in the `Products` table. | `SELECT COUNT(*) AS TotalProducts FROM Products;` |
-| | Calculate the total revenue from the `Sales` table. | `SELECT SUM(SaleAmount) AS TotalRevenue FROM Sales;` |
 | | Find the average price of all products. | `SELECT AVG(Price) AS AveragePrice FROM Products;` |
 | | Group all products by category and count how many products exist in each category. | `SELECT Category, COUNT(*) AS ProductCount FROM Products GROUP BY Category;` |
 | | Retrieve product categories having more than 5 products. | `SELECT Category FROM Products GROUP BY Category HAVING COUNT(*) > 5;` |
