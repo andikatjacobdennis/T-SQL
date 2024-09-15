@@ -21,8 +21,6 @@
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
 | | Update the price of the product 'Smartphone' to 350. | `UPDATE Products SET Price = 350 WHERE ProductName = 'Smartphone';` |
 | | Delete all products where the price is below 10. | `DELETE FROM Products WHERE Price < 10;` |
-| | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
-| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
 | | Use COALESCE to return the first non-null value from a list. | `SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products;` |
@@ -34,6 +32,8 @@
 | | Retrieve all products where the category is either 'Electronics' or 'Clothing'. | `SELECT * FROM Products WHERE Category = 'Electronics' OR Category = 'Clothing';` |
 | | Retrieve all products that are not in the 'Clothing' category. | `SELECT * FROM Products WHERE Category <> 'Clothing';` |
 | | Retrieve all product names that start with the letter 'S'. | `SELECT ProductName FROM Products WHERE ProductName LIKE 'S%';` |
+| | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
+| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Aggregations and Grouping** | Find the total sales amount from the `Sales` table. | `SELECT SUM(SaleAmount) AS TotalSales FROM Sales;` |
 | | Retrieve the minimum and maximum product prices. | `SELECT MIN(Price) AS MinPrice, MAX(Price) AS MaxPrice FROM Products;` |
 | | Count the total number of products in the `Products` table. | `SELECT COUNT(*) AS TotalProducts FROM Products;` |
