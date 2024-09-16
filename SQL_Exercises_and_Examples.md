@@ -26,6 +26,7 @@
 | | Retrieve the top 5 most expensive products. | `SELECT TOP 5 * FROM Products ORDER BY Price DESC;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
 | | Use COALESCE to return the first non-null value from a list. | `SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products;` |
+| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | | Retrieve all products where the price is greater than 50. | `SELECT * FROM Products WHERE Price > 50;` |
 | | Retrieve all sales where the sale amount is between 100 and 500. | `SELECT * FROM Sales WHERE SaleAmount BETWEEN 100 AND 500;` |
 | | Retrieve all products where the category is either 'Electronics' or 'Clothing'. | `SELECT * FROM Products WHERE Category = 'Electronics' OR Category = 'Clothing';` |
@@ -38,7 +39,6 @@
 | | Group all products by category and count how many products exist in each category. | `SELECT Category, COUNT(*) AS ProductCount FROM Products GROUP BY Category;` |
 | | Retrieve product categories having more than 5 products. | `SELECT Category FROM Products GROUP BY Category HAVING COUNT(*) > 5;` |
 | | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
-| | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | **Joins & Set Operations** | Retrieve all sales with the corresponding product name by joining `Sales` and `Products` tables. | `SELECT Sales.*, Products.ProductName FROM Sales INNER JOIN Products ON Sales.ProductID = Products.ProductID;` |
 | | Retrieve the customer name and the corresponding sales amount by joining `Customers` and `Sales` tables. | `SELECT Customers.CustomerName, Sales.SaleAmount FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID;` |
 | | Retrieve all products and their sales data, showing NULL for products that haven’t been sold. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products LEFT JOIN Sales ON Products.ProductID = Sales.ProductID;` |
