@@ -23,11 +23,11 @@
 | | Delete all products where the price is below 10. | `DELETE FROM Products WHERE Price < 10;` |
 | **Querying & Data Retrieval** | Retrieve all product names and their prices from the `Products` table. | `SELECT ProductName, Price FROM Products;` |
 | | Insert all records from the `Products` table into a new table called `BackupProducts`. | `SELECT * INTO BackupProducts FROM Products;` |
+| | Retrieve the top 5 most expensive products. | `SELECT TOP 5 * FROM Products ORDER BY Price DESC;` |
 | | Retrieve the distinct product categories from the `Products` table. | `SELECT DISTINCT Category FROM Products;` |
 | | Use COALESCE to return the first non-null value from a list. | `SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products;` |
 | | Retrieve all products where the price is greater than 50. | `SELECT * FROM Products WHERE Price > 50;` |
 | | Retrieve all sales records sorted by sale date in descending order. | `SELECT * FROM Sales ORDER BY SaleDate DESC;` |
-| | Retrieve the top 5 most expensive products. | `SELECT TOP 5 * FROM Products ORDER BY Price DESC;` |
 | | Retrieve all products where the category is in ('Electronics', 'Clothing', 'Sports'). | `SELECT * FROM Products WHERE Category IN ('Electronics', 'Clothing', 'Sports');` |
 | | Retrieve all sales where the sale amount is between 100 and 500. | `SELECT * FROM Sales WHERE SaleAmount BETWEEN 100 AND 500;` |
 | | Retrieve all products where the category is either 'Electronics' or 'Clothing'. | `SELECT * FROM Products WHERE Category = 'Electronics' OR Category = 'Clothing';` |
