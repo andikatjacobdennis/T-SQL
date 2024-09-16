@@ -11,6 +11,7 @@
 | | Create a temporary table for storing product sales during a session. | ```CREATE TABLE #TempSales ( SaleID INT, ProductID INT, SaleAmount DECIMAL(10, 2) ); ``` |
 | | Rename the table `OldProducts` to `NewProducts`. | ```EXEC sp_rename 'OldProducts', 'NewProducts'; ``` |
 | | Add a new column `StockQuantity` to the `Products` table. | ```ALTER TABLE Products ADD StockQuantity INT; ``` |
+| | Create a composite key on the `ProductID` and `OrderID` columns in the `OrderDetails` table. | `ALTER TABLE OrderDetails ADD CONSTRAINT PK_ProductOrder PRIMARY KEY (ProductID, OrderID);` |
 | | Add a foreign key constraint to the `Sales` table referencing `Products`. | ```ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID); ``` |
 | | Add a unique key constraint on the `ProductName` column in the `Products` table. | ```ALTER TABLE Products ADD CONSTRAINT UQ_ProductName UNIQUE (ProductName); ``` |
 | | Drop the unique key constraint on the `ProductName` column. | ```ALTER TABLE Products DROP CONSTRAINT UQ_ProductName; ``` |
@@ -57,11 +58,6 @@
 | | Create a unique index on the `ProductCode` column in the `Products` table. | `CREATE UNIQUE INDEX idx_ProductCode ON Products (ProductCode);` |
 | | Create a clustered index on the `ProductID` column in the `Products` table. | `CREATE  CLUSTERED INDEX idx_ProductID ON Products (ProductID);` |
 | | Create a non-clustered index on the `ProductName` column. | `CREATE NONCLUSTERED INDEX idx_ProductName ON Products (ProductName);` |
-| **Keys & Constraints** | Ensure that the `ProductCode` column in the `Products` table is unique. | `ALTER TABLE Products ADD CONSTRAINT UQ_ProductCode UNIQUE (ProductCode);` |
-| | Add a primary key on the `ProductID` column in the `Products` table. | `ALTER TABLE Products ADD CONSTRAINT PK_ProductID PRIMARY KEY (ProductID);` |
-| | Create a foreign key in the `Sales` table that references the `ProductID` in the `Products` table. | `ALTER TABLE Sales ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES Products(ProductID);` |
-| | Create a composite key on the `ProductID` and `OrderID` columns in the `OrderDetails` table. | `ALTER TABLE OrderDetails ADD CONSTRAINT PK_ProductOrder PRIMARY KEY (ProductID, OrderID);` |
-| | Define an alternate key on the `ProductCode` column in the `Products` table. | `ALTER TABLE Products ADD CONSTRAINT AK_ProductCode UNIQUE (ProductCode);` |
 | **Views** | Create a view that shows product names and total sales for each product. | `CREATE VIEW ProductSalesView AS SELECT Products.ProductName, SUM(Sales.SaleAmount) AS TotalSales FROM Products LEFT JOIN Sales ON Products.ProductID = Sales.ProductID GROUP BY Products.ProductName;` |
 | | Update the `ProductSalesView` to include the average sale amount. | `CREATE OR ALTER VIEW ProductSalesView AS SELECT Products.ProductName, SUM(Sales.SaleAmount) AS TotalSales, AVG(Sales.SaleAmount) AS AverageSales FROM Products LEFT JOIN Sales ON Products.ProductID = Sales.ProductID GROUP BY Products.ProductName;` |
 | | Drop the `ObsoleteView` from the database. | `DROP VIEW ObsoleteView;` |
