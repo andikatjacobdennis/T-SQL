@@ -28,6 +28,7 @@
 | | Use COALESCE to return the first non-null value from a list. | `SELECT ProductName, COALESCE(Price, 0) AS Price FROM Products;` |
 | | Retrieve all products and replace any NULL price values with 0. | `SELECT ProductName, ISNULL(Price, 0) AS Price FROM Products;` |
 | | Retrieve all products where the price is greater than 50. | `SELECT * FROM Products WHERE Price > 50;` |
+| | Retrieve all products where the price is greater than all products in the 'Clothing' category. | `SELECT * FROM Products WHERE Price > ALL (SELECT Price FROM Products WHERE Category = 'Clothing');` |
 | | Retrieve all customers where the `phone_number` is NULL. | `SELECT * FROM Customers WHERE phone_number IS NULL;` |
 | | Retrieve all sales where the sale amount is between 100 and 500. | `SELECT * FROM Sales WHERE SaleAmount BETWEEN 100 AND 500;` |
 | | Retrieve all products where the category is either 'Electronics' or 'Clothing'. | `SELECT * FROM Products WHERE Category = 'Electronics' OR Category = 'Clothing';` |
@@ -43,8 +44,7 @@
 | | Retrieve all sales and the product details, showing NULL for products that no longer exist. | `SELECT Sales.SaleID, Products.ProductName FROM Sales RIGHT JOIN Products ON Sales.ProductID = Products.ProductID;` |
 | | Retrieve all products and their sales information, even if there is no match on either side. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products FULL JOIN Sales ON Products.ProductID = Sales.ProductID;` |
 | | Retrieve all products that have the same price by joining the `Products` table to itself. | `SELECT A.ProductName, B.ProductName FROM Products A INNER JOIN Products B ON A.Price = B.Price AND A.ProductID <> B.ProductID;` |
-| **Subqueries and Advanced Queries** | Retrieve all products where the price is greater than all products in the 'Clothing' category. | `SELECT * FROM Products WHERE Price > ALL (SELECT Price FROM Products WHERE Category = 'Clothing');` |
-| | Retrieve all products and add a new column showing 'Expensive' if the price is above 100, otherwise 'Cheap'. | `SELECT ProductName, Price, CASE WHEN Price > 100 THEN 'Expensive' ELSE 'Cheap' END AS PriceCategory FROM Products;` |
+| **Subqueries and Advanced Queries** | Retrieve all products and add a new column showing 'Expensive' if the price is above 100, otherwise 'Cheap'. | `SELECT ProductName, Price, CASE WHEN Price > 100 THEN 'Expensive' ELSE 'Cheap' END AS PriceCategory FROM Products;` |
 | **Indexes** | Create an index on the `ProductName` column for faster searches. | `CREATE INDEX idx_ProductName ON Products (ProductName);` |
 | | Create an index on the `SaleDate` column in the `Sales` table. | `CREATE INDEX idx_SaleDate ON Sales (SaleDate);` |
 | | Drop the index on the `ProductName` column. | `DROP INDEX idx_ProductName ON Products;` |
