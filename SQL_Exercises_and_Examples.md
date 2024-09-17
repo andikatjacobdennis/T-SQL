@@ -55,8 +55,8 @@
 | | Update the ProductPriceView to include the stock quantity for each product. | `CREATE OR ALTER VIEW ProductPriceView AS SELECT ProductName, Price FROM Products;` |
 | | Rename `ProductSalesView` to `ProductRevenueView`. | `EXEC sp_rename 'ProductSalesView', 'ProductRevenueView';` |
 | | Drop the `ObsoleteView` from the database. | `DROP VIEW ObsoleteView;` |
-| **Views & Permissions** | Create a view to show product details and grant select permissions to a user. | CREATE VIEW vw_ProductDetails AS SELECT * FROM Products; GRANT SELECT ON vw_ProductDetails TO UserName; |
-| | Revoke select permissions on the view from the user. | REVOKE SELECT ON vw_ProductDetails FROM UserName; |
+| **Views & Permissions** | Create a view to show product details and grant select permissions to a user. | `CREATE VIEW vw_ProductDetails AS SELECT * FROM Products; GRANT SELECT ON vw_ProductDetails TO UserName;` |
+| | Revoke select permissions on the view from the user. | `REVOKE SELECT ON vw_ProductDetails FROM UserName;` |
 | **Stored Procedures** | Create a stored procedure to add a new sale record to the `Sales` table. | `CREATE PROCEDURE AddSale @ProductID INT, @SaleAmount DECIMAL(10, 2), @SaleDate DATE AS BEGIN INSERT INTO Sales (ProductID, SaleAmount, SaleDate) VALUES (@ProductID, @SaleAmount, @SaleDate); END;` |
 | | Execute this procedure to add a sale record | `EXEC AddSale @ProductID = 1, @SaleAmount = 100.50, @SaleDate = '2024-09-17';` |
 | | To update the procedure and add a `CustomerID` parameter | `CREATE OR ALTER PROCEDURE AddSale @ProductID INT, @SaleAmount DECIMAL(10, 2), @SaleDate DATE, @CustomerID INT AS BEGIN INSERT INTO Sales (ProductID, SaleAmount, SaleDate, CustomerID) VALUES (@ProductID, @SaleAmount, @SaleDate, @CustomerID); END;` |
