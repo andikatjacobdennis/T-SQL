@@ -55,7 +55,11 @@
 | | Update the ProductPriceView to include the stock quantity for each product. | `CREATE OR ALTER VIEW ProductPriceView AS SELECT ProductName, Price FROM Products;` |
 | | Rename `ProductSalesView` to `ProductRevenueView`. | `EXEC sp_rename 'ProductSalesView', 'ProductRevenueView';` |
 | | Drop the `ObsoleteView` from the database. | `DROP VIEW ObsoleteView;` |
+| **Views & Permissions** | Create a view to show product details and grant select permissions to a user. | CREATE VIEW vw_ProductDetails AS SELECT * FROM Products; GRANT SELECT ON vw_ProductDetails TO UserName; |
+| | Revoke select permissions on the view from the user. | REVOKE SELECT ON vw_ProductDetails FROM UserName; |
 | **Stored Procedures & Functions** | Create a stored procedure to add a new sale record to the `Sales` table. | `CREATE PROCEDURE AddSale @ProductID INT, @SaleAmount DECIMAL(10, 2), @SaleDate DATE AS BEGIN INSERT INTO Sales (ProductID, SaleAmount, SaleDate) VALUES (@ProductID, @SaleAmount, @SaleDate); END;` |
+| **User-Defined Functions** | Create a scalar-valued function to calculate the total price after a discount. | CREATE FUNCTION dbo.ApplyDiscount (@Price DECIMAL(10, 2), @Discount DECIMAL(5, 2)) RETURNS DECIMAL(10, 2) AS BEGIN RETURN @Price - (@Price * @Discount / 100); END; |
+| | Use the function to calculate the final price with a 10% discount. | SELECT dbo.ApplyDiscount(100, 10) AS FinalPrice; |
 | | Write a function that calculates the total sales for a given product. | `CREATE FUNCTION TotalSalesForProduct (@ProductID INT) RETURNS DECIMAL(10, 2) AS BEGIN RETURN (SELECT SUM(SaleAmount) FROM Sales WHERE ProductID = @ProductID); END;` |
 | **Advanced Concepts** | Write a loop to update prices for all products that meet a specific condition. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2) SET @NewPrice = 100; DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products WHERE Price < @NewPrice OPEN ProductCursor FETCH NEXT FROM ProductCursor INTO @ProductID WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = @NewPrice WHERE ProductID = @ProductID FETCH NEXT FROM ProductCursor INTO @ProductID END CLOSE ProductCursor DEALLOCATE ProductCursor;` |
 | | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
@@ -94,8 +98,4 @@
 | | Query the `ProductAttributes` JSON column to retrieve the warranty information. | `SELECT JSON_VALUE(ProductAttributes, '$.Warranty') AS Warranty FROM Products WHERE ProductID = 1;` |
 | | Extract the color from the `ProductAttributes` JSON column. | `SELECT JSON_VALUE(ProductAttributes, '$.Color') AS Color FROM Products WHERE ProductID = 1;` |
 | | Update the `ProductAttributes` JSON to add a new attribute. | `UPDATE Products SET ProductAttributes = JSON_MODIFY(ProductAttributes, '$.Weight', '150g') WHERE ProductID = 1;` |
-| **Views & Permissions** | Create a view to show product details and grant select permissions to a user. | CREATE VIEW vw_ProductDetails AS SELECT * FROM Products; GRANT SELECT ON vw_ProductDetails TO UserName; |
-| | Revoke select permissions on the view from the user. | REVOKE SELECT ON vw_ProductDetails FROM UserName; |
-| **User-Defined Functions** | Create a scalar-valued function to calculate the total price after a discount. | CREATE FUNCTION dbo.ApplyDiscount (@Price DECIMAL(10, 2), @Discount DECIMAL(5, 2)) RETURNS DECIMAL(10, 2) AS BEGIN RETURN @Price - (@Price * @Discount / 100); END; |
-| | Use the function to calculate the final price with a 10% discount. | SELECT dbo.ApplyDiscount(100, 10) AS FinalPrice; |
 
