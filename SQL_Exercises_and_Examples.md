@@ -46,7 +46,6 @@
 | | Retrieve all products that have the same price by joining the `Products` table to itself. | `SELECT A.ProductName, B.ProductName FROM Products A INNER JOIN Products B ON A.Price = B.Price AND A.ProductID <> B.ProductID;` |
 | **Conditional Expressions** | Retrieve all products and add a new column showing 'Expensive' if the price is above 100, otherwise 'Cheap'. | `SELECT ProductName, Price, StockQuantity, CASE WHEN Price > 200 THEN 'Luxury' WHEN Price BETWEEN 100 AND 200 THEN 'Expensive' WHEN Price BETWEEN 50 AND 100 THEN 'Moderate' ELSE 'Cheap' END AS PriceCategory, CASE WHEN StockQuantity = 0 THEN 'Out of Stock' ELSE 'In Stock' END AS StockStatus FROM Products;` |
 | **Indexes** | Create an index on the `ProductName` column for faster searches. | `CREATE INDEX idx_ProductName ON Products (ProductName);` |
-| | Create an index on the `SaleDate` column in the `Sales` table. | `CREATE INDEX idx_SaleDate ON Sales (SaleDate);` |
 | | Drop the index on the `ProductName` column. | `DROP INDEX idx_ProductName ON Products;` |
 | | Retrieve all indexes on the `Products` table. | `SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID('Products');` |
 | | Create a unique index on the `ProductCode` column in the `Products` table. | `CREATE UNIQUE INDEX idx_ProductCode ON Products (ProductCode);` |
