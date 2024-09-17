@@ -51,8 +51,8 @@
 | | Create a clustered index on the `ProductID` column in the `Products` table. | `CREATE  CLUSTERED INDEX idx_ProductID ON Products (ProductID);` |
 | | Create a non-clustered index on the `ProductName` column. | `CREATE NONCLUSTERED INDEX idx_ProductName ON Products (ProductName);` |
 | | Drop the index on the `ProductName` column. | `DROP INDEX idx_ProductName ON Products;` |
-| **Views** | Create a view that shows product names and their prices. | CREATE VIEW ProductPriceView AS SELECT ProductName, Price FROM Products; |
-| | Update the ProductPriceView to include the stock quantity for each product. | CREATE OR ALTER VIEW ProductPriceView AS SELECT ProductName, Price FROM Products; |
+| **Views** | Create a view that shows product names and their prices. | `CREATE VIEW ProductPriceView AS SELECT ProductName, Price FROM Products;` |
+| | Update the ProductPriceView to include the stock quantity for each product. | `CREATE OR ALTER VIEW ProductPriceView AS SELECT ProductName, Price FROM Products;` |
 | | Rename `ProductSalesView` to `ProductRevenueView`. | `EXEC sp_rename 'ProductSalesView', 'ProductRevenueView';` |
 | | Drop the `ObsoleteView` from the database. | `DROP VIEW ObsoleteView;` |
 | **Stored Procedures & Functions** | Create a stored procedure to add a new sale record to the `Sales` table. | `CREATE PROCEDURE AddSale @ProductID INT, @SaleAmount DECIMAL(10, 2), @SaleDate DATE AS BEGIN INSERT INTO Sales (ProductID, SaleAmount, SaleDate) VALUES (@ProductID, @SaleAmount, @SaleDate); END;` |
