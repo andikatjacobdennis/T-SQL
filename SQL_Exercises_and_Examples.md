@@ -44,7 +44,7 @@
 | | Retrieve all sales and the product details, showing NULL for products that no longer exist. | `SELECT Sales.SaleID, Products.ProductName FROM Sales RIGHT JOIN Products ON Sales.ProductID = Products.ProductID;` |
 | | Retrieve all products and their sales information, even if there is no match on either side. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products FULL JOIN Sales ON Products.ProductID = Sales.ProductID;` |
 | | Retrieve all products that have the same price by joining the `Products` table to itself. | `SELECT A.ProductName, B.ProductName FROM Products A INNER JOIN Products B ON A.Price = B.Price AND A.ProductID <> B.ProductID;` |
-| **Subqueries and Advanced Queries** | Retrieve all products and add a new column showing 'Expensive' if the price is above 100, otherwise 'Cheap'. | `SELECT ProductName, Price, CASE WHEN Price > 100 THEN 'Expensive' ELSE 'Cheap' END AS PriceCategory FROM Products;` |
+| **Conditional Expressions** | Retrieve all products and add a new column showing 'Expensive' if the price is above 100, otherwise 'Cheap'. | `SELECT ProductName, Price, StockQuantity, CASE WHEN Price > 200 THEN 'Luxury' WHEN Price BETWEEN 100 AND 200 THEN 'Expensive' WHEN Price BETWEEN 50 AND 100 THEN 'Moderate' ELSE 'Cheap' END AS PriceCategory, CASE WHEN StockQuantity = 0 THEN 'Out of Stock' ELSE 'In Stock' END AS StockStatus FROM Products;` |
 | **Indexes** | Create an index on the `ProductName` column for faster searches. | `CREATE INDEX idx_ProductName ON Products (ProductName);` |
 | | Create an index on the `SaleDate` column in the `Sales` table. | `CREATE INDEX idx_SaleDate ON Sales (SaleDate);` |
 | | Drop the index on the `ProductName` column. | `DROP INDEX idx_ProductName ON Products;` |
