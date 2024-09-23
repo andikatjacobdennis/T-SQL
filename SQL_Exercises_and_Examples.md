@@ -64,8 +64,7 @@
 | **User-Defined Functions** | Create a scalar-valued function to calculate the total price after a discount. | `CREATE FUNCTION dbo.ApplyDiscount (@Price DECIMAL(10, 2), @Discount DECIMAL(5, 2)) RETURNS DECIMAL(10, 2) AS BEGIN RETURN @Price - (@Price * @Discount / 100); END;` |
 | | Use the function to calculate the final price with a 10% discount. | `SELECT dbo.ApplyDiscount(100, 10) AS FinalPrice;` |
 | **Trigger** | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
-| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity.                          | 
-```sql                           
+| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity.                          | ```sql                           
 BEGIN TRANSACTION;
 BEGIN TRY
     INSERT INTO Products (ProductID, ProductName, Price, Category)
