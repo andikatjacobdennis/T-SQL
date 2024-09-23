@@ -118,7 +118,7 @@ BEGIN CATCH
     SELECT ERROR_NUMBER(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_PROCEDURE(), ERROR_LINE(), ERROR_MESSAGE();
 END CATCH;
 ```
-
+| **Topic** | **Practice Question** | **T-SQL Answer** |
 |-----------|------------------------|------------------|
 | **Cursors** | Create a cursor to loop through all products and update prices for each product. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2); DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products; OPEN ProductCursor; FETCH NEXT FROM ProductCursor INTO @ProductID; WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = Price * 1.10 WHERE ProductID = @ProductID; FETCH NEXT FROM ProductCursor INTO @ProductID; END CLOSE ProductCursor; DEALLOCATE ProductCursor;` |
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
