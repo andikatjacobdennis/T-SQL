@@ -64,7 +64,8 @@
 | **User-Defined Functions** | Create a scalar-valued function to calculate the total price after a discount. | `CREATE FUNCTION dbo.ApplyDiscount (@Price DECIMAL(10, 2), @Discount DECIMAL(5, 2)) RETURNS DECIMAL(10, 2) AS BEGIN RETURN @Price - (@Price * @Discount / 100); END;` |
 | | Use the function to calculate the final price with a 10% discount. | `SELECT dbo.ApplyDiscount(100, 10) AS FinalPrice;` |
 | **Trigger** | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
-| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity.                          | ```sql                           
+| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity.                          | |
+```sql                           
 BEGIN TRANSACTION;
 BEGIN TRY
     INSERT INTO Products (ProductID, ProductName, Price, Category)
@@ -115,7 +116,7 @@ END TRY
 BEGIN CATCH
     SELECT ERROR_NUMBER(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_PROCEDURE(), ERROR_LINE(), ERROR_MESSAGE();
 END CATCH;
-``` |
+```
 | **Cursors** | Create a cursor to loop through all products and update prices for each product. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2); DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products; OPEN ProductCursor; FETCH NEXT FROM ProductCursor INTO @ProductID; WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = Price * 1.10 WHERE ProductID = @ProductID; FETCH NEXT FROM ProductCursor INTO @ProductID; END CLOSE ProductCursor; DEALLOCATE ProductCursor;` |
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
 | | Use a recursive CTE to calculate the factorial of a number. | `WITH FactorialCTE AS (SELECT 1 AS N, 1 AS Factorial UNION ALL SELECT N + 1, (N + 1) * Factorial FROM FactorialCTE WHERE N < 5) SELECT * FROM FactorialCTE;` |
