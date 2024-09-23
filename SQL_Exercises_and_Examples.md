@@ -64,16 +64,57 @@
 | **User-Defined Functions** | Create a scalar-valued function to calculate the total price after a discount. | `CREATE FUNCTION dbo.ApplyDiscount (@Price DECIMAL(10, 2), @Discount DECIMAL(5, 2)) RETURNS DECIMAL(10, 2) AS BEGIN RETURN @Price - (@Price * @Discount / 100); END;` |
 | | Use the function to calculate the final price with a 10% discount. | `SELECT dbo.ApplyDiscount(100, 10) AS FinalPrice;` |
 | **Trigger** | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
-| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity. | `BEGIN TRANSACTION; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (2, 'Tablet', 199, 'Electronics'); UPDATE Products SET StockQuantity = StockQuantity + 10 WHERE ProductID = 2; COMMIT TRANSACTION;` |
-| | Rollback a transaction if an error occurs during multiple inserts. | `BEGIN TRANSACTION; BEGIN TRY INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (3, 'Laptop', 799, 'Electronics'); INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (4, 'Keyboard', 49, 'Accessories'); COMMIT TRANSACTION; END TRY BEGIN CATCH ROLLBACK TRANSACTION; END CATCH;` |
-| | Save a transaction state so that it can be rolled back later. | `BEGIN TRANSACTION; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (5, 'Mouse', 25, 'Accessories'); SAVE TRANSACTION SavePoint1; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (6, 'Monitor', 150, 'Electronics'); ROLLBACK TRANSACTION SavePoint1; COMMIT TRANSACTION;` |
-| | Check the status of the current transaction. | `SELECT @@TRANCOUNT;` |
-| **Error Handling** | Implement basic error handling in a query to avoid runtime errors. | `BEGIN TRY INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (1, 'Smartwatch', 199, 'Electronics'); END TRY BEGIN CATCH SELECT ERROR_MESSAGE() AS ErrorMessage; END CATCH;` |
-| | Write a stored procedure that handles errors when inserting sales data. | `CREATE PROCEDURE AddSaleWithErrorHandling @ProductID INT, @SaleAmount DECIMAL(10, 2), @SaleDate DATE AS BEGIN BEGIN TRY INSERT INTO Sales (ProductID, SaleAmount, SaleDate) VALUES (@ProductID, @SaleAmount, @SaleDate); END TRY BEGIN CATCH SELECT ERROR_MESSAGE() AS ErrorMessage; ROLLBACK TRANSACTION; END CATCH END;` |
-| | Capture detailed error information, including error number, severity, and state. | `BEGIN TRY -- Operation END TRY BEGIN CATCH SELECT ERROR_NUMBER(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_PROCEDURE(), ERROR_LINE(), ERROR_MESSAGE(); END CATCH;` |
-| **Transactions with Error Handling** | Write a query with transaction control and error handling for multiple operations. | `BEGIN TRANSACTION; BEGIN TRY INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (10, 'TV', 499, 'Electronics'); UPDATE Products SET StockQuantity = StockQuantity + 10 WHERE ProductID = 10; COMMIT TRANSACTION; END TRY BEGIN CATCH ROLLBACK TRANSACTION; SELECT ERROR_MESSAGE(); END CATCH;` |
-| | Implement a transaction that rolls back after a failure in any step. | `BEGIN TRANSACTION; BEGIN TRY INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (11, 'Speaker', 150, 'Electronics'); INSERT INTO Sales (ProductID, SaleAmount, SaleDate) VALUES (11, 150, GETDATE()); COMMIT TRANSACTION; END TRY BEGIN CATCH ROLLBACK TRANSACTION; SELECT ERROR_MESSAGE(); END CATCH;` |
-| | Add a SAVEPOINT to handle partial rollbacks within a transaction. | `BEGIN TRANSACTION; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (12, 'Tablet', 250, 'Electronics'); SAVE TRANSACTION SavePoint1; INSERT INTO Products (ProductID, ProductName, Price, Category) VALUES (13, 'Headphones', 75, 'Electronics'); IF (@@ERROR <> 0) ROLLBACK TRANSACTION SavePoint1; COMMIT TRANSACTION;` |
+| **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity. | `-- Start a transaction for product operations and rollback if needed
+BEGIN TRANSACTION;
+BEGIN TRY
+    INSERT INTO Products (ProductID, ProductName, Price, Category)
+    VALUES (2, 'Tablet', 199, 'Electronics');
+    
+    UPDATE Products SET StockQuantity = StockQuantity + 10
+    WHERE ProductID = 2;
+    
+    -- Check the current transaction count
+    SELECT @@TRANCOUNT;
+    
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    -- Rollback if an error occurs
+    ROLLBACK TRANSACTION;
+    SELECT ERROR_MESSAGE() AS ErrorMessage;
+END CATCH;
+
+-- Save transaction state with a save point and partial rollback
+BEGIN TRANSACTION;
+BEGIN TRY
+    INSERT INTO Products (ProductID, ProductName, Price, Category)
+    VALUES (5, 'Mouse', 25, 'Accessories');
+    
+    SAVE TRANSACTION SavePoint1;
+    
+    INSERT INTO Products (ProductID, ProductName, Price, Category)
+    VALUES (6, 'Monitor', 150, 'Electronics');
+    
+    -- Rollback to save point if error occurs after SavePoint1
+    IF (@@ERROR <> 0)
+        ROLLBACK TRANSACTION SavePoint1;
+
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    -- Handle errors
+    ROLLBACK TRANSACTION;
+    SELECT ERROR_MESSAGE() AS ErrorMessage;
+END CATCH;
+
+-- Handling errors with detailed information
+BEGIN TRY
+    -- Your operation here
+END TRY
+BEGIN CATCH
+    SELECT ERROR_NUMBER(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_PROCEDURE(), ERROR_LINE(), ERROR_MESSAGE();
+END CATCH;
+` |
 | **Cursors** | Create a cursor to loop through all products and update prices for each product. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2); DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products; OPEN ProductCursor; FETCH NEXT FROM ProductCursor INTO @ProductID; WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = Price * 1.10 WHERE ProductID = @ProductID; FETCH NEXT FROM ProductCursor INTO @ProductID; END CLOSE ProductCursor; DEALLOCATE ProductCursor;` |
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
 | | Use a recursive CTE to calculate the factorial of a number. | `WITH FactorialCTE AS (SELECT 1 AS N, 1 AS Factorial UNION ALL SELECT N + 1, (N + 1) * Factorial FROM FactorialCTE WHERE N < 5) SELECT * FROM FactorialCTE;` |
