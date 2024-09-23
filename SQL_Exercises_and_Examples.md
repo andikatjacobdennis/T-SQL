@@ -95,9 +95,44 @@ BEGIN CATCH
 END CATCH;
 
 ```
+
 | **Topic** | **Practice Question** | **T-SQL Answer** |
 |-----------|------------------------|------------------|
-| **Cursors** | Create a cursor to loop through all products and update prices for each product. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2); DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products; OPEN ProductCursor; FETCH NEXT FROM ProductCursor INTO @ProductID; WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = Price * 1.10 WHERE ProductID = @ProductID; FETCH NEXT FROM ProductCursor INTO @ProductID; END CLOSE ProductCursor; DEALLOCATE ProductCursor;` |
+| **Cursors** | Create a cursor to loop through all products and update prices for each product. |  |
+
+```sql
+-- Declare a cursor for selecting ProductID and ProductName from Products
+DECLARE @ProductID INT, @ProductName NVARCHAR(50);
+
+DECLARE ProductCursor CURSOR FOR
+SELECT ProductID, ProductName
+FROM Products;
+
+-- Open the cursor
+OPEN ProductCursor;
+
+-- Fetch the first row
+FETCH NEXT FROM ProductCursor INTO @ProductID, @ProductName;
+
+-- Loop through the rows until there are no more rows to fetch
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    -- Process each row (for example, print the product details)
+    PRINT 'Product ID: ' + CAST(@ProductID AS NVARCHAR(10)) + ', Product Name: ' + @ProductName;
+
+    -- Fetch the next row
+    FETCH NEXT FROM ProductCursor INTO @ProductID, @ProductName;
+END;
+
+-- Close the cursor when done
+CLOSE ProductCursor;
+
+-- Deallocate the cursor to free up resources
+DEALLOCATE ProductCursor;
+```
+
+| **Topic** | **Practice Question** | **T-SQL Answer** |
+|-----------|------------------------|------------------|
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
 | | Use a recursive CTE to calculate the factorial of a number. | `WITH FactorialCTE AS (SELECT 1 AS N, 1 AS Factorial UNION ALL SELECT N + 1, (N + 1) * Factorial FROM FactorialCTE WHERE N < 5) SELECT * FROM FactorialCTE;` |
 | **Dynamic SQL** | Write a dynamic SQL query to retrieve products based on a variable category. | `DECLARE @Category NVARCHAR(50); SET @Category = 'Electronics'; DECLARE @SQL NVARCHAR(MAX); SET @SQL = 'SELECT * FROM Products WHERE Category = ''' + @Category + ''''; EXEC sp_executesql @SQL;` |
