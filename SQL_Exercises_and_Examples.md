@@ -119,6 +119,7 @@ BEGIN CATCH
 END CATCH;
 ```
 
+|-----------|------------------------|------------------|
 | **Cursors** | Create a cursor to loop through all products and update prices for each product. | `DECLARE @ProductID INT, @NewPrice DECIMAL(10, 2); DECLARE ProductCursor CURSOR FOR SELECT ProductID FROM Products; OPEN ProductCursor; FETCH NEXT FROM ProductCursor INTO @ProductID; WHILE @@FETCH_STATUS = 0 BEGIN UPDATE Products SET Price = Price * 1.10 WHERE ProductID = @ProductID; FETCH NEXT FROM ProductCursor INTO @ProductID; END CLOSE ProductCursor; DEALLOCATE ProductCursor;` |
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
 | | Use a recursive CTE to calculate the factorial of a number. | `WITH FactorialCTE AS (SELECT 1 AS N, 1 AS Factorial UNION ALL SELECT N + 1, (N + 1) * Factorial FROM FactorialCTE WHERE N < 5) SELECT * FROM FactorialCTE;` |
