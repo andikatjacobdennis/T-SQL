@@ -66,33 +66,17 @@
 | **Trigger** | Create a trigger that updates the stock quantity in the `Products` table after every insert into `Sales`. | `CREATE TRIGGER UpdateStock AFTER INSERT ON Sales FOR EACH ROW BEGIN UPDATE Products SET StockQuantity = StockQuantity - 1 WHERE ProductID = NEW.ProductID; END;` |
 | **Transactions** | Begin a transaction for inserting a new product and updating the stock quantity.                          | |
 
-```sql                           
-BEGIN TRANSACTION;
-BEGIN TRY
-    INSERT INTO Products (ProductID, ProductName, Price, Category)
-    VALUES (2, 'Tablet', 199, 'Electronics');
-    
-    UPDATE Products
-    SET StockQuantity = StockQuantity + 10
-    WHERE ProductID = 2;
-    
-    -- Check the current transaction count
-    SELECT @@TRANCOUNT;
-    
-    COMMIT TRANSACTION;
-END TRY
-BEGIN CATCH
-    -- Rollback if an error occurs
-    ROLLBACK TRANSACTION;
-    SELECT ERROR_MESSAGE() AS ErrorMessage;
-END CATCH;
- 
+```sql
+
 -- Save transaction state with a save point and partial rollback
 BEGIN TRANSACTION;
 BEGIN TRY
     INSERT INTO Products (ProductID, ProductName, Price, Category)
     VALUES (5, 'Mouse', 25, 'Accessories');
-    
+
+    -- Check the current transaction count
+    SELECT @@TRANCOUNT;
+
     SAVE TRANSACTION SavePoint1;
     
     INSERT INTO Products (ProductID, ProductName, Price, Category)
