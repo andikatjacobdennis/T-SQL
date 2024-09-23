@@ -91,16 +91,9 @@ END TRY
 BEGIN CATCH
     -- Handle errors
     ROLLBACK TRANSACTION;
-    SELECT ERROR_MESSAGE() AS ErrorMessage;
+    SELECT ERROR_MESSAGE(), ERROR_NUMBER(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_PROCEDURE(), ERROR_LINE();
 END CATCH;
 
--- Handling errors with detailed information
-BEGIN TRY
-    -- Your operation here
-END TRY
-BEGIN CATCH
-    SELECT ERROR_NUMBER(), ERROR_SEVERITY(), ERROR_STATE(), ERROR_PROCEDURE(), ERROR_LINE(), ERROR_MESSAGE();
-END CATCH;
 ```
 | **Topic** | **Practice Question** | **T-SQL Answer** |
 |-----------|------------------------|------------------|
