@@ -134,7 +134,6 @@ DEALLOCATE ProductCursor;
 | **Topic** | **Practice Question** | **T-SQL Answer** |
 |-----------|------------------------|------------------|
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
-| | Use a recursive CTE to calculate the factorial of a number. | `WITH FactorialCTE AS (SELECT 1 AS N, 1 AS Factorial UNION ALL SELECT N + 1, (N + 1) * Factorial FROM FactorialCTE WHERE N < 5) SELECT * FROM FactorialCTE;` |
 | **Dynamic SQL** | Write a dynamic SQL query to retrieve products based on a variable category. | `DECLARE @Category NVARCHAR(50); SET @Category = 'Electronics'; DECLARE @SQL NVARCHAR(MAX); SET @SQL = 'SELECT * FROM Products WHERE Category = ''' + @Category + ''''; EXEC sp_executesql @SQL;` |
 | | Use dynamic SQL to create a query that selects data from a table specified by the user. | `DECLARE @TableName NVARCHAR(100); SET @TableName = 'Products'; DECLARE @SQL NVARCHAR(MAX); SET @SQL = 'SELECT * FROM ' + @TableName; EXEC sp_executesql @SQL;` |
 | **Window Functions** | Calculate the cumulative sales amount for each product using `OVER()`. | `SELECT ProductID, SaleAmount, SUM(SaleAmount) OVER (PARTITION BY ProductID ORDER BY SaleDate) AS CumulativeSales FROM Sales;` |
