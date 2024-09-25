@@ -39,11 +39,15 @@
 | | Retrieve the minimum and maximum product prices. | `SELECT MIN(Price) AS MinPrice, MAX(Price) AS MaxPrice FROM Products;` |
 | | Find the average price of all products. | `SELECT AVG(Price) AS AveragePrice FROM Products;` |
 | **Joins & Set Operations** | Retrieve all sales with the corresponding product name by joining `Sales` and `Products` tables. | `SELECT Sales.*, Products.ProductName FROM Sales INNER JOIN Products ON Sales.ProductID = Products.ProductID;` |
-| | Retrieve the customer name and the corresponding sales amount by joining `Customers` and `Sales` tables. | `SELECT Customers.CustomerName, Sales.SaleAmount FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID;` |
+|  | Retrieve the customer name and the corresponding sales amount by joining `Customers` and `Sales` tables. | `SELECT Customers.CustomerName, Sales.SaleAmount FROM Sales INNER JOIN Customers ON Sales.CustomerID = Customers.CustomerID;` |
 | | Retrieve all products and their sales data, showing NULL for products that haven’t been sold. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products LEFT JOIN Sales ON Products.ProductID = Sales.ProductID;` |
 | | Retrieve all sales and the product details, showing NULL for products that no longer exist. | `SELECT Sales.SaleID, Products.ProductName FROM Sales RIGHT JOIN Products ON Sales.ProductID = Products.ProductID;` |
 | | Retrieve all products and their sales information, even if there is no match on either side. | `SELECT Products.ProductName, Sales.SaleAmount FROM Products FULL JOIN Sales ON Products.ProductID = Sales.ProductID;` |
 | | Retrieve all products that have the same price by joining the `Products` table to itself. | `SELECT A.ProductName, B.ProductName FROM Products A INNER JOIN Products B ON A.Price = B.Price AND A.ProductID <> B.ProductID;` |
+| | Retrieve all possible combinations of products and customers. | `SELECT Products.ProductName, Customers.CustomerName FROM Products CROSS JOIN Customers;` |
+| | Retrieve the union of sales amounts from different sales channels. | `SELECT SaleAmount FROM OnlineSales UNION SELECT SaleAmount FROM StoreSales;` |
+| | Retrieve sales that are not present in the online sales. | `SELECT SaleAmount FROM Sales EXCEPT SELECT SaleAmount FROM OnlineSales;` |
+| | Retrieve sales amounts that are common to both online and store sales. | `SELECT SaleAmount FROM OnlineSales INTERSECT SELECT SaleAmount FROM StoreSales;` |
 | **Conditional Expressions** | Retrieve all products and add a new column showing 'Expensive' if the price is above 100, otherwise 'Cheap'. | `SELECT ProductName, Price, StockQuantity, CASE WHEN Price > 200 THEN 'Luxury' WHEN Price BETWEEN 100 AND 200 THEN 'Expensive' WHEN Price BETWEEN 50 AND 100 THEN 'Moderate' ELSE 'Cheap' END AS PriceCategory, CASE WHEN StockQuantity = 0 THEN 'Out of Stock' ELSE 'In Stock' END AS StockStatus FROM Products;` |
 | **Indexes** | Create an index on the `ProductName` column for faster searches. | `CREATE INDEX idx_ProductName ON Products (ProductName);` |
 | | Retrieve all indexes on the `Products` table. | `SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID('Products');` |
