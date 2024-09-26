@@ -139,7 +139,7 @@ DEALLOCATE ProductCursor;
 |-----------|------------------------|------------------|
 | **Common Table Expressions** | Use a CTE to retrieve the top 5 most expensive products. | `WITH ExpensiveProducts AS (SELECT ProductName, Price, ROW_NUMBER() OVER (ORDER BY Price DESC) AS RowNum FROM Products) SELECT ProductName, Price FROM ExpensiveProducts WHERE RowNum <= 5;` |
 | **Dynamic SQL** | Write a dynamic SQL query to retrieve products based on a variable category. | |
-|
+```sql
 DECLARE @Category NVARCHAR(50);
 SET @Category = 'Electronics';
 
@@ -147,7 +147,7 @@ DECLARE @SQL NVARCHAR(MAX);
 SET @SQL = 'SELECT * FROM Products WHERE Category = ''' + @Category + '''';
 
 EXEC sp_executesql @SQL;
- |
+```
 | **Window Functions** | Calculate the cumulative sales amount for each product using `OVER()`. | `SELECT ProductID, SaleAmount, SUM(SaleAmount) OVER (PARTITION BY ProductID ORDER BY SaleDate) AS CumulativeSales FROM Sales;` |
 | | Retrieve the rank of products based on their price. | `SELECT ProductName, Price, RANK() OVER (ORDER BY Price DESC) AS PriceRank FROM Products;` |
 | **Partitioning** | Partition sales data by product category and calculate total sales in each partition. | `SELECT Category, SUM(SaleAmount) OVER (PARTITION BY Category) AS TotalSales FROM Products P INNER JOIN Sales S ON P.ProductID = S.ProductID;` |
