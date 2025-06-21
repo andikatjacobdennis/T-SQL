@@ -3,36 +3,47 @@
 ## Basic Level Questions (1-30)
 
 ### 1. What is T-SQL?
+
 **Answer:**
-T-SQL (Transact-SQL) is Microsoft's extension of SQL used in SQL Server. It adds programming features like variables, loops, conditionals, error handling, and stored procedures to standard SQL. 
+T-SQL (Transact-SQL) is Microsoft's extension of SQL used in SQL Server. It adds programming features like variables, loops, conditionals, error handling, and stored procedures to standard SQL.
 
 ### 2. How do you retrieve all columns from a table?
+
 **Answer:**
+
 ```sql
 -- Using SELECT * (though it's better practice to specify columns)
 SELECT * FROM Employees;
 ```
 
 ### 3. How do you retrieve specific columns from a table?
+
 **Answer:**
+
 ```sql
 SELECT EmployeeID, FirstName, LastName FROM Employees;
 ```
 
 ### 4. How do you filter rows in a SELECT statement?
+
 **Answer:**
+
 ```sql
 SELECT * FROM Employees WHERE Department = 'IT';
 ```
 
 ### 5. How do you sort results in a SELECT statement?
+
 **Answer:**
+
 ```sql
 SELECT * FROM Employees ORDER BY LastName ASC, FirstName ASC;
 ```
 
 ### 6. How do you create a new table?
+
 **Answer:**
+
 ```sql
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
@@ -44,52 +55,62 @@ CREATE TABLE Employees (
 ```
 
 ### 7. How do you insert data into a table?
+
 **Answer:**
+
 ```sql
 INSERT INTO Employees (EmployeeID, FirstName, LastName, HireDate, Salary)
 VALUES (1, 'John', 'Doe', '2020-01-15', 75000.00);
 ```
 
 ### 8. How do you update existing data in a table?
+
 **Answer:**
+
 ```sql
-UPDATE Employees 
-SET Salary = 80000.00 
+UPDATE Employees
+SET Salary = 80000.00
 WHERE EmployeeID = 1;
 ```
 
 ### 9. How do you delete data from a table?
+
 **Answer:**
+
 ```sql
 DELETE FROM Employees WHERE EmployeeID = 1;
 ```
 
 ### 10. What are the different types of joins in T-SQL?
+
 **Answer:**
+
 ```sql
 -- INNER JOIN: Returns rows when there's a match in both tables
-SELECT e.FirstName, d.DepartmentName 
+SELECT e.FirstName, d.DepartmentName
 FROM Employees e
 INNER JOIN Departments d ON e.DepartmentID = d.DepartmentID;
 
 -- LEFT JOIN: Returns all rows from left table, matched rows from right
-SELECT e.FirstName, d.DepartmentName 
+SELECT e.FirstName, d.DepartmentName
 FROM Employees e
 LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID;
 
 -- RIGHT JOIN: Returns all rows from right table, matched rows from left
-SELECT e.FirstName, d.DepartmentName 
+SELECT e.FirstName, d.DepartmentName
 FROM Employees e
 RIGHT JOIN Departments d ON e.DepartmentID = d.DepartmentID;
 
 -- FULL JOIN: Returns rows when there's a match in either table
-SELECT e.FirstName, d.DepartmentName 
+SELECT e.FirstName, d.DepartmentName
 FROM Employees e
 FULL JOIN Departments d ON e.DepartmentID = d.DepartmentID;
 ```
 
 ### 11. How do you use GROUP BY?
+
 **Answer:**
+
 ```sql
 SELECT DepartmentID, COUNT(*) AS EmployeeCount
 FROM Employees
@@ -97,7 +118,9 @@ GROUP BY DepartmentID;
 ```
 
 ### 12. How do you use HAVING clause?
+
 **Answer:**
+
 ```sql
 SELECT DepartmentID, COUNT(*) AS EmployeeCount
 FROM Employees
@@ -106,7 +129,9 @@ HAVING COUNT(*) > 5;
 ```
 
 ### 13. What is the difference between WHERE and HAVING?
+
 **Answer:**
+
 ```sql
 -- WHERE filters rows before grouping
 SELECT DepartmentID, COUNT(*) AS EmployeeCount
@@ -122,15 +147,19 @@ HAVING COUNT(*) > 5;
 ```
 
 ### 14. How do you use DISTINCT?
+
 **Answer:**
+
 ```sql
 SELECT DISTINCT Department FROM Employees;
 ```
 
 ### 15. What are aggregate functions in T-SQL?
+
 **Answer:**
+
 ```sql
-SELECT 
+SELECT
     COUNT(*) AS TotalEmployees,
     AVG(Salary) AS AverageSalary,
     SUM(Salary) AS TotalSalary,
@@ -140,21 +169,27 @@ FROM Employees;
 ```
 
 ### 16. How do you use BETWEEN?
+
 **Answer:**
+
 ```sql
-SELECT * FROM Employees 
+SELECT * FROM Employees
 WHERE Salary BETWEEN 40000 AND 80000;
 ```
 
 ### 17. How do you use IN operator?
+
 **Answer:**
+
 ```sql
-SELECT * FROM Employees 
+SELECT * FROM Employees
 WHERE Department IN ('IT', 'Finance', 'HR');
 ```
 
 ### 18. How do you use LIKE operator?
+
 **Answer:**
+
 ```sql
 -- % for any string of zero or more characters
 SELECT * FROM Employees WHERE LastName LIKE 'Sm%';
@@ -167,7 +202,9 @@ SELECT * FROM Employees WHERE LastName LIKE 'Sm[a-i]th';
 ```
 
 ### 19. How do you create a view?
+
 **Answer:**
+
 ```sql
 CREATE VIEW ITEmployees AS
 SELECT EmployeeID, FirstName, LastName
@@ -176,14 +213,18 @@ WHERE Department = 'IT';
 ```
 
 ### 20. How do you use IS NULL and IS NOT NULL?
+
 **Answer:**
+
 ```sql
 SELECT * FROM Employees WHERE ManagerID IS NULL;
 SELECT * FROM Employees WHERE ManagerID IS NOT NULL;
 ```
 
 ### 21. What are the different data types in SQL Server?
+
 **Answer:**
+
 ```sql
 -- Common data types:
 -- Exact numerics: INT, BIGINT, SMALLINT, TINYINT, DECIMAL, NUMERIC
@@ -196,40 +237,52 @@ SELECT * FROM Employees WHERE ManagerID IS NOT NULL;
 ```
 
 ### 22. How do you add a column to an existing table?
+
 **Answer:**
+
 ```sql
 ALTER TABLE Employees
 ADD Email NVARCHAR(100);
 ```
 
 ### 23. How do you modify a column in an existing table?
+
 **Answer:**
+
 ```sql
 ALTER TABLE Employees
 ALTER COLUMN Email NVARCHAR(150);
 ```
 
 ### 24. How do you drop a column from a table?
+
 **Answer:**
+
 ```sql
 ALTER TABLE Employees
 DROP COLUMN Email;
 ```
 
 ### 25. How do you rename a table?
+
 **Answer:**
+
 ```sql
 EXEC sp_rename 'OldTableName', 'NewTableName';
 ```
 
 ### 26. How do you rename a column?
+
 **Answer:**
+
 ```sql
 EXEC sp_rename 'Employees.Email', 'EmailAddress', 'COLUMN';
 ```
 
 ### 27. What is a primary key?
+
 **Answer:**
+
 ```sql
 -- A primary key uniquely identifies each row in a table
 -- It cannot contain NULL values and must contain unique values
@@ -240,7 +293,9 @@ CREATE TABLE Products (
 ```
 
 ### 28. What is a foreign key?
+
 **Answer:**
+
 ```sql
 -- A foreign key is a field that refers to the primary key in another table
 CREATE TABLE Orders (
@@ -251,7 +306,9 @@ CREATE TABLE Orders (
 ```
 
 ### 29. How do you create a composite primary key?
+
 **Answer:**
+
 ```sql
 CREATE TABLE OrderDetails (
     OrderID INT,
@@ -262,7 +319,9 @@ CREATE TABLE OrderDetails (
 ```
 
 ### 30. What is the difference between DELETE, TRUNCATE, and DROP?
+
 **Answer:**
+
 ```sql
 -- DELETE removes rows one at a time, logs each row, can use WHERE, can be rolled back
 DELETE FROM Employees WHERE EmployeeID = 1;
@@ -277,7 +336,9 @@ DROP TABLE OldEmployees;
 ## Intermediate Level Questions (31-70)
 
 ### 31. What are stored procedures?
+
 **Answer:**
+
 ```sql
 CREATE PROCEDURE GetEmployeeByID
     @EmployeeID INT
@@ -292,7 +353,9 @@ EXEC GetEmployeeByID @EmployeeID = 1;
 ```
 
 ### 32. What are functions in T-SQL?
+
 **Answer:**
+
 ```sql
 -- Scalar function
 CREATE FUNCTION GetFullName(@FirstName NVARCHAR(50), @LastName NVARCHAR(50))
@@ -317,7 +380,9 @@ SELECT * FROM dbo.GetEmployeesByDepartment('IT');
 ```
 
 ### 33. What are table variables?
+
 **Answer:**
+
 ```sql
 DECLARE @EmployeeTable TABLE (
     EmployeeID INT,
@@ -333,7 +398,9 @@ SELECT * FROM @EmployeeTable;
 ```
 
 ### 34. What are temporary tables?
+
 **Answer:**
+
 ```sql
 -- Local temporary table (visible only to current session)
 CREATE TABLE #TempEmployees (
@@ -360,10 +427,12 @@ DROP TABLE #TempEmployees;
 ```
 
 ### 35. What are common table expressions (CTEs)?
+
 **Answer:**
+
 ```sql
 WITH DepartmentStats AS (
-    SELECT 
+    SELECT
         Department,
         COUNT(*) AS EmployeeCount,
         AVG(Salary) AS AvgSalary
@@ -376,12 +445,14 @@ ORDER BY AvgSalary DESC;
 ```
 
 ### 36. What is a recursive CTE?
+
 **Answer:**
+
 ```sql
 -- Example: Employee hierarchy
 WITH EmployeeHierarchy AS (
     -- Anchor member
-    SELECT 
+    SELECT
         EmployeeID,
         FirstName,
         LastName,
@@ -389,11 +460,11 @@ WITH EmployeeHierarchy AS (
         0 AS Level
     FROM Employees
     WHERE ManagerID IS NULL
-    
+
     UNION ALL
-    
+
     -- Recursive member
-    SELECT 
+    SELECT
         e.EmployeeID,
         e.FirstName,
         e.LastName,
@@ -407,9 +478,11 @@ ORDER BY Level, LastName, FirstName;
 ```
 
 ### 37. What are window functions?
+
 **Answer:**
+
 ```sql
-SELECT 
+SELECT
     EmployeeID,
     FirstName,
     LastName,
@@ -427,13 +500,15 @@ FROM Employees;
 ```
 
 ### 38. How do you use PIVOT?
+
 **Answer:**
+
 ```sql
 -- Pivot example: Department vs. Salary totals
 SELECT Department, [2019], [2020], [2021]
 FROM (
-    SELECT 
-        Department, 
+    SELECT
+        Department,
         YEAR(HireDate) AS HireYear,
         Salary
     FROM Employees
@@ -445,10 +520,12 @@ PIVOT (
 ```
 
 ### 39. How do you use UNPIVOT?
+
 **Answer:**
+
 ```sql
 -- First create a sample pivoted table
-SELECT Department, [2019], [2020], [2021] 
+SELECT Department, [2019], [2020], [2021]
 INTO #PivotedData
 FROM (
     SELECT Department, YEAR(HireDate) AS HireYear, COUNT(*) AS EmployeeCount
@@ -469,27 +546,31 @@ UNPIVOT (
 ```
 
 ### 40. What are transactions in T-SQL?
+
 **Answer:**
+
 ```sql
 BEGIN TRY
     BEGIN TRANSACTION;
-    
+
     -- Transfer $100 from account 1 to account 2
     UPDATE Accounts SET Balance = Balance - 100 WHERE AccountID = 1;
     UPDATE Accounts SET Balance = Balance + 100 WHERE AccountID = 2;
-    
+
     COMMIT TRANSACTION;
 END TRY
 BEGIN CATCH
     IF @@TRANCOUNT > 0
         ROLLBACK TRANSACTION;
-    
+
     THROW;
 END CATCH
 ```
 
 ### 41. What are the different isolation levels?
+
 **Answer:**
+
 ```sql
 -- Read Uncommitted (dirty reads allowed)
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
@@ -508,7 +589,9 @@ SET TRANSACTION ISOLATION LEVEL SNAPSHOT;
 ```
 
 ### 42. What are the different types of locks?
+
 **Answer:**
+
 ```sql
 -- Common lock types:
 -- Shared (S) - For read operations
@@ -520,14 +603,16 @@ SET TRANSACTION ISOLATION LEVEL SNAPSHOT;
 ```
 
 ### 43. How do you handle errors in T-SQL?
+
 **Answer:**
+
 ```sql
 BEGIN TRY
     -- Code that might cause an error
     SELECT 1/0;
 END TRY
 BEGIN CATCH
-    SELECT 
+    SELECT
         ERROR_NUMBER() AS ErrorNumber,
         ERROR_SEVERITY() AS ErrorSeverity,
         ERROR_STATE() AS ErrorState,
@@ -538,7 +623,9 @@ END CATCH
 ```
 
 ### 44. What is the difference between UNION and UNION ALL?
+
 **Answer:**
+
 ```sql
 -- UNION removes duplicates and sorts results
 SELECT FirstName FROM Employees WHERE Department = 'IT'
@@ -552,7 +639,9 @@ SELECT FirstName FROM Employees WHERE Department = 'HR';
 ```
 
 ### 45. What is the difference between INNER JOIN and OUTER JOIN?
+
 **Answer:**
+
 ```sql
 -- INNER JOIN returns only matching rows
 SELECT e.FirstName, d.DepartmentName
@@ -567,10 +656,12 @@ LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID;
 ```
 
 ### 46. What is a self-join?
+
 **Answer:**
+
 ```sql
 -- Joining a table to itself (e.g., employee-manager relationship)
-SELECT 
+SELECT
     e.FirstName + ' ' + e.LastName AS Employee,
     m.FirstName + ' ' + m.LastName AS Manager
 FROM Employees e
@@ -578,7 +669,9 @@ LEFT JOIN Employees m ON e.ManagerID = m.EmployeeID;
 ```
 
 ### 47. What is a cross join?
+
 **Answer:**
+
 ```sql
 -- Cartesian product of all rows from both tables
 SELECT e.FirstName, d.DepartmentName
@@ -587,37 +680,43 @@ CROSS JOIN Departments d;
 ```
 
 ### 48. How do you use EXISTS?
+
 **Answer:**
+
 ```sql
 -- Find employees who have at least one order
 SELECT e.FirstName, e.LastName
 FROM Employees e
 WHERE EXISTS (
-    SELECT 1 FROM Orders o 
+    SELECT 1 FROM Orders o
     WHERE o.EmployeeID = e.EmployeeID
 );
 ```
 
 ### 49. How do you use NOT EXISTS?
+
 **Answer:**
+
 ```sql
 -- Find employees with no orders
 SELECT e.FirstName, e.LastName
 FROM Employees e
 WHERE NOT EXISTS (
-    SELECT 1 FROM Orders o 
+    SELECT 1 FROM Orders o
     WHERE o.EmployeeID = e.EmployeeID
 );
 ```
 
 ### 50. What is the difference between EXISTS and IN?
+
 **Answer:**
+
 ```sql
 -- EXISTS is often more efficient with correlated subqueries
 SELECT e.FirstName, e.LastName
 FROM Employees e
 WHERE EXISTS (
-    SELECT 1 FROM Orders o 
+    SELECT 1 FROM Orders o
     WHERE o.EmployeeID = e.EmployeeID
 );
 
@@ -630,36 +729,42 @@ WHERE e.EmployeeID IN (
 ```
 
 ### 51. What is the difference between IN and = ANY?
+
 **Answer:**
+
 ```sql
 -- IN and = ANY are functionally equivalent
-SELECT * FROM Employees 
+SELECT * FROM Employees
 WHERE Department IN ('IT', 'HR', 'Finance');
 
-SELECT * FROM Employees 
+SELECT * FROM Employees
 WHERE Department = ANY (SELECT Department FROM Departments WHERE Active = 1);
 ```
 
 ### 52. What is the difference between NOT IN and <> ALL?
+
 **Answer:**
+
 ```sql
 -- NOT IN and <> ALL are functionally equivalent
-SELECT * FROM Employees 
+SELECT * FROM Employees
 WHERE Department NOT IN ('IT', 'HR', 'Finance');
 
-SELECT * FROM Employees 
+SELECT * FROM Employees
 WHERE Department <> ALL (SELECT Department FROM Departments WHERE Active = 0);
 ```
 
 ### 53. How do you use CASE expressions?
+
 **Answer:**
+
 ```sql
-SELECT 
+SELECT
     EmployeeID,
     FirstName,
     LastName,
     Salary,
-    CASE 
+    CASE
         WHEN Salary < 50000 THEN 'Low'
         WHEN Salary BETWEEN 50000 AND 100000 THEN 'Medium'
         ELSE 'High'
@@ -673,10 +778,12 @@ FROM Employees;
 ```
 
 ### 54. How do you use COALESCE?
+
 **Answer:**
+
 ```sql
 -- Returns first non-NULL expression
-SELECT 
+SELECT
     EmployeeID,
     COALESCE(MiddleName, '') AS MiddleName,
     COALESCE(ManagerID, 0) AS ManagerID
@@ -684,10 +791,12 @@ FROM Employees;
 ```
 
 ### 55. How do you use ISNULL?
+
 **Answer:**
+
 ```sql
 -- Replaces NULL with specified value (SQL Server specific)
-SELECT 
+SELECT
     EmployeeID,
     ISNULL(MiddleName, '') AS MiddleName,
     ISNULL(ManagerID, 0) AS ManagerID
@@ -695,7 +804,9 @@ FROM Employees;
 ```
 
 ### 56. What is the difference between COALESCE and ISNULL?
+
 **Answer:**
+
 ```sql
 -- COALESCE is ANSI standard, can take multiple parameters
 SELECT COALESCE(NULL, NULL, 'Third', 'Fourth') AS Result; -- Returns 'Third'
@@ -709,38 +820,46 @@ SELECT ISNULL(NULL, 'Default') AS Result; -- Returns 'Default'
 ```
 
 ### 57. How do you use NULLIF?
+
 **Answer:**
+
 ```sql
 -- Returns NULL if the two expressions are equal
-SELECT 
+SELECT
     EmployeeID,
     NULLIF(TerminationDate, '9999-12-31') AS ActualTerminationDate
 FROM Employees;
 ```
 
 ### 58. How do you use IIF?
+
 **Answer:**
+
 ```sql
 -- Shorthand for simple CASE expression
-SELECT 
+SELECT
     EmployeeID,
     IIF(Salary > 100000, 'High Earner', 'Regular') AS EarningsCategory
 FROM Employees;
 ```
 
 ### 59. How do you use CHOOSE?
+
 **Answer:**
+
 ```sql
 -- Returns item at specified index (1-based)
-SELECT 
+SELECT
     EmployeeID,
-    CHOOSE(MONTH(HireDate), 'Winter', 'Winter', 'Spring', 'Spring', 'Spring', 
+    CHOOSE(MONTH(HireDate), 'Winter', 'Winter', 'Spring', 'Spring', 'Spring',
            'Summer', 'Summer', 'Summer', 'Fall', 'Fall', 'Fall', 'Winter') AS HiringSeason
 FROM Employees;
 ```
 
 ### 60. How do you use TRY_CAST and TRY_CONVERT?
+
 **Answer:**
+
 ```sql
 -- TRY_CAST returns NULL instead of error if conversion fails
 SELECT TRY_CAST('ABC' AS INT) AS Result; -- Returns NULL
@@ -750,10 +869,12 @@ SELECT TRY_CONVERT(DATETIME, '2023-02-30', 101) AS Result; -- Returns NULL
 ```
 
 ### 61. How do you use STRING_AGG?
+
 **Answer:**
+
 ```sql
 -- Concatenates values with a separator
-SELECT 
+SELECT
     Department,
     STRING_AGG(FirstName + ' ' + LastName, ', ') AS Employees
 FROM Employees
@@ -761,7 +882,9 @@ GROUP BY Department;
 ```
 
 ### 62. How do you use STRING_SPLIT?
+
 **Answer:**
+
 ```sql
 -- Splits a string into rows based on a separator
 SELECT value AS Item
@@ -769,7 +892,9 @@ FROM STRING_SPLIT('apple,orange,banana', ',');
 ```
 
 ### 63. How do you use JSON functions?
+
 **Answer:**
+
 ```sql
 -- FOR JSON to generate JSON
 SELECT EmployeeID, FirstName, LastName
@@ -796,7 +921,9 @@ WITH (
 ```
 
 ### 64. How do you use XML functions?
+
 **Answer:**
+
 ```sql
 -- FOR XML to generate XML
 SELECT EmployeeID AS "@id", FirstName, LastName
@@ -812,13 +939,15 @@ DECLARE @xml XML = '
     </Employee>
 </Employees>';
 
-SELECT 
+SELECT
     @xml.value('(/Employees/Employee/FirstName)[1]', 'NVARCHAR(50)') AS FirstName,
     @xml.query('/Employees/Employee') AS EmployeeNode;
 ```
 
 ### 65. What are triggers?
+
 **Answer:**
+
 ```sql
 -- AFTER trigger example
 CREATE TRIGGER trg_AfterEmployeeInsert
@@ -846,7 +975,9 @@ GO
 ```
 
 ### 66. What are the different types of indexes?
+
 **Answer:**
+
 ```sql
 -- Clustered index (one per table, determines physical order)
 CREATE CLUSTERED INDEX IX_Employees_EmployeeID ON Employees(EmployeeID);
@@ -863,7 +994,9 @@ CREATE COLUMNSTORE INDEX IX_Employees_ColumnStore ON Employees(EmployeeID, Depar
 ```
 
 ### 67. What is the difference between clustered and nonclustered indexes?
+
 **Answer:**
+
 ```sql
 -- Clustered:
 -- - Only one per table
@@ -879,7 +1012,9 @@ CREATE COLUMNSTORE INDEX IX_Employees_ColumnStore ON Employees(EmployeeID, Depar
 ```
 
 ### 68. How do you optimize queries with indexes?
+
 **Answer:**
+
 ```sql
 -- 1. Identify slow queries with execution plans
 -- 2. Look for table scans (instead of seeks)
@@ -894,7 +1029,9 @@ SELECT * FROM sys.dm_db_index_usage_stats;
 ```
 
 ### 69. What is a covering index?
+
 **Answer:**
+
 ```sql
 -- An index that includes all columns needed for a query
 -- Example query:
@@ -909,7 +1046,9 @@ INCLUDE (EmployeeID, FirstName, LastName);
 ```
 
 ### 70. How do you use the MERGE statement?
+
 **Answer:**
+
 ```sql
 -- Perform insert/update/delete in a single statement
 MERGE INTO TargetTable AS target
@@ -928,11 +1067,13 @@ WHEN NOT MATCHED BY SOURCE THEN
 ## Expert Level Questions (71-100)
 
 ### 71. What are partitioned tables?
+
 **Answer:**
+
 ```sql
 -- 1. Create partition function
 CREATE PARTITION FUNCTION pf_OrderDateRange (DATE)
-AS RANGE RIGHT FOR VALUES 
+AS RANGE RIGHT FOR VALUES
 ('2020-01-01', '2021-01-01', '2022-01-01');
 
 -- 2. Create partition scheme
@@ -957,13 +1098,15 @@ ORDER BY PartitionNumber;
 ```
 
 ### 72. What are columnstore indexes?
+
 **Answer:**
+
 ```sql
 -- Create columnstore index for analytics workloads
 CREATE CLUSTERED COLUMNSTORE INDEX CCI_Orders ON Orders;
 
 -- Nonclustered columnstore index
-CREATE NONCLUSTERED COLUMNSTORE INDEX NCCI_OrderDetails 
+CREATE NONCLUSTERED COLUMNSTORE INDEX NCCI_OrderDetails
 ON OrderDetails(OrderID, ProductID, Quantity, UnitPrice);
 
 -- Columnstore indexes:
@@ -974,7 +1117,9 @@ ON OrderDetails(OrderID, ProductID, Quantity, UnitPrice);
 ```
 
 ### 73. How do you use temporal tables?
+
 **Answer:**
+
 ```sql
 -- Create system-versioned temporal table
 CREATE TABLE Employees
@@ -996,20 +1141,22 @@ SELECT * FROM Employees;
 SELECT * FROM Employees FOR SYSTEM_TIME AS OF '2022-01-01';
 
 -- Query all changes for an employee
-SELECT * FROM Employees 
+SELECT * FROM Employees
 FOR SYSTEM_TIME BETWEEN '2021-01-01' AND '2022-01-01'
 WHERE EmployeeID = 1;
 ```
 
 ### 74. What are memory-optimized tables?
+
 **Answer:**
+
 ```sql
 -- 1. Create memory-optimized filegroup
-ALTER DATABASE MyDB 
+ALTER DATABASE MyDB
 ADD FILEGROUP MemoryOptimizedFG CONTAINS MEMORY_OPTIMIZED_DATA;
 
 -- 2. Add file to filegroup
-ALTER DATABASE MyDB 
+ALTER DATABASE MyDB
 ADD FILE (NAME='MemoryOptimizedFile', FILENAME='C:\Data\MemoryOptimizedFile')
 TO FILEGROUP MemoryOptimizedFG;
 
@@ -1030,7 +1177,9 @@ CREATE TABLE dbo.SessionData
 ```
 
 ### 75. How do you use natively compiled stored procedures?
+
 **Answer:**
+
 ```sql
 CREATE PROCEDURE dbo.usp_InsertSession
     @SessionID NVARCHAR(64),
@@ -1049,7 +1198,9 @@ END;
 ```
 
 ### 76. What are graph tables in SQL Server?
+
 **Answer:**
+
 ```sql
 -- Node table
 CREATE TABLE Person (
@@ -1066,10 +1217,10 @@ CREATE TABLE Friends (
 INSERT INTO Person VALUES (1, 'John'), (2, 'Jane'), (3, 'Mike');
 
 -- Insert edges (relationships)
-INSERT INTO Friends VALUES 
-((SELECT $node_id FROM Person WHERE ID = 1), 
+INSERT INTO Friends VALUES
+((SELECT $node_id FROM Person WHERE ID = 1),
  (SELECT $node_id FROM Person WHERE ID = 2), '2020-01-01'),
-((SELECT $node_id FROM Person WHERE ID = 2), 
+((SELECT $node_id FROM Person WHERE ID = 2),
  (SELECT $node_id FROM Person WHERE ID = 3), '2021-01-01');
 
 -- Query graph data
@@ -1079,7 +1230,9 @@ WHERE MATCH(p1-(f)->p2);
 ```
 
 ### 77. How do you use dynamic SQL?
+
 **Answer:**
+
 ```sql
 -- Basic dynamic SQL
 DECLARE @sql NVARCHAR(MAX);
@@ -1087,14 +1240,14 @@ DECLARE @table NVARCHAR(50) = 'Employees';
 DECLARE @column NVARCHAR(50) = 'FirstName';
 DECLARE @value NVARCHAR(50) = 'John';
 
-SET @sql = N'SELECT * FROM ' + QUOTENAME(@table) + 
+SET @sql = N'SELECT * FROM ' + QUOTENAME(@table) +
            N' WHERE ' + QUOTENAME(@column) + N' = @value';
 
 EXEC sp_executesql @sql, N'@value NVARCHAR(50)', @value = @value;
 
 -- Safer with parameterized queries
 DECLARE @sql NVARCHAR(MAX) = N'
-SELECT 
+SELECT
     e.EmployeeID,
     e.FirstName,
     e.LastName,
@@ -1109,7 +1262,9 @@ EXEC sp_executesql @sql, N'@minSalary DECIMAL(10,2)', @minSalary = @minSalary;
 ```
 
 ### 78. How do you prevent SQL injection?
+
 **Answer:**
+
 ```sql
 -- 1. Use parameterized queries
 DECLARE @sql NVARCHAR(MAX) = N'SELECT * FROM Employees WHERE EmployeeID = @id';
@@ -1127,7 +1282,9 @@ EXEC sp_executesql @sql;
 ```
 
 ### 79. What are SQL Server Agent jobs?
+
 **Answer:**
+
 ```sql
 -- Create a job programmatically
 USE msdb;
@@ -1158,13 +1315,15 @@ EXEC dbo.sp_add_jobserver
 ```
 
 ### 80. How do you monitor query performance?
+
 **Answer:**
+
 ```sql
 -- 1. Use execution plans
 SET STATISTICS IO, TIME ON;
 
 -- 2. Query DMVs
-SELECT 
+SELECT
     qs.execution_count,
     qs.total_logical_reads/qs.execution_count AS avg_logical_reads,
     qs.total_elapsed_time/qs.execution_count AS avg_elapsed_time,
@@ -1184,10 +1343,12 @@ ALTER DATABASE MyDB SET QUERY_STORE = ON;
 ```
 
 ### 81. How do you use Extended Events?
+
 **Answer:**
+
 ```sql
 -- Create an Extended Events session
-CREATE EVENT SESSION [SlowQueries] ON SERVER 
+CREATE EVENT SESSION [SlowQueries] ON SERVER
 ADD EVENT sqlserver.sql_statement_completed
 (
     WHERE ([duration] > 1000000) -- 1 second
@@ -1199,11 +1360,11 @@ WITH (MAX_MEMORY=4096 KB, MAX_DISPATCH_LATENCY=30 SECONDS);
 ALTER EVENT SESSION [SlowQueries] ON SERVER STATE = START;
 
 -- Query the data
-SELECT 
+SELECT
     event_data.value('(event/@name)[1]', 'varchar(50)') AS event_name,
     event_data.value('(event/data[@name="duration"]/value)[1]', 'bigint') AS duration,
     event_data.value('(event/data[@name="statement"]/value)[1]', 'nvarchar(max)') AS statement
-FROM 
+FROM
 (
     SELECT CAST(event_data AS XML) AS event_data
     FROM sys.fn_xe_file_target_read_file('SlowQueries*.xel', NULL, NULL, NULL)
@@ -1211,36 +1372,40 @@ FROM
 ```
 
 ### 82. What are Always Encrypted columns?
+
 **Answer:**
+
 ```sql
 -- 1. Create a table with encrypted columns
 CREATE TABLE Patients
 (
     PatientID INT PRIMARY KEY,
-    FirstName NVARCHAR(50) COLLATE Latin1_General_BIN2 
-        ENCRYPTED WITH (ENCRYPTION_TYPE = DETERMINISTIC, 
-                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
+    FirstName NVARCHAR(50) COLLATE Latin1_General_BIN2
+        ENCRYPTED WITH (ENCRYPTION_TYPE = DETERMINISTIC,
+                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
                        COLUMN_ENCRYPTION_KEY = CEK1),
-    LastName NVARCHAR(50) COLLATE Latin1_General_BIN2 
-        ENCRYPTED WITH (ENCRYPTION_TYPE = DETERMINISTIC, 
-                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
+    LastName NVARCHAR(50) COLLATE Latin1_General_BIN2
+        ENCRYPTED WITH (ENCRYPTION_TYPE = DETERMINISTIC,
+                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
                        COLUMN_ENCRYPTION_KEY = CEK1),
-    SSN NVARCHAR(11) COLLATE Latin1_General_BIN2 
-        ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED, 
-                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
+    SSN NVARCHAR(11) COLLATE Latin1_General_BIN2
+        ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED,
+                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
                        COLUMN_ENCRYPTION_KEY = CEK1),
-    BirthDate DATE 
-        ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED, 
-                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
+    BirthDate DATE
+        ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED,
+                       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
                        COLUMN_ENCRYPTION_KEY = CEK1)
 );
 
--- 2. To query encrypted columns, the application must use a connection 
+-- 2. To query encrypted columns, the application must use a connection
 --    with Column Encryption Setting=enabled and have access to the column master key
 ```
 
 ### 83. What are Row-Level Security (RLS) policies?
+
 **Answer:**
+
 ```sql
 -- 1. Create predicate function
 CREATE FUNCTION dbo.fn_securitypredicate(@Department AS NVARCHAR(50))
@@ -1252,7 +1417,7 @@ WHERE @Department = USER_NAME() OR USER_NAME() = 'dbo';
 
 -- 2. Create security policy
 CREATE SECURITY POLICY dbo.DepartmentFilter
-ADD FILTER PREDICATE dbo.fn_securitypredicate(Department) 
+ADD FILTER PREDICATE dbo.fn_securitypredicate(Department)
 ON dbo.Employees;
 
 -- Now users will only see rows where Department = their username
@@ -1260,7 +1425,9 @@ ON dbo.Employees;
 ```
 
 ### 84. What are Dynamic Data Masking (DDM) policies?
+
 **Answer:**
+
 ```sql
 -- Add data masking to a table
 ALTER TABLE Customers
@@ -1278,7 +1445,9 @@ GRANT UNMASK TO SomeUser;
 ```
 
 ### 85. How do you use change data capture (CDC)?
+
 **Answer:**
+
 ```sql
 -- Enable CDC on database
 EXEC sys.sp_cdc_enable_db;
@@ -1298,7 +1467,9 @@ SELECT * FROM cdc.fn_cdc_get_all_changes_dbo_Employees(
 ```
 
 ### 86. How do you use temporal tables with history retention?
+
 **Answer:**
+
 ```sql
 -- Create temporal table with retention
 CREATE TABLE Employees
@@ -1311,9 +1482,9 @@ CREATE TABLE Employees
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
 )
-WITH 
+WITH
 (
-    SYSTEM_VERSIONING = ON 
+    SYSTEM_VERSIONING = ON
     (
         HISTORY_TABLE = dbo.EmployeesHistory,
         HISTORY_RETENTION_PERIOD = 1 YEARS
@@ -1322,14 +1493,16 @@ WITH
 
 -- Clean up old history
 ALTER TABLE Employees SET (SYSTEM_VERSIONING = OFF);
-DELETE FROM EmployeesHistory 
+DELETE FROM EmployeesHistory
 WHERE ValidTo < DATEADD(YEAR, -1, GETUTCDATE());
-ALTER TABLE Employees SET (SYSTEM_VERSIONING = ON 
+ALTER TABLE Employees SET (SYSTEM_VERSIONING = ON
     (HISTORY_TABLE = dbo.EmployeesHistory));
 ```
 
 ### 87. How do you use query hints?
+
 **Answer:**
+
 ```sql
 -- Force a specific join type
 SELECT e.FirstName, d.DepartmentName
@@ -1348,7 +1521,9 @@ OPTION (OPTIMIZE FOR UNKNOWN, MAXDOP 4);
 ```
 
 ### 88. How do you use plan guides?
+
 **Answer:**
+
 ```sql
 -- Create plan guide to force a specific plan
 EXEC sp_create_plan_guide
@@ -1371,7 +1546,9 @@ EXEC sp_control_plan_guide N'DROP', N'ForceSeekOnEmployeeQuery';
 ```
 
 ### 89. How do you use Resource Governor?
+
 **Answer:**
+
 ```sql
 -- 1. Create resource pool
 CREATE RESOURCE POOL ReportingPool
@@ -1393,12 +1570,12 @@ WITH SCHEMABINDING
 AS
 BEGIN
     DECLARE @group SYSNAME;
-    
+
     IF APP_NAME() LIKE '%Report%'
         SET @group = 'ReportingGroup';
     ELSE
         SET @group = 'default';
-    
+
     RETURN @group;
 END;
 GO
@@ -1409,7 +1586,9 @@ ALTER RESOURCE GOVERNOR RECONFIGURE;
 ```
 
 ### 90. How do you use PolyBase?
+
 **Answer:**
+
 ```sql
 -- Configure PolyBase to query external data sources
 -- 1. Enable PolyBase
@@ -1441,7 +1620,9 @@ SELECT * FROM dbo.RemoteEmployees;
 ```
 
 ### 91. How do you use In-Memory OLTP?
+
 **Answer:**
+
 ```sql
 -- 1. Add memory-optimized filegroup (see question 74)
 -- 2. Create memory-optimized table
@@ -1458,7 +1639,9 @@ CREATE TABLE dbo.ShoppingCart
 ```
 
 ### 92. How do you use sp_WhoIsActive?
+
 **Answer:**
+
 ```sql
 -- sp_WhoIsActive is a popular diagnostic stored procedure
 -- Download from: http://whoisactive.com/
@@ -1467,7 +1650,7 @@ CREATE TABLE dbo.ShoppingCart
 EXEC sp_WhoIsActive;
 
 -- With additional details
-EXEC sp_WhoIsActive 
+EXEC sp_WhoIsActive
     @get_plans = 1,
     @get_outer_command = 1,
     @get_transaction_info = 1,
@@ -1481,7 +1664,9 @@ EXEC sp_WhoIsActive @find_block_leaders = 1;
 ```
 
 ### 93. How do you use Database Tuning Advisor (DTA)?
+
 **Answer:**
+
 ```sql
 -- 1. Capture workload (SQL Server Profiler or Extended Events)
 -- 2. Run DTA against workload
@@ -1499,7 +1684,7 @@ EXEC sp_DTA_start_session @handle OUTPUT;
 EXEC sp_DTA_add_file_workload @handle, 'C:\Workload.sql';
 
 -- Set tuning options
-EXEC sp_DTA_set_tuning_options 
+EXEC sp_DTA_set_tuning_options
     @handle,
     @storage_size = 1000,
     @max_columns_in_index = 16,
@@ -1519,7 +1704,9 @@ EXEC sp_DTA_close_session @handle;
 ```
 
 ### 94. How do you use Query Store hints?
+
 **Answer:**
+
 ```sql
 -- 1. Find query_id in Query Store
 SELECT q.query_id, t.query_sql_text
@@ -1528,7 +1715,7 @@ JOIN sys.query_store_query_text t ON q.query_text_id = t.query_text_id
 WHERE t.query_sql_text LIKE '%Employees%';
 
 -- 2. Apply hint (SQL Server 2022+)
-EXEC sys.sp_query_store_set_hints 
+EXEC sys.sp_query_store_set_hints
     @query_id = 123,
     @query_hints = 'OPTION (OPTIMIZE FOR UNKNOWN, MAXDOP 4)';
 
@@ -1542,7 +1729,9 @@ EXEC sys.sp_query_store_clear_hints @query_id = 123;
 ```
 
 ### 95. How do you use ledger tables?
+
 **Answer:**
+
 ```sql
 -- Create ledger table (SQL Server 2022+)
 CREATE TABLE AccountBalances
@@ -1564,13 +1753,15 @@ SELECT * FROM AccountBalances;
 SELECT * FROM AccountBalances_Ledger;
 
 -- Verify data integrity
-DECLARE @digest_locations NVARCHAR(MAX) = 
+DECLARE @digest_locations NVARCHAR(MAX) =
     (SELECT * FROM sys.database_ledger_digest_locations FOR JSON AUTO);
 EXEC sys.sp_verify_database_ledger @digest_locations;
 ```
 
 ### 96. How do you use containment in SQL Server?
+
 **Answer:**
+
 ```sql
 -- 1. Make database partially contained
 ALTER DATABASE MyDB SET CONTAINMENT = PARTIAL;
@@ -1585,13 +1776,15 @@ CREATE USER ContainedUser WITH PASSWORD = 'StrongPassword';
 -- - Better isolation
 
 -- Check containment
-SELECT containment, containment_desc 
-FROM sys.databases 
+SELECT containment, containment_desc
+FROM sys.databases
 WHERE name = 'MyDB';
 ```
 
 ### 97. How do you use Always On Availability Groups?
+
 **Answer:**
+
 ```sql
 -- 1. Enable Always On on each server instance
 -- 2. Create availability group
@@ -1602,7 +1795,7 @@ WITH (
     HEALTH_CHECK_TIMEOUT = 30000
 )
 FOR DATABASE [MyDB]
-REPLICA ON 
+REPLICA ON
     'PrimaryServer' WITH (
         ENDPOINT_URL = 'TCP://PrimaryServer:5022',
         AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
@@ -1624,19 +1817,21 @@ ALTER AVAILABILITY GROUP [AG_MyDB] JOIN;
 ALTER AVAILABILITY GROUP [AG_MyDB] GRANT CREATE ANY DATABASE;
 
 -- 4. Query AG status
-SELECT 
+SELECT
     ag.name AS AGName,
     ar.replica_server_name,
     ars.connected_state_desc,
     ars.synchronization_health_desc
 FROM sys.availability_groups ag
 JOIN sys.availability_replicas ar ON ag.group_id = ar.group_id
-JOIN sys.dm_hadr_availability_replica_states ars 
+JOIN sys.dm_hadr_availability_replica_states ars
     ON ar.replica_id = ars.replica_id;
 ```
 
 ### 98. How do you use distributed queries?
+
 **Answer:**
+
 ```sql
 -- 1. Configure linked server
 EXEC sp_addlinkedserver
@@ -1663,7 +1858,9 @@ SELECT * FROM OPENQUERY(RemoteServer, 'SELECT * FROM MyDB.dbo.Employees');
 ```
 
 ### 99. How do you use BULK INSERT?
+
 **Answer:**
+
 ```sql
 -- Simple bulk insert
 BULK INSERT Employees
@@ -1697,7 +1894,9 @@ WITH (
 ```
 
 ### 100. How do you use SQLCLR?
+
 **Answer:**
+
 ```sql
 -- 1. Enable CLR
 sp_configure 'clr enabled', 1;
@@ -1718,7 +1917,7 @@ RETURNS BIT
 AS EXTERNAL NAME MyCLRFunctions.UserDefinedFunctions.RegexMatch;
 
 -- 4. Use the function
-SELECT dbo.CLR_RegexMatch(Email, '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') 
+SELECT dbo.CLR_RegexMatch(Email, '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$')
 FROM Customers;
 
 -- Security considerations:

@@ -3,6 +3,7 @@
 This guide provides step-by-step instructions for installing Microsoft SQL Server and SQL Server Management Studio (SSMS) on a Windows machine.
 
 ## Prerequisites
+
 - Windows 10/11 or Windows Server 2016/2019/2022
 - Administrator privileges
 - Minimum 6GB of available disk space
@@ -11,6 +12,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 ## Part 1: Installing Microsoft SQL Server
 
 ### Step 1: Download SQL Server Installation Media
+
 1. Navigate to the [Microsoft SQL Server download page](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 2. Select the edition you want to install (Express is free for development)
 3. Click "Download now"
@@ -19,6 +21,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: SQL Server download page with download button highlighted]
 
 ### Step 2: Launch the Installation Wizard
+
 1. Locate the downloaded file (typically SQLServerSetup.exe)
 2. Right-click the file and select "Run as administrator"
 3. If prompted by User Account Control, click "Yes"
@@ -26,12 +29,14 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: UAC prompt with Yes button highlighted]
 
 ### Step 3: Choose Installation Type
+
 1. In the SQL Server Installation Center, select "Installation" from the left menu
 2. Click "New SQL Server stand-alone installation"
 
 [SCREENSHOT PLACEHOLDER: Installation Center with New stand-alone installation option highlighted]
 
 ### Step 4: Enter Product Key
+
 1. If using a licensed version, enter your product key
 2. For Express edition, select "Specify a free edition" and choose "Express"
 3. Click "Next"
@@ -39,6 +44,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Product Key page with Express edition selected]
 
 ### Step 5: Accept License Terms
+
 1. Read the license terms
 2. Check "I accept the license terms"
 3. Click "Next"
@@ -46,6 +52,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: License terms page with checkbox selected]
 
 ### Step 6: Feature Selection
+
 1. Select "SQL Server Feature Installation"
 2. Click "Next"
 3. On the Features page, select:
@@ -58,6 +65,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Feature selection page with Database Engine Services selected]
 
 ### Step 7: Instance Configuration
+
 1. Choose "Default instance" for most installations
    - Or specify a named instance if needed
 2. Review the instance ID and root directory
@@ -66,6 +74,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Instance configuration page with Default instance selected]
 
 ### Step 8: Server Configuration
+
 1. On the Server Configuration page:
    - Set "SQL Server Database Engine" to start automatically
    - Configure service accounts as needed (NT AUTHORITY\SYSTEM is fine for development)
@@ -74,6 +83,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Server Configuration page with automatic startup selected]
 
 ### Step 9: Database Engine Configuration
+
 1. On the "Database Engine Configuration" page:
    - Select "Mixed Mode" authentication
    - Enter and confirm a strong password for the SA account
@@ -83,6 +93,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Database Engine Configuration page with Mixed Mode selected and SA password set]
 
 ### Step 10: Installation Progress
+
 1. Review the installation summary
 2. Click "Install" to begin the installation
 3. Wait for the installation to complete (this may take 10-30 minutes)
@@ -90,6 +101,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Installation progress screen showing completion status]
 
 ### Step 11: Complete Installation
+
 1. Once installation is complete, click "Close"
 2. Restart your computer if prompted
 
@@ -98,6 +110,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 ## Part 2: Installing SQL Server Management Studio (SSMS)
 
 ### Step 1: Download SSMS
+
 1. Navigate to the [SSMS download page](https://aka.ms/ssmsfullsetup)
 2. Click "Download SQL Server Management Studio"
 3. Save the installation file to your computer
@@ -105,6 +118,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: SSMS download page with download button]
 
 ### Step 2: Launch SSMS Installer
+
 1. Locate the downloaded file (SSMS-Setup-ENU.exe)
 2. Right-click and select "Run as administrator"
 3. If prompted by UAC, click "Yes"
@@ -112,18 +126,21 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: UAC prompt for SSMS installer]
 
 ### Step 3: Installation Location
+
 1. The installer will extract files to a temporary location
 2. Wait for the extraction to complete
 
 [SCREENSHOT PLACEHOLDER: SSMS extraction progress screen]
 
 ### Step 4: SSMS Installation Wizard
+
 1. Click "Install" to begin the installation
 2. Wait for the installation to complete (typically 5-15 minutes)
 
 [SCREENSHOT PLACEHOLDER: SSMS installation progress screen]
 
 ### Step 5: Complete SSMS Installation
+
 1. Click "Close" when installation is complete
 2. SSMS will launch automatically (or you can find it in the Start menu)
 
@@ -132,12 +149,14 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 ## Part 3: Connecting to SQL Server with SSMS
 
 ### Step 1: Launch SSMS
+
 1. Open SSMS from the Start menu
 2. Wait for the application to initialize
 
 [SCREENSHOT PLACEHOLDER: SSMS splash screen]
 
 ### Step 2: Connect to Server
+
 1. In the "Connect to Server" dialog:
    - Server type: Database Engine
    - Server name: (local) or .\SQLEXPRESS (for Express edition)
@@ -149,6 +168,7 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 [SCREENSHOT PLACEHOLDER: Connect to Server dialog with credentials entered]
 
 ### Step 3: Verify Connection
+
 1. Once connected, you should see the Object Explorer with your server listed
 2. You can now create databases, run queries, and manage your SQL Server instance
 
@@ -157,11 +177,13 @@ This guide provides step-by-step instructions for installing Microsoft SQL Serve
 ## Troubleshooting Tips
 
 1. If you can't connect:
+
    - Verify SQL Server service is running (services.msc)
    - Check firewall settings to ensure port 1433 is open
    - Confirm you're using the correct authentication mode
 
 2. For installation errors:
+
    - Check the SQL Server setup logs (typically in Program Files\Microsoft SQL Server\NNN\Setup Bootstrap\Log)
    - Ensure your system meets all requirements
 

@@ -5,9 +5,10 @@ DCL (Data Control Language) commands manage database security by controlling acc
 ## 1. User and Login Management
 
 ### Create Logins and Users
+
 ```sql
 -- Create a SQL Server login
-CREATE LOGIN [SalesManager] 
+CREATE LOGIN [SalesManager]
 WITH PASSWORD = 'Str0ngP@ssw0rd!',
      DEFAULT_DATABASE = [OrderDB],
      CHECK_EXPIRATION = ON,
@@ -25,6 +26,7 @@ GO
 ```
 
 ### Modify Users
+
 ```sql
 -- Change user name
 ALTER USER [SalesManager_User] WITH NAME = [SalesAdmin_User];
@@ -40,6 +42,7 @@ GO
 ```
 
 ### Remove Users and Logins
+
 ```sql
 -- Drop database user
 DROP USER [App_Service_Account];
@@ -50,10 +53,10 @@ DROP LOGIN [SalesManager];
 GO
 ```
 
-
 ## 2. Role Management
 
 ### Server Roles
+
 ```sql
 -- Add login to fixed server role
 ALTER SERVER ROLE [sysadmin] ADD MEMBER [SalesManager];
@@ -67,6 +70,7 @@ GO
 ```
 
 ### Database Roles
+
 ```sql
 -- Add user to fixed database role
 ALTER ROLE [db_datareader] ADD MEMBER [SalesAdmin_User];
@@ -85,10 +89,10 @@ DROP ROLE [Sales_Team];
 GO
 ```
 
-
 ## 3. Permission Management
 
 ### Grant Permissions
+
 ```sql
 -- Basic permissions
 GRANT SELECT ON [Sales].[Customers] TO [Sales_Team];
@@ -105,6 +109,7 @@ GRANT SHOWPLAN TO [Reporting_User];
 ```
 
 ### Deny Permissions
+
 ```sql
 -- Explicit deny overrides grants
 DENY DELETE ON [Sales].[Customers] TO [Sales_Team];
@@ -112,6 +117,7 @@ DENY ALTER ON SCHEMA::[Finance] TO [SalesAdmin_User];
 ```
 
 ### Revoke Permissions
+
 ```sql
 -- Remove specific permissions
 REVOKE SELECT ON [Sales].[Customers] FROM [Sales_Team];
@@ -121,10 +127,10 @@ REVOKE CREATE TABLE FROM [SalesAdmin_User];
 REVOKE ALL ON [Sales].[Orders] FROM [Sales_Team];
 ```
 
-
 ## 4. Row-Level Security (RLS)
 
 ### Create Security Policies
+
 ```sql
 -- Create predicate function
 CREATE FUNCTION [Sales].[fn_SecurityPredicate](@SalesRepID INT)
@@ -150,6 +156,7 @@ GO
 ```
 
 ### Manage RLS
+
 ```sql
 -- Disable policy
 ALTER SECURITY POLICY [Sales].[CustomerAccessPolicy] WITH (STATE = OFF);
@@ -160,10 +167,10 @@ DROP SECURITY POLICY [Sales].[CustomerAccessPolicy];
 GO
 ```
 
-
 ## 5. Dynamic Data Masking (DDM)
 
 ### Implement Data Masking
+
 ```sql
 -- Add masking to existing column
 ALTER TABLE [Sales].[Customers]
@@ -181,6 +188,7 @@ GO
 ```
 
 ### Manage Masking
+
 ```sql
 -- Grant unmask permission
 GRANT UNMASK TO [Finance_Team];
@@ -192,10 +200,10 @@ ALTER COLUMN [Email] DROP MASKED;
 GO
 ```
 
-
 ## 6. Auditing and Compliance
 
 ### Create Server Audit
+
 ```sql
 -- Create audit destination
 CREATE SERVER AUDIT [OrderDB_Audit]
@@ -209,6 +217,7 @@ GO
 ```
 
 ### Database Audit Specification
+
 ```sql
 -- Track DDL changes
 CREATE DATABASE AUDIT SPECIFICATION [OrderDB_DDL_Audit]
@@ -222,7 +231,6 @@ ALTER DATABASE AUDIT SPECIFICATION [OrderDB_DDL_Audit]
 ADD (SELECT, INSERT, UPDATE, DELETE ON [Sales].[Customers] BY [public]);
 GO
 ```
-
 
 ## 7. Complete Security Example
 
@@ -251,8 +259,8 @@ GO
 -- 5. Implement row-level security
 CREATE FUNCTION [Sales].[fn_RegionSecurity](@RegionID INT)
 RETURNS TABLE WITH SCHEMABINDING
-AS RETURN (SELECT 1 AS [access] 
-           WHERE @RegionID = (SELECT RegionID FROM [emp].[RegionMap] 
+AS RETURN (SELECT 1 AS [access]
+           WHERE @RegionID = (SELECT RegionID FROM [emp].[RegionMap]
                               WHERE UserID = USER_ID()));
 GO
 
@@ -272,8 +280,8 @@ ADD (SELECT, UPDATE ON [Sales].[Customers] BY [public]);
 GO
 ```
 
-
 ## DCL Best Practices
+
 1. Principle of Least Privilege: Grant minimum required permissions
 2. Use Roles: Manage permissions via roles, not individual users
 3. Regular Reviews: Audit permissions quarterly
