@@ -9,4 +9,4 @@
 - [007. T-SQL DQL (Data Query Language) Commands.md]()
 - [008. T-SQL TCL (Transaction Control Language) Commands.md]()
 - [009. T-SQL DCL (Data Control Language) Commands.md]()
-- [010. T-SQL DCL (Data Control Language) Commands.md]()
+- [010. Indexing in T-SQL.md]()
