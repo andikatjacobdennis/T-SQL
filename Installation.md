@@ -1,3 +1,5 @@
+# Installation
+
 ## **Part 1: Installing Microsoft SQL Server**
 
 ### 1. **Download SQL Server**
