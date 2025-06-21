@@ -1,4 +1,4 @@
-## 002. Getting Started
+## 002_Getting_Started
 
 ### Datum
 
