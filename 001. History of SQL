@@ -1,1 +1,1 @@
-
+The evolution of SQL began in the 1970s when E.F. Codd introduced the relational model and IBM's System R project developed SQL. In the 1980s–1990s, SQL was standardized with ANSI SQL-86, establishing it as the primary language for relational databases. During the 1990s, Microsoft and Sybase introduced Transact-SQL (T-SQL), adding procedural programming capabilities. From the 2000s to the 2020s, T-SQL matured alongside SQL Server releases, incorporating modern features like JSON handling, graph database support
