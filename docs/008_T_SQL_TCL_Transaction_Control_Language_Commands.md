@@ -242,22 +242,23 @@ END CATCH
 
 ## Key TCL Concepts
 
-1. ACID Properties
+### ACID Properties
 
-   - Atomicity: All operations succeed or fail together
-   - Consistency: Database remains in valid state
-   - Isolation: Concurrent transactions don't interfere
-   - Durability: Committed changes survive failures
+- Atomicity: All operations succeed or fail together
+- Consistency: Database remains in valid state
+- Isolation: Concurrent transactions don't interfere
+- Durability: Committed changes survive failures
 
-2. Transaction States
+### Transaction States
 
-   - Active: Executing operations
-   - Partially Committed: After final operation
-   - Committed: After successful completion
-   - Failed: After unsuccessful operations
-   - Aborted: After rollback
+- Active: Executing operations
+- Partially Committed: After final operation
+- Committed: After successful completion
+- Failed: After unsuccessful operations
+- Aborted: After rollback
 
-3. Locking Behavior
-   - Transactions acquire locks automatically
-   - Higher isolation levels = more restrictive locking
-   - Long transactions = potential blocking issues
+### Locking Behavior
+
+- Transactions acquire locks automatically
+- Higher isolation levels = more restrictive locking
+- Long transactions = potential blocking issues
