@@ -10,7 +10,7 @@ By the end, you’ll have a solid grasp of T-SQL to query, manipulate, and manag
 - [002. Getting Started](002.%20Getting%20Started.md)
 - [003. Installation](003.%20Installation.md)
 - [004. SQL Server Management Studio (SSMS) – Walkthrough](004.%20SQL%20Server%20Management%20Studio%20(SSMS)%20–%20Walkthrough.md)
-- [005. T-SQL DDL (Data Definition Language) Commands.md]()
+- [005. T-SQL DDL (Data Definition Language) Commands.md](005.%20T-SQL%20DDL%20(Data%20Definition%20Language)%20Commands.md)
 - [006. T-SQL DML (Data Manipulation Language) Commands.md](006.%20T-SQL%20DML%20(Data%20Manipulation%20Language)%20Commands.md)
 - [007. T-SQL DQL (Data Query Language) Commands.md](007.%20T-SQL%20DQL%20(Data%20Query%20Language)%20Commands.md)
 - [008. T-SQL TCL (Transaction Control Language) Commands.md](008.%20T-SQL%20TCL%20(Transaction%20Control%20Language)%20Commands.md)
