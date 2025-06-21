@@ -1,0 +1,35 @@
+@startuml
+
+!define table(x) class x << (T,#FFAAAA) >>
+
+' Define Tables
+table(Customers) {
+  + CustomerID : int <<PK>>
+  Name : varchar
+  Email : varchar
+}
+
+table(Orders) {
+  + OrderID : int <<PK>>
+  CustomerID : int <<FK>>
+  OrderDate : date
+}
+
+table(Products) {
+  + ProductID : varchar <<PK>>
+  ProductName : varchar
+  Price : decimal
+}
+
+table(OrderDetails) {
+  + OrderID : int <<PK,FK>>
+  + ProductID : varchar <<PK,FK>>
+  Quantity : int
+}
+
+' Relationships
+Customers ||--o{ Orders : places
+Orders ||--o{ OrderDetails : contains
+Products ||--o{ OrderDetails : listed in
+
+@enduml
