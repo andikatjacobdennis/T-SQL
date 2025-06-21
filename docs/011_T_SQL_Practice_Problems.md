@@ -121,7 +121,7 @@
 99. Write a table-valued function to get employee hierarchy
 100.  Create a dynamic SQL procedure for flexible reporting
 
-### **Advanced Joins and Relationships (101–110)**
+## Advanced Joins and Relationships (101–110)
 
 101. Find customers who have _never_ ordered more than once in a month
 102. List suppliers who only supply products in a single category
@@ -134,7 +134,7 @@
 109. Show customers who upgraded their plans or subscriptions
 110. Join orders and returns to find return rates by product
 
-### **Data Quality & Cleansing (111–120)**
+## Data Quality & Cleansing (111–120)
 
 111. Identify records with leading/trailing spaces in text columns
 112. Normalize phone numbers to international format
@@ -147,7 +147,7 @@
 119. Identify and flag inconsistent capitalization
 120. Clean and standardize product SKUs
 
-### **Temporal and Audit Queries (121–130)**
+## Temporal and Audit Queries (121–130)
 
 121. Show all changes to an employee record over time (Type 2 SCD)
 122. Identify customers who changed their email in the last year
@@ -160,7 +160,7 @@
 129. Compare current vs. historical inventory values
 130. Calculate change in salary per employee year-over-year
 
-### **Performance and Optimization (131–135)**
+## Performance and Optimization (131–135)
 
 131. Identify slow queries using dynamic management views
 132. Rewrite a correlated subquery as a join
@@ -168,13 +168,13 @@
 134. Detect missing or unused indexes
 135. Evaluate query cost with and without an index
 
-### **Security and Permissions (136–138)**
+## Security and Permissions (136–138)
 
 136. List users and their database roles
 137. Find which users have access to sensitive tables
 138. Identify stored procedures with `EXECUTE AS` context
 
-### **T-SQL Logic and Edge Cases (139–145)**
+## T-SQL Logic and Edge Cases (139–145)
 
 139. Return the nth highest salary per department
 140. Divide total order value equally across multiple line items
@@ -184,7 +184,7 @@
 144. Find first and last purchases by customer
 145. Detect palindrome strings in a column
 
-### Bonus Challenges (Architect Level – Advanced Scenarios)
+## Bonus Challenges (Architect Level – Advanced Scenarios)
 
 146. Implement audit logging via triggers
 147. Design a solution for multi-tenant data partitioning

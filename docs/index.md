@@ -28,3 +28,4 @@ By the end, you’ll have a solid grasp of T-SQL to query, manipulate, and manag
 - [010. Indexing in T-SQL](010_Indexing_in_T_SQL.md)
 - [011. T-SQL Practice Problems](011_T_SQL_Practice_Problems.md)
 - [012. Frequently Asked Questions](012_Frequently_Asked_Questions.md)
+- [013. Glossary of Key Terms](013_Glossary_of_Key_Terms.md)
