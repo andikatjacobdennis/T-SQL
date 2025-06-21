@@ -7,7 +7,7 @@ We’ll start with the history and evolution of SQL, then move into installation
 By the end, you’ll have a solid grasp of T-SQL to query, manipulate, and manage databases efficiently. Let’s get started!
 
 
-## 📚 Table of Contents
+## Table of Contents
 
 ### Foundations & Setup
 - [001. History of SQL to Modern T-SQL](001.%20History%20of%20SQL%20to%20Modern%20T-SQL.md)
