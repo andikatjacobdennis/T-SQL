@@ -16,5 +16,5 @@ By the end, you’ll have a solid grasp of T-SQL to query, manipulate, and manag
 - [008. T-SQL TCL (Transaction Control Language) Commands.md](008.%20T-SQL%20TCL%20(Transaction%20Control%20Language)%20Commands.md)
 - [009. T-SQL DCL (Data Control Language) Commands.md](009.%20T-SQL%20DCL%20(Data%20Control%20Language)%20Commands.md)
 - [010. Indexing in T-SQL.md](010.%20Indexing%20in%20T-SQL.md)
-- [](011.%20T-SQL%20Practice%20Problems.md)
-- []()
+- [011.%20T-SQL%20Practice%20Problems.md](011.%20T-SQL%20Practice%20Problems.md)
+- [012.%20Frequently%20Asked%20Question.md](012.%20Frequently%20Asked%20Question.md)
