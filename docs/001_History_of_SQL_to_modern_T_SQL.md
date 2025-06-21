@@ -1,12 +1,31 @@
-# 001. History of SQL to modern T-SQL
+# 001. History of SQL to Modern T-SQL
 
-![SQL Evolution Timeline](./images/History_Of_SQL_To_Modern_T-SQL.png "History of SQL to T-SQL Evolution")
+![SQL Evolution Timeline](./images/History_Of_SQL_To_Modern_T-SQL.png "History of SQL to T-SQL Evolution")  
 ![Edgar F. Codd](./images/Edgar_F_Codd.jpg "Edgar F. Codd: Creator of the Relational Model")
 
-- The evolution of SQL began in the 1970s when E.F. Codd introduced the relational model and IBM's System R (A database system) project developed SQL.
-- In the 1980s–1990s, SQL was standardized with ANSI SQL-86, establishing it as the primary language for relational databases.
-- During the 1990s, Microsoft and Sybase introduced Transact-SQL (T-SQL), adding procedural programming capabilities.
-  - BEGIN...END, IF...ELSE, WHILE
-  - Variables, error handling (TRY...CATCH)
-  - Triggers, stored procedures, and functions
-- From the 2000s to the 2020s, T-SQL matured alongside SQL Server releases, incorporating modern features like JSON handling, graph database support
+## Key Developments
+
+### 1970s: Origins of SQL
+
+- E.F. Codd introduces the relational model
+- IBM's System R project develops SQL
+
+### 1980s–1990s: Standardization of SQL
+
+- ANSI SQL-86 establishes SQL as the standard
+- Commercial RDBMS products emerge (Oracle, DB2, SQL Server)
+
+### 1990s: Emergence of T-SQL
+
+Microsoft and Sybase introduce Transact-SQL extensions:
+
+- `BEGIN...END`, `IF...ELSE`, `WHILE` (control flow)
+- Variables and `TRY...CATCH` error handling
+- Triggers, stored procedures, and functions
+
+### 2000s–2020s: Modern T-SQL
+
+- JSON/XML support
+- Graph database capabilities
+- Temporal tables
+- Machine Learning Services integration
