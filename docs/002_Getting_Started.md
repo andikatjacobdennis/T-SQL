@@ -224,22 +224,15 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 ### Solutions
 
-#### Azure Synapse Analytics
+- [Azure Synapse Analytics][synapse] Unified analytics with big data and SQL integration.
 
-Unified analytics with big data and SQL integration.  
-[Learn more →](https://azure.microsoft.com/en-us/products/synapse-analytics/)
+- [Amazon Redshift][redshift] Cloud-based data warehousing with columnar storage.
 
-#### Amazon Redshift
+- [Google BigQuery][bigquery] Serverless, scalable analytics with SQL support.
 
-Cloud-based data warehousing with columnar storage.  
-[Learn more →](https://aws.amazon.com/redshift/)
+- [Snowflake][snowflake] Multi-cloud data warehousing with separation of storage and compute.
 
-#### Google BigQuery
-
-Serverless, scalable analytics with SQL support.  
-[Learn more →](https://cloud.google.com/bigquery)
-
-#### Snowflake
-
-Multi-cloud data warehousing with separation of storage and compute.  
-[Learn more →](https://www.snowflake.com/)
+[synapse]: https://azure.microsoft.com/en-us/products/synapse-analytics/
+[redshift]: https://aws.amazon.com/redshift/
+[bigquery]: https://cloud.google.com/bigquery
+[snowflake]: https://www.snowflake.com/
