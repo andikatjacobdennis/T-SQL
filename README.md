@@ -25,12 +25,11 @@ Create a professional, searchable documentation site locally using MkDocs:
 #### Setup Instructions
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/andikatjacobdennis/T-SQL.git
    cd T-SQL
    ```
-
-````
 
 2. **Set Up Python Environment**
 
@@ -89,4 +88,3 @@ mkdocs gh-deploy
 ## License
 
 Open-source under [MIT License](LICENSE)
-````
