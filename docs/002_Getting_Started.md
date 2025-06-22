@@ -115,7 +115,6 @@ Imagine a database for an online store with four related tables:
 A robust RDBMS by Microsoft, offering enterprise-grade features, scalability, and integration with Windows ecosystems. Widely used in business applications and data analytics.
 
 - [Official Site](https://www.microsoft.com/en-us/sql-server)
-- [Download SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
 
 ### MySQL
 
@@ -199,9 +198,9 @@ Stores data as objects, supporting inheritance and polymorphism. Used in complex
 
 Fully managed database services (e.g., Amazon RDS, Azure SQL) offering scalability, backups, and high availability without infrastructure overhead.
 
+- [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/)
 - [Amazon RDS](https://aws.amazon.com/rds/)
 - [Google Cloud SQL](https://cloud.google.com/sql)
-- [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/)
 
 ### Distributed Database
 
