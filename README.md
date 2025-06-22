@@ -20,7 +20,7 @@ Create a professional, searchable documentation site locally using MkDocs:
 1. **Python 3.8+**
 
    - **Download**: [python.org/downloads](https://www.python.org/downloads/)
-   - **Important**: Check ✅ **"Add Python to PATH"** during installation.
+   - **Important**: Check **"Add Python to PATH"** during installation.
    - **Verify Installation**: Run `python --version` in the terminal.
 
 2. **VS Code (Recommended Editor)**
