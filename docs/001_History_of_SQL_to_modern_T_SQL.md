@@ -1,7 +1,5 @@
 # 001. History of SQL to Modern T-SQL
 
-![SQL Evolution Timeline](./images/History_Of_SQL_To_Modern_T-SQL.png "The evolution of SQL from its inception to modern T-SQL, highlighting major milestones and version developments")
-
 ## Key Developments
 
 ### 1970s: Origins of SQL
@@ -30,3 +28,5 @@ Microsoft and Sybase introduce Transact-SQL extensions:
 - Graph database capabilities
 - Temporal tables
 - Machine Learning Services integration
+
+![SQL Evolution Timeline](./images/History_Of_SQL_To_Modern_T-SQL.png "The evolution of SQL from its inception to modern T-SQL, highlighting major milestones and version developments")
