@@ -235,3 +235,87 @@ Centralized repositories for analytical reporting, integrating data from multipl
 [redshift]: https://aws.amazon.com/redshift/
 [bigquery]: https://cloud.google.com/bigquery
 [snowflake]: https://www.snowflake.com/
+
+## When to Use Which Database?
+
+### RDBMS (PostgreSQL, MySQL)
+
+- Like an Excel spreadsheet with strict rules
+- Best for:
+  - Bank accounts (track balances accurately)
+  - Online stores (orders, customers, products)
+  - School systems (students, classes, grades)
+- Example: Amazon's order system
+
+### Document DB (MongoDB)
+
+- Like a folder of JSON files
+- Best for:
+  - User profiles (name, address, preferences)
+  - Product catalogs (different attributes for each product)
+  - Blog posts (with comments, tags)
+- Example: Facebook user profiles
+
+### Key-Value (Redis)
+
+- Like a fast phone contacts list
+- Best for:
+  - Shopping carts (temporary storage)
+  - Website sessions (remembering logged-in users)
+  - Game leaderboards (top scores)
+- Example: Walmart's shopping cart
+
+### Wide-Column (Cassandra)
+
+- Like a giant logbook that never fills up
+- Best for:
+  - Weather data (millions of sensor readings)
+  - App activity logs (user actions)
+  - Smart device data (IoT sensors)
+- Example: Netflix viewing history
+
+### Graph DB (Neo4j)
+
+- Like a social network map
+- Best for:
+  - Friend recommendations
+  - Fraud detection (suspicious connections)
+  - Road navigation systems
+- Example: LinkedIn connections
+
+### Time-Series (InfluxDB)
+
+- Like a stopwatch recording data
+- Best for:
+  - Stock prices (changing every second)
+  - Fitness trackers (heart rate monitoring)
+  - Server performance (CPU usage over time)
+- Example: Fitbit health data
+
+### Data Warehouse (Snowflake, BigQuery)
+
+- Like a giant report generator
+- Best for:
+  - Business sales reports
+  - Customer behavior analysis
+  - Year-over-year comparisons
+- Example: YouTube analytics dashboard
+
+### Quick Cheat Sheet
+
+- Money/orders? → RDBMS
+- User data? → Document DB
+- Need speed? → Key-Value
+- Tons of data? → Wide-Column
+- Connections? → Graph DB
+- Tracking over time? → Time-Series
+- Big reports? → Data Warehouse
+
+### Real World Pizza Shop Example
+
+- Customer database → RDBMS (MySQL)
+- Menu items → Document DB (MongoDB)
+- Current orders → Key-Value (Redis)
+- Delivery routes → Graph DB (Neo4j)
+- Oven temperatures → Time-Series (InfluxDB)
+- Sales reports → Data Warehouse (BigQuery)
