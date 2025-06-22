@@ -1,23 +1,64 @@
 site_name: "T-SQL Tutorial"
+#site_url: https://github.com/andikatjacobdennis/T-SQL
 theme:
   name: material
   features:
     - navigation.instant
-    - navigation.instant.progress
     - navigation.tracking
-    - navigation.top
     - navigation.sections
     - navigation.expand
-    - navigation.path
-    - navigation.footer
+    - navigation.indexes
     - search.suggest
-    - search.highlight
+    - search.reset
     - search.share
-    - content.code.copy
-    - content.code.select
-  icon:
-    logo: material/book-open-variant-outline
-    favicon: assets/images/favicon.webppng
+    - toc.integrate
+    - toc.follow
+    - toc.expand
+    - navigation.top
+    - navigation.footer
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+    - content.layout.wide
+  palette:
+    - scheme: default  # Light theme (default)
+      primary: violet
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate  # Dark theme
+      primary: violet
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Fira Code
+extra:
+  search:
+    language: en
+    pipeline: stemmer, stopword
+    separator: '[\s\-]'
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/andikatjacobdennis/T-SQL
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+      use_pygments: true
+      pygments_style: vs  # Use Visual Studio Code highlighting
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.extra
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
 
 nav:
   - Foundations & Setup:
@@ -40,9 +81,14 @@ nav:
       - 013. Glossary of Key Terms: 013_Glossary_of_Key_Terms.md
 
 plugins:
-  - search
+  - search:
+      lang: en
+      separator: '[\s\-]'
+      prebuild_index: true
   - tags:
       tags_file: tags.md
+  - minify:
+      minify_html: true
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -53,10 +99,7 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
 
-extra:
-  generator: false
-
 extra_css:
   - stylesheets/extra.css
 
-copyright: "&copy;2024 Searchspring. All rights reserved."
+copyright: "&copy;2025. All rights reserved."

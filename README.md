@@ -1,120 +1,92 @@
-# T-SQL Learning Resources
+# T-SQL
 
 Welcome to this T-SQL learning repository! This guide will help you get started with T-SQL (Transact-SQL), Microsoft's powerful database language used in SQL Server.
 
 ## View the Learning Materials
 
-You have two options to view the documentation:
+### Option A: Read Markdown Files Directly
 
-#### Option A: View Online
+All documentation files are in the `docs/` folder:
 
-All documentation files are in the `docs/` folder. You can read them directly:
-
-- Open the `docs/` folder
+- Open the `docs/` directory
 - Start with `index.md`
 
-#### **Option B: Build a Local Documentation Website in VS Code (Advanced Setup)**
+### Option B: Build Interactive Documentation Website (Recommended)
 
-If you prefer a **professional, interactive documentation website** (instead of just reading Markdown files), you can build one locally using **MkDocs**. This creates a searchable, well-formatted site with navigation—perfect for learning T-SQL efficiently.
+Create a professional, searchable documentation site locally using MkDocs:
 
-##### **Step 1: Install Python (Required for MkDocs)**
+#### Prerequisites
 
-Since MkDocs runs on Python, you need to install it first:
+1. **Python 3.8+** ([python.org/downloads](https://www.python.org/downloads/))
+   - Check "Add Python to PATH" during installation
+2. **VS Code** (or any terminal)
+3. **Git** (for cloning)
 
-1. **Download Python** (Windows 11):
+#### Setup Instructions
 
-   - Go to [python.org/downloads](https://www.python.org/downloads/)
-   - Download the **latest stable version** (e.g., Python 3.12).
-   - **IMPORTANT:** During installation, **check** ☑ **"Add Python to PATH"** before clicking Install.
-
-2. **Verify Python Installation** (in VS Code):
-   - Open **VS Code Terminal** (`Ctrl + ~`).
-   - Run:
-     ```bash
-     python --version
-     ```
-   - Expected output: `Python 3.x.x`
-
-### **Step 2: Clone This Repository in VS Code**
-
-1. **Open VS Code** (`Ctrl + Shift + P` to open Command Palette).
-2. **Clone the Repository**:
-   - Press `Ctrl + Shift + P` → Type **"Git: Clone"** → Paste:
-     ```
-     https://github.com/andikatjacobdennis/T-SQL.git
-     ```
-   - Select a folder (e.g., `%USERPROFILE%\source\repos\`).
-3. **Open the Project**:
-   - Go to **File → Open Folder** → Select the cloned `T-SQL` folder.
-
-### **Step 3: Build the Documentation Site**
-
-Now, generate the website from the Markdown files:
-
-1. **Navigate to the Project Folder** (in VS Code Terminal):
+1. **Clone the Repository**
    ```bash
-   cd "$env:USERPROFILE\source\repos\T-SQL"
+   git clone https://github.com/andikatjacobdennis/T-SQL.git
+   cd T-SQL
    ```
-2. **Build the Static Site**:
+
+````
+
+2. **Set Up Python Environment**
+
    ```bash
-   mkdocs build
+   python.exe -m pip install --upgrade pip
+   pip install mkdocs mkdocs-material mkdocs-minify-plugin
    ```
-   - This creates a `site/` folder with HTML files.
 
-### **Step 4: Launch the Local Website**
-
-Instead of opening raw HTML files, use MkDocs' **live-reload server** for a smooth experience:
-
-1. **Start the Local Server**:
+3. **Build and Serve the Documentation**
    ```bash
    mkdocs serve
    ```
-   - Output:
-     ```
-     INFO    -  Serving on http://127.0.0.1:8000
-     ```
-2. **Open in Browser**:
-   - Press `Ctrl + Click` on [http://127.0.0.1:8000](http://127.0.0.1:8000) (or paste it into your browser).
+   - Access at: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-**Now you have a fully interactive documentation site!**
+#### Key Features
 
-- **Features**:
-  - **Search bar** (find topics instantly).
-  - **Sidebar navigation** (easy browsing).
-  - **Dark/Light mode** (toggle in settings).
-  - **Auto-refresh** (changes update live).
+✔ **Instant search** across all documentation
+✔ **Dark/light mode** toggle
+✔ **Mobile-responsive** design
+✔ **Auto-refresh** when files change
+✔ **PDF export** (via browser print)
 
-### **Troubleshooting**
+## Troubleshooting
 
-🔹 **MkDocs not recognized?** → Restart VS Code or reopen the terminal.  
-🔹 **Python not found?** → Reinstall Python with **"Add to PATH"** enabled.  
-🔹 **Broken links?** → Run `mkdocs build --strict` to check errors.
+| Issue                 | Solution                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------- |
+| MkDocs not found      | Run `python -m pip install --upgrade mkdocs`                                        |
+| Plugin errors         | Reinstall plugins: `pip install --force-reinstall mkdocs-tags mkdocs-minify-plugin` |
+| Python not recognized | Reinstall Python with PATH option                                                   |
+| Broken links          | Run `mkdocs build --strict`                                                         |
 
-### **Why Use MkDocs Instead of Raw Markdown?**
+## Advanced Usage
 
-✔ **Better readability** (themed UI).  
-✔ **Search functionality** (find commands fast).  
-✔ **Responsive design** (works on phones/tablets).  
-✔ **Easier navigation** (sidebar, table of contents).
+### Build Static Site
 
-### **Next Steps**
+```bash
+mkdocs build --clean
+```
 
-Now that your **local T-SQL documentation site** is running, you can:  
-**Study interactively** (better than plain text files).  
-**Edit content in VS Code** (changes auto-refresh in the browser).  
-**Deploy online** (GitHub Pages, Netlify—see [MkDocs docs](https://www.mkdocs.org/user-guide/deploying-your-docs/)).
+Outputs to `site/` directory
 
-**Enjoy your enhanced T-SQL learning experience!**
-(Start exploring at [http://127.0.0.1:8000](http://127.0.0.1:8000))
+### Deploy to GitHub Pages
 
-## How to Contribute
+```bash
+mkdocs gh-deploy
+```
 
-Found an error or want to improve something?
+## Contributing
 
-1. Click the "Fork" button at the top right
-2. Make your changes
-3. Click "New Pull Request" to submit your improvements
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
 ## License
 
-This content is free to use - see the [LICENSE](LICENSE) file for details.
+Open-source under [MIT License](LICENSE)
+````
