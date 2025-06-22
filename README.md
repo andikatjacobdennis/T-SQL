@@ -1,4 +1,4 @@
-# T-SQL Tutorial
+# T-SQL
 
 This repository contains comprehensive documentation and learning resources for T-SQL (Transact-SQL), Microsoft's extension to the SQL language used in SQL Server. The materials cover everything from basic concepts to advanced features, including practical examples and command references.
 
