@@ -15,12 +15,21 @@ All documentation files are in the `docs/` folder:
 
 Create a professional, searchable documentation site locally using MkDocs:
 
-#### Prerequisites
+#### **Prerequisites**
 
-1. **Python 3.8+** ([python.org/downloads](https://www.python.org/downloads/))
-   - Check "Add Python to PATH" during installation
-2. **VS Code** (or any terminal)
-3. **Git** (for cloning)
+1. **Python 3.8+**
+
+   - **Download**: [python.org/downloads](https://www.python.org/downloads/)
+   - **Important**: Check ✅ **"Add Python to PATH"** during installation.
+   - **Verify Installation**: Run `python --version` in the terminal.
+
+2. **VS Code (Recommended Editor)**
+
+   - **Download**: [code.visualstudio.com](https://code.visualstudio.com/)
+
+3. **Git (for version control & cloning)**
+   - **Download**: [git-scm.com](https://git-scm.com/downloads)
+   - **Verify Installation**: Run `git --version` in the terminal.
 
 #### Setup Instructions
 
