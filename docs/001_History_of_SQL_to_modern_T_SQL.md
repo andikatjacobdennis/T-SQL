@@ -1,11 +1,12 @@
 # 001. History of SQL to Modern T-SQL
 
-![SQL Evolution Timeline](./images/History_Of_SQL_To_Modern_T-SQL.png "The evolution of SQL from its inception to modern T-SQL, highlighting major milestones and version developments")  
-![Edgar F. Codd](./images/Edgar_F_Codd.jpg "Dr. Edgar F. Codd (1923-2003), IBM computer scientist who pioneered the relational database model in 1970")
+![SQL Evolution Timeline](./images/History_Of_SQL_To_Modern_T-SQL.png "The evolution of SQL from its inception to modern T-SQL, highlighting major milestones and version developments")
 
 ## Key Developments
 
 ### 1970s: Origins of SQL
+
+![Edgar F. Codd](./images/Edgar_F_Codd.jpg "Dr. Edgar F. Codd (1923-2003), IBM computer scientist who pioneered the relational database model in 1970")
 
 - E.F. Codd introduces the relational model
 - IBM's System R project develops SQL
