@@ -471,3 +471,90 @@ EXEC sp_query_store_force_plan @query_id = 123, @plan_id = 456;
 SELECT * FROM LargeTable
 OPTION (MAXDOP 4, USE HINT('ENABLE_PARALLEL_PLAN_PREFERENCE'));
 ```
+
+## 13. User-Created Databases
+
+```sql
+SELECT name
+FROM sys.databases
+WHERE database_id > 4  -- Excludes system databases (master, tempdb, model, msdb)
+ORDER BY name;
+```
+
+## 14. User-Created Stored Procedures
+
+```sql
+-- In current database
+SELECT name, create_date
+FROM sys.procedures
+WHERE is_ms_shipped = 0  -- Excludes system objects
+ORDER BY name;
+```
+
+## 15. User-Created Functions
+
+```sql
+SELECT
+    o.name,
+    CASE o.type
+        WHEN 'FN' THEN 'Scalar function'
+        WHEN 'IF' THEN 'Inline table function'
+        WHEN 'TF' THEN 'Table-valued function'
+    END AS function_type,
+    o.create_date
+FROM sys.objects o
+WHERE o.type IN ('FN', 'IF', 'TF')
+AND o.is_ms_shipped = 0
+ORDER BY o.name;
+```
+
+## 16. User-Created Triggers
+
+```sql
+-- DML triggers
+SELECT name, parent_id, create_date
+FROM sys.triggers
+WHERE is_ms_shipped = 0
+ORDER BY name;
+
+-- DDL triggers
+SELECT name, create_date
+FROM sys.server_triggers
+WHERE is_ms_shipped = 0
+ORDER BY name;
+```
+
+## 17. User-Created Views
+
+```sql
+SELECT name, create_date
+FROM sys.views
+WHERE is_ms_shipped = 0
+ORDER BY name;
+```
+
+## 18. All User-Created Objects Together
+
+```sql
+SELECT
+    SCHEMA_NAME(schema_id) AS schema_name,
+    name AS object_name,
+    type_desc,
+    create_date
+FROM sys.objects
+WHERE is_ms_shipped = 0
+AND type IN ('P','FN','IF','TF','TR','V','U')  -- P=Proc, FN=Func, etc.
+ORDER BY type_desc, schema_name, object_name;
+```
+
+## 19. User-Created Tables
+
+```sql
+SELECT
+    SCHEMA_NAME(schema_id) AS schema_name,
+    name AS table_name,
+    create_date
+FROM sys.tables
+WHERE is_ms_shipped = 0
+ORDER BY schema_name, table_name;
+```

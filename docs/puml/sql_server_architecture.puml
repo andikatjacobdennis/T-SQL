@@ -1,0 +1,60 @@
+@startuml SQL Server Internal Architecture
+
+skinparam monochrome true
+skinparam defaultFontName Arial
+skinparam roundCorner 10
+skinparam shadowing false
+
+title SQL Server Internal Architecture – UPDATE Command Flow
+
+actor "Client Application" as Client
+
+rectangle "SQL Server" {
+
+  rectangle "Protocol Layer" as Protocol {
+    [Tabular Data\nStream (TDS)] as TDS
+  }
+
+  rectangle "Relational Engine" as Relational {
+    [Parser]
+    [Algebrizer]
+    [Optimizer]
+    [Query Executor]
+  }
+
+  rectangle "Storage Engine" as Storage {
+    [Access Methods]
+    [Buffer Manager]
+    [Transaction Manager]
+    [Lock Manager]
+  }
+}
+
+database "Data Files" as MDF
+database "Transaction Log" as LDF
+
+' Flow
+Client --> TDS : 1. TDS Packet\n(UPDATE Command)
+TDS --> Parser : 2. Parse SQL
+Parser --> Algebrizer : 3. Name Resolution
+Algebrizer --> Optimizer : 4. Logical Plan
+Optimizer --> [Query Executor] : 5. Execution Plan
+[Query Executor] --> [Access Methods] : 6. Data Access
+[Access Methods] --> [Buffer Manager] : 7. Page Retrieval
+[Buffer Manager] --> MDF : 8. Disk Read/Write
+[Access Methods] --> [Lock Manager] : 9. Acquire/Release Locks
+[Access Methods] --> [Transaction Manager] : 10. Begin/Commit Transaction
+[Transaction Manager] --> LDF : 11. Log Changes
+[Query Executor] --> TDS : 12. Return Result
+TDS --> Client : 13. Completion
+
+legend right
+  Key Components:
+  - Protocol Layer: Handles communication (TDS)
+  - Relational Engine: Parses, optimizes, and executes queries
+  - Storage Engine: Manages data access, buffer, locks, and transactions
+  - Data Files: Persistent storage (MDF)
+  - Transaction Log: Ensures durability (LDF)
+endlegend
+
+@enduml

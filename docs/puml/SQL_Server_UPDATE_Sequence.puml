@@ -1,0 +1,78 @@
+@startuml SQL_Server_UPDATE_Sequence
+
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam roundCorner 10
+
+actor "Client Application\n(SSMS/App)" as Client
+participant "Protocol Layer\n(TDS)" as TDS
+participant "Parser" as Parser
+participant "Algebrizer" as Algebrizer
+participant "Optimizer" as Optimizer
+participant "Plan Cache" as PlanCache
+participant "Access Methods" as Access
+participant "Buffer Manager" as Buffer
+participant "Data Files" as Data
+participant "Lock Manager" as LockMgr
+participant "Transaction Manager" as TxnMgr
+participant "Transaction Log" as TLog
+
+== Parsing & Compilation ==
+
+Client -> TDS : 1. Send UPDATE command
+activate TDS
+TDS -> Parser : 2. Parse SQL
+deactivate TDS
+activate Parser
+Parser -> Algebrizer : 3. Create Parse Tree
+deactivate Parser
+activate Algebrizer
+Algebrizer -> Optimizer : 4. Generate Logical Tree\n(Name resolution)
+deactivate Algebrizer
+
+== Optimization ==
+
+activate Optimizer
+Optimizer -> PlanCache : 5. Check for Cached Plan
+PlanCache --> Optimizer : 6a. Return Cached Plan (if exists)
+Optimizer -> Optimizer : 6b. Generate Plan\n(if cache miss)
+deactivate Optimizer
+
+== Execution ==
+
+Optimizer -> Access : 7. Send Execution Plan
+activate Access
+Access -> Buffer : 8. Check Buffer Pool
+activate Buffer
+Buffer -> Data : 9. Disk Read if not in Buffer
+deactivate Buffer
+
+Access -> LockMgr : 10. Acquire IU/IX Locks
+activate LockMgr
+LockMgr --> Access : 11. Lock Granted
+deactivate LockMgr
+
+Access -> TxnMgr : 12. Begin Transaction
+activate TxnMgr
+TxnMgr -> TLog : 13. Log BEGIN_XACT
+deactivate TxnMgr
+
+Access -> TLog : 14. Log BEFORE image
+Access -> Buffer : 15. Modify In-Memory Data
+Access -> TLog : 16. Log AFTER image
+
+TxnMgr -> TLog : 17. Write COMMIT
+TxnMgr -> LockMgr : 18. Release Locks
+
+== Completion ==
+
+Access -> TDS : 19. Return "(1 row affected)"
+deactivate Access
+TDS -> Client : 20. Send Completion
+
+note right of TLog
+BEGIN_XACT, BEFORE image,\nAFTER image, COMMIT\nare all written to WAL
+end note
+
+@enduml

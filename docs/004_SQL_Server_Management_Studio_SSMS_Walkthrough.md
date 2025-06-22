@@ -6,15 +6,15 @@
 
 1. Open SSMS from Start Menu
 2. In "Connect to Server" dialog:
-   - **Server type**: Database Engine (default)
-   - **Server name**:
+   - Server type: Database Engine (default)
+   - Server name:
      - Local: `.` or `(local)`
      - Named instance: `.\SQLEXPRESS`
      - Remote: `server.domain.com` or `192.168.1.100`
-   - **Authentication**:
+   - Authentication:
      - Windows (uses your AD credentials)
      - SQL Server (enter username/password)
-3. Click **Connect**
+3. Click Connect
 
 ### Pro Tip
 
@@ -27,19 +27,19 @@
 
 ### Walkthrough
 
-1. **File > New > Query with Current Connection** (or Ctrl+N)
+1. File > New > Query with Current Connection (or Ctrl+N)
 2. Type SQL:
    ```sql
    SELECT * FROM Employees WHERE Department = 'Sales'
    ```
 3. Execute:
-   - **F5**: Runs entire script
-   - Highlight text + **F5**: Runs selection only
+   - F5: Runs entire script
+   - Highlight text + F5: Runs selection only
 
 ### Pro Tip
 
-- **Ctrl+R**: Toggle results pane
-- **Ctrl+K+C/U**: Comment/uncomment code
+- Ctrl+R: Toggle results pane
+- Ctrl+K+C/U: Comment/uncomment code
 - Use `GO` between batches
 
 > _[Screenshot: Query window with executed results]_
@@ -48,12 +48,12 @@
 
 ### Walkthrough
 
-1. **Right-click Databases > New Database**
+1. Right-click Databases > New Database
 2. Configure:
    - Name (e.g., `CustomerDB`)
    - Files tab: Adjust initial size/autogrowth
    - Options tab: Set recovery model (SIMPLE/FULL)
-3. Click **OK**
+3. Click OK
 
 ### Explore
 
@@ -66,18 +66,18 @@
 
 ### Walkthrough
 
-1. **Right-click Tables > New > Table**
+1. Right-click Tables > New > Table
 2. Design columns:
    - Name (e.g., `ProductID`)
    - Data type (e.g., `int`, `varchar(50)`)
    - Allow NULLs (checkbox)
-3. Set Primary Key: Right-click column > **Set Primary Key**
+3. Set Primary Key: Right-click column > Set Primary Key
 4. Save (Ctrl+S) > Name table (e.g., `Products`)
 
 ### Pro Tip
 
-- Use **Table Designer** for GUI editing
-- Use **CREATE TABLE** script for version control
+- Use Table Designer for GUI editing
+- Use CREATE TABLE script for version control
 
 > _[Screenshot: Table designer with column definitions]_
 
@@ -85,9 +85,9 @@
 
 ### Walkthrough
 
-1. Open **Database Diagrams > New Diagram**
+1. Open Database Diagrams > New Diagram
 2. Add related tables (e.g., `Orders` and `Customers`)
-3. Right-click `Orders.CustomerID` > **Relationships**
+3. Right-click `Orders.CustomerID` > Relationships
 4. Configure:
    - Primary key table: `Customers`
    - Foreign key table: `Orders`
@@ -107,18 +107,18 @@
 
 ### Walkthrough
 
-1. **Right-click table > Select Top 1000 Rows**
+1. Right-click table > Select Top 1000 Rows
 2. Filter:
-   - Right-click column header > **Filter**
+   - Right-click column header > Filter
    - Enter criteria (e.g., `Salary > 50000`)
 3. Edit data:
-   - **Right-click table > Edit Top 200 Rows**
+   - Right-click table > Edit Top 200 Rows
    - Modify cells directly
 
 ### Configuration
 
 - Change default row limit:  
-  **Tools > Options > SQL Server > Results Grid**
+  Tools > Options > SQL Server > Results Grid
 
 > _[Screenshot: Data grid with filter applied]_
 
@@ -126,7 +126,7 @@
 
 ### Walkthrough
 
-1. **Right-click Programmability > Stored Procedures > New**
+1. Right-click Programmability > Stored Procedures > New
 2. Template appears - modify:
    ```sql
    CREATE PROCEDURE GetEmployeeByDept
@@ -152,16 +152,16 @@
 ### Walkthrough
 
 1. Open query window
-2. Click **Include Actual Execution Plan** (Ctrl+M)
+2. Click Include Actual Execution Plan (Ctrl+M)
 3. Run query (F5)
 4. Analyze:
-   - **Table Scans** (bad) > Add indexes
-   - **Key Lookups** (expensive) > Covering indexes
-   - **Cost percentages** (focus on high-cost ops)
+   - Table Scans (bad) > Add indexes
+   - Key Lookups (expensive) > Covering indexes
+   - Cost percentages (focus on high-cost ops)
 
 ### Pro Tip
 
-- Right-click plan > **Missing Index Details** for recommendations
+- Right-click plan > Missing Index Details for recommendations
 
 > _[Screenshot: Execution plan with high-cost operators]_
 
@@ -170,13 +170,13 @@
 ### Walkthrough
 
 1. Navigate hierarchy:
-   - **Databases**: User/system DBs
-   - **Security**: Logins/users
-   - **Server Objects**: Linked servers
+   - Databases: User/system DBs
+   - Security: Logins/users
+   - Server Objects: Linked servers
 2. Right-click actions:
-   - **Script As**: Generate CREATE/ALTER scripts
-   - **Dependencies**: Impact analysis
-   - **Filter**: Find objects quickly
+   - Script As: Generate CREATE/ALTER scripts
+   - Dependencies: Impact analysis
+   - Filter: Find objects quickly
 
 ### Hidden Gem
 
@@ -188,19 +188,19 @@
 
 ### Walkthrough
 
-1. **Create Login**:
-   - **Security > Logins > New Login**
+1. Create Login:
+   - Security > Logins > New Login
    - Map to Windows AD or SQL auth
-2. **Database Access**:
+2. Database Access:
    - User Mappings tab > Check target DB
    - Assign roles (`db_datareader`, `db_owner`)
-3. **Object Permissions**:
+3. Object Permissions:
    - Right-click DB > Properties > Permissions
 
 ### Critical Knowledge
 
-- **Server roles** (e.g., `sysadmin`) control server-wide access
-- **Database roles** (e.g., `db_owner`) control DB-specific access
+- Server roles (e.g., `sysadmin`) control server-wide access
+- Database roles (e.g., `db_owner`) control DB-specific access
 
 > _[Screenshot: New Login dialog with role assignments]_
 
@@ -208,17 +208,17 @@
 
 ### Walkthrough
 
-**Backup**:
+Backup:
 
-1. **Right-click DB > Tasks > Back Up**
+1. Right-click DB > Tasks > Back Up
 2. Configure:
    - Type: Full/Differential/Log
    - Destination: File path or device
    - Compression: On (recommended)
 
-**Restore**:
+Restore:
 
-1. **Right-click Databases > Restore Database**
+1. Right-click Databases > Restore Database
 2. Select backup file > Options tab:
    - "Overwrite existing database"
    - "Leave in restoring state" (for log shipping)
@@ -234,11 +234,11 @@
 
 ### Walkthrough
 
-1. **Right-click DB > Tasks > Generate Scripts**
+1. Right-click DB > Tasks > Generate Scripts
 2. Select objects (tables, SPs, etc.)
 3. Advanced options:
-   - **Script Data**: None/Schema only/Data only
-   - **Include IF NOT EXISTS**: Prevents errors
+   - Script Data: None/Schema only/Data only
+   - Include IF NOT EXISTS: Prevents errors
 4. Output to file/clipboard/query window
 
 ### Migration Use Case
@@ -252,17 +252,17 @@
 
 ### Walkthrough
 
-**Profiler**:
+Profiler:
 
-1. **Tools > SQL Server Profiler**
+1. Tools > SQL Server Profiler
 2. New Trace > Select events:
    - `SQL:BatchCompleted`
    - `Deadlock graph`
 3. Run and analyze queries
 
-**Extended Events**:
+Extended Events:
 
-1. **Management > Extended Events > New Session**
+1. Management > Extended Events > New Session
 2. Add events (e.g., `sql_statement_completed`)
 3. Watch live data or save to file
 
@@ -277,7 +277,7 @@
 
 ### Walkthrough
 
-1. **Right-click Database Diagrams > New Diagram**
+1. Right-click Database Diagrams > New Diagram
 2. Add tables > Auto-arrange
 3. View relationships:
    - PK = Gold key icon
@@ -286,7 +286,7 @@
 
 ### >Presentation Tip
 
-- Right-click > **Page Layout** for printing
+- Right-click > Page Layout for printing
 - Export as image for documentation
 
 > _[Screenshot: ER diagram with 5 related tables]_
@@ -304,7 +304,7 @@
                   WHERE object_id = OBJECT_ID(name))
    ```
 2. Backup before deletion!
-3. Right-click > **Delete** (or script DROP statements)
+3. Right-click > Delete (or script DROP statements)
 
 ### >Safe Cleanup
 
@@ -315,6 +315,88 @@
 
 ### Final Notes
 
-- **Shortcuts**: Master Ctrl+T (results to text), Ctrl+D (results to grid)
-- **Customization**: Tools > Options > Environment > Fonts for readability
-- **Plugins**: Consider SQL Prompt for enhanced IntelliSense
+- Shortcuts: Master Ctrl+T (results to text), Ctrl+D (results to grid)
+- Customization: Tools > Options > Environment > Fonts for readability
+- Plugins: Consider SQL Prompt for enhanced IntelliSense
+
+## 16. SQLCMD Quick Guide
+
+### Basic Connection Command
+
+```sql
+sqlcmd -S .\SQLEXPRESS -U sa -P sa123 -d test1 -C
+```
+
+#### Parameters:
+
+- `-S` Server name (.\SQLEXPRESS = local SQL Express instance)
+- `-U` Username (sa = system administrator)
+- `-P` Password
+- `-d` Database name
+- `-C` Encrypt connection
+
+### How to Use
+
+1. Open Command Prompt (Win+R → cmd)
+2. Enter the connection command
+3. At the `1>` prompt, type SQL commands
+4. Execute with `GO`
+
+### Common Variations:
+
+- Windows Auth: `sqlcmd -S .\SQLEXPRESS -E`
+- Run script: `sqlcmd -S .\SQLEXPRESS -U sa -P sa123 -i script.sql`
+- Save output: Add `-o output.txt`
+
+### Safety Notes:
+
+- Avoid hardcoding passwords in scripts
+- Use limited-permission accounts when possible
+- Always encrypt connections (-C) in production
+
+Type `QUIT` to exit SQLCMD.
+
+## 17. Enabling features in SQL Server 2022 using Configuration Manager
+
+### Step 1: Open SQL Server Configuration Manager
+
+1. Press Windows + R to open the Run dialog
+2. Type:
+   ```
+   SQLServerManager16.msc
+   ```
+3. Press Enter  
+   _(This opens the Configuration Manager specifically for SQL Server 2022)_
+
+### Step 2: Enable Network Protocols
+
+1. In the left pane:
+
+   - Expand "SQL Server Network Configuration"
+   - Click "Protocols for [YourInstanceName]"  
+     _(Default instance shows as "MSSQLSERVER")_
+
+2. In the right pane, right-click on each protocol you want to enable:
+
+   - TCP/IP (for remote connections)
+   - Named Pipes (for local network connections)
+   - Shared Memory (already enabled by default for local access)
+
+3. Select Enable for each desired protocol
+
+### Step 3: Configure TCP/IP (Optional)
+
+1. Double-click TCP/IP
+2. Go to the IP Addresses tab
+3. For each active IP address:
+   - Set TCP Port to 1433 (or your custom port)
+   - Ensure Active and Enabled are both "Yes"
+4. Click OK to save
+
+### Step 4: Restart SQL Server Service
+
+1. In the left pane:
+   - Select "SQL Server Services"
+2. In the right pane:
+   - Right-click SQL Server ([YourInstanceName])
+   - Select Restart

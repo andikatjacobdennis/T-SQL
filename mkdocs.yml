@@ -62,6 +62,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  #- SQL Server Update Internals: Modules\Module_001\SQL_Server_Update_Internals.md
   - Foundations & Setup:
       - 001. History of SQL to Modern T-SQL: 001_History_of_SQL_to_modern_T_SQL.md
       - 002. Getting Started: 002_Getting_Started.md
