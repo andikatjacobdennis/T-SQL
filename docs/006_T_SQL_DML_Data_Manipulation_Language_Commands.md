@@ -40,65 +40,7 @@ OUTPUT inserted.OrderID, inserted.CustomerID
 VALUES (1, GETDATE());
 ```
 
-## 2. SELECT (Retrieve Data)
-
-### Basic SELECT
-
-```sql
--- Select all columns
-SELECT * FROM Sales.Customers;
-
--- Select specific columns
-SELECT FirstName, LastName, Email
-FROM Sales.Customers;
-```
-
-### Filtering Data
-
-```sql
--- WHERE clause
-SELECT * FROM Sales.Orders
-WHERE OrderDate > '2023-01-01';
-
--- LIKE operator
-SELECT * FROM Sales.Customers
-WHERE Email LIKE '%@gmail.com';
-
--- BETWEEN
-SELECT * FROM Sales.Orders
-WHERE TotalAmount BETWEEN 100 AND 500;
-```
-
-### Joining Tables
-
-```sql
--- INNER JOIN
-SELECT c.FirstName, c.LastName, o.OrderID, o.OrderDate
-FROM Sales.Customers c
-INNER JOIN Sales.Orders o ON c.CustomerID = o.CustomerID;
-
--- LEFT JOIN
-SELECT c.FirstName, c.LastName, o.OrderID
-FROM Sales.Customers c
-LEFT JOIN Sales.Orders o ON c.CustomerID = o.CustomerID;
-```
-
-### Aggregation
-
-```sql
--- GROUP BY
-SELECT CustomerID, COUNT(*) AS OrderCount
-FROM Sales.Orders
-GROUP BY CustomerID;
-
--- HAVING
-SELECT CustomerID, SUM(TotalAmount) AS TotalSpent
-FROM Sales.Orders
-GROUP BY CustomerID
-HAVING SUM(TotalAmount) > 1000;
-```
-
-## 3. UPDATE (Modify Data)
+## 2. UPDATE (Modify Data)
 
 ### Basic UPDATE
 
@@ -139,7 +81,7 @@ OUTPUT
 WHERE CategoryID = 5;
 ```
 
-## 4. DELETE (Remove Data)
+## 3. DELETE (Remove Data)
 
 ### Basic DELETE
 
@@ -171,7 +113,7 @@ OUTPUT deleted.CustomerID, deleted.Email
 WHERE LastActivityDate < DATEADD(YEAR, -2, GETDATE());
 ```
 
-## 5. MERGE (Upsert Operation)
+## 4. MERGE (Upsert Operation)
 
 ```sql
 -- Synchronize two tables
@@ -189,27 +131,6 @@ WHEN NOT MATCHED THEN
 WHEN NOT MATCHED BY SOURCE THEN
     DELETE
 OUTPUT $action, inserted.*, deleted.*;
-```
-
-## 6. Transaction Control
-
-```sql
--- Explicit transaction
-BEGIN TRANSACTION;
-BEGIN TRY
-    UPDATE Sales.Products
-    SET StockQuantity = StockQuantity - 10
-    WHERE ProductID = 5;
-
-    INSERT INTO Sales.Orders (CustomerID, ProductID, Quantity)
-    VALUES (1, 5, 10);
-
-    COMMIT TRANSACTION;
-END TRY
-BEGIN CATCH
-    ROLLBACK TRANSACTION;
-    THROW;
-END CATCH;
 ```
 
 ## Complete DML Example Workflow

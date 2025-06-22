@@ -472,7 +472,9 @@ SELECT * FROM LargeTable
 OPTION (MAXDOP 4, USE HINT('ENABLE_PARALLEL_PLAN_PREFERENCE'));
 ```
 
-## 13. User-Created Databases
+## 13. Query User-Created Objects
+
+### User-Created Databases
 
 ```sql
 SELECT name
@@ -481,7 +483,19 @@ WHERE database_id > 4  -- Excludes system databases (master, tempdb, model, msdb
 ORDER BY name;
 ```
 
-## 14. User-Created Stored Procedures
+### User-Created Tables
+
+```sql
+SELECT
+    SCHEMA_NAME(schema_id) AS schema_name,
+    name AS table_name,
+    create_date
+FROM sys.tables
+WHERE is_ms_shipped = 0
+ORDER BY schema_name, table_name;
+```
+
+### User-Created Stored Procedures
 
 ```sql
 -- In current database
@@ -491,7 +505,7 @@ WHERE is_ms_shipped = 0  -- Excludes system objects
 ORDER BY name;
 ```
 
-## 15. User-Created Functions
+### User-Created Functions
 
 ```sql
 SELECT
@@ -508,7 +522,7 @@ AND o.is_ms_shipped = 0
 ORDER BY o.name;
 ```
 
-## 16. User-Created Triggers
+### User-Created Triggers
 
 ```sql
 -- DML triggers
@@ -524,7 +538,7 @@ WHERE is_ms_shipped = 0
 ORDER BY name;
 ```
 
-## 17. User-Created Views
+### User-Created Views
 
 ```sql
 SELECT name, create_date
@@ -533,7 +547,7 @@ WHERE is_ms_shipped = 0
 ORDER BY name;
 ```
 
-## 18. All User-Created Objects Together
+### All User-Created Objects Together
 
 ```sql
 SELECT
@@ -545,16 +559,4 @@ FROM sys.objects
 WHERE is_ms_shipped = 0
 AND type IN ('P','FN','IF','TF','TR','V','U')  -- P=Proc, FN=Func, etc.
 ORDER BY type_desc, schema_name, object_name;
-```
-
-## 19. User-Created Tables
-
-```sql
-SELECT
-    SCHEMA_NAME(schema_id) AS schema_name,
-    name AS table_name,
-    create_date
-FROM sys.tables
-WHERE is_ms_shipped = 0
-ORDER BY schema_name, table_name;
 ```
