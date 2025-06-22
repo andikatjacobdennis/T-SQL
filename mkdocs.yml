@@ -23,13 +23,13 @@ theme:
   palette:
     - scheme: default  # Light theme (default)
       primary: violet
-      accent: deep orange
+      accent: violet
       toggle:
         icon: material/weather-sunny
         name: Switch to dark mode
     - scheme: slate  # Dark theme
       primary: violet
-      accent: deep orange
+      accent: violet
       toggle:
         icon: material/weather-night
         name: Switch to light mode
