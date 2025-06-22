@@ -1,5 +1,5 @@
 site_name: "T-SQL Tutorial"
-#site_url: https://github.com/andikatjacobdennis/T-SQL
+#site_url: https://andikatjacobdennis.github.io/T-SQL/
 theme:
   name: material
   features:
