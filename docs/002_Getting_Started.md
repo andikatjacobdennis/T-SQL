@@ -248,3 +248,207 @@ Centralized repositories for analytical reporting, integrating data from multipl
 - Delivery routes → Graph DB (Neo4j)
 - Oven temperatures → Time-Series (InfluxDB)
 - Sales reports → Data Warehouse (BigQuery)
+
+Here's the updated version with usage notes and descriptions for each data type:
+
+## Data Types in T-SQL
+
+### 1. Exact Numeric Data Types
+
+- **INT**: 4 bytes (-2^31 to 2^31-1) or -2,147,483,648 to 2,147,483,647  
+  _Use for whole numbers like counts, IDs, or any integer value within this range._
+
+  ```sql
+  DECLARE @ProductCount INT = 1000;
+  ```
+
+- **BIGINT**: 8 bytes (-2^63 to 2^63-1) or -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  
+  _Use for very large whole numbers like global inventory counts or scientific calculations._
+
+  ```sql
+  DECLARE @GlobalInventory BIGINT = 9223372036854775807;
+  ```
+
+- **SMALLINT**: 2 bytes (-2^15 to 2^15-1) or -32,768 to 32,767  
+  _Use for smaller whole numbers to save space when range is known to be limited._
+
+  ```sql
+  DECLARE @WarehouseCount SMALLINT = 200;
+  ```
+
+- **TINYINT**: 1 byte (0 to 2^8-1) or 0 to 255  
+  _Use for very small non-negative numbers like ratings, small quantities, or status codes._
+
+  ```sql
+  DECLARE @Rating TINYINT = 5;
+  ```
+
+- **DECIMAL/NUMERIC**: Precision 1-38 (storage varies)  
+  _Use for exact decimal numbers like monetary values where precision is critical (e.g., DECIMAL(10,2) for currency)._
+  ```sql
+  DECLARE @ExactPrice DECIMAL(10,2) = 199.99;
+  ```
+
+### 2. Approximate Numeric Data Types
+
+- **FLOAT**: 4 or 8 bytes (±1.79E+308)  
+  _Use for scientific calculations where approximate values are acceptable. Avoid for financial calculations._
+
+  ```sql
+  DECLARE @ScientificValue FLOAT = 2.5E-20;
+  ```
+
+- **REAL**: 4 bytes (±3.40E+38)  
+  _Use for floating-point numbers when storage space is critical and precision can be sacrificed._
+  ```sql
+  DECLARE @ApproxValue REAL = 1.23456;
+  ```
+
+### 3. Monetary Data Types
+
+- **MONEY**: 8 bytes (-2^63/10000 to 2^63-1/10000) or -922,337,203,685,477.5808 to 922,337,203,685,477.5807  
+  _Use for currency values. Provides better accuracy for financial calculations than FLOAT/REAL._
+
+  ```sql
+  DECLARE @TotalAmount MONEY = 999999.99;
+  ```
+
+- **SMALLMONEY**: 4 bytes (-214,748.3648 to 214,748.3647)  
+  _Use for smaller currency values when storage space is a concern._
+  ```sql
+  DECLARE @ItemPrice SMALLMONEY = 199.99;
+  ```
+
+### 4. Date and Time Data Types
+
+- **DATE**: 3 bytes (0001-01-01 to 9999-12-31)  
+  _Use when only the date component is needed (no time). Most efficient for pure date storage._
+
+  ```sql
+  DECLARE @OrderDate DATE = '2023-11-15';
+  ```
+
+- **TIME**: 3-5 bytes (00:00:00.0000000 to 23:59:59.9999999)  
+  _Use when only the time component is needed (no date). Precision can be specified._
+
+  ```sql
+  DECLARE @ShipTime TIME = '14:30:00.1234567';
+  ```
+
+- **DATETIME**: 8 bytes (1753-01-01 to 9999-12-31, 3.33ms accuracy)  
+  _Legacy type - prefer DATETIME2 for new development. Compatible with older systems._
+
+  ```sql
+  DECLARE @Created DATETIME = '2023-11-15 09:30:25';
+  ```
+
+- **DATETIME2**: 6-8 bytes (0001-01-01 to 9999-12-31, 100ns accuracy)  
+  _Modern replacement for DATETIME. Allows precision specification (e.g., DATETIME2(7) for maximum precision)._
+
+  ```sql
+  DECLARE @Updated DATETIME2(7) = '2023-11-15 09:30:25.1234567';
+  ```
+
+- **SMALLDATETIME**: 4 bytes (1900-01-01 to 2079-06-06, 1 minute accuracy)  
+  _Use when space is critical and minute precision is sufficient._
+  ```sql
+  DECLARE @PromoEnd SMALLDATETIME = '2023-12-31 23:59';
+  ```
+
+### 5. Character and Unicode Data Types
+
+- **CHAR/VARCHAR**: 1 byte per character (VARCHAR(MAX) up to 2^31-1 bytes)  
+  _CHAR for fixed-length strings (e.g., codes), VARCHAR for variable-length. Use VARCHAR(MAX) for very large text._
+
+  ```sql
+  DECLARE @SKU CHAR(10) = 'PROD12345';
+  DECLARE @Description VARCHAR(500) = 'High-quality product description';
+  ```
+
+- **NCHAR/NVARCHAR**: 2 bytes per character (NVARCHAR(MAX) up to 2^30-1 characters)  
+  _Use for Unicode text (international characters). NVARCHAR is preferred over VARCHAR unless ASCII-only is guaranteed._
+  ```sql
+  DECLARE @ProductName NVARCHAR(100) = N'Produit de qualité supérieure';
+  ```
+
+### 6. Binary Data Types
+
+- **BINARY/VARBINARY**: Up to VARBINARY(MAX) with 2^31-1 bytes  
+  _Use for storing binary data like images, files, or serialized objects._
+  ```sql
+  DECLARE @ProductImage VARBINARY(MAX) = 0x89504E470D0A1A0A...;
+  ```
+
+### 7. Special Data Types
+
+- **BIT**: 1 bit (0, 1, or NULL)  
+  _Use for boolean values (true/false). Storage optimized - multiple BIT columns are packed together._
+
+  ```sql
+  DECLARE @InStock BIT = 1;
+  ```
+
+- **UNIQUEIDENTIFIER**: 16 bytes (GUID)  
+  _Use for globally unique identifiers. Larger than INT/BIGINT but guaranteed unique across systems._
+
+  ```sql
+  DECLARE @CartID UNIQUEIDENTIFIER = NEWID();
+  ```
+
+- **XML**: Up to 2GB  
+  _Use for storing and querying XML data. Provides XML-specific methods for querying._
+
+  ```sql
+  DECLARE @ProductSpecs XML = '<specs><weight>1.2kg</weight><dimensions>10x20x30cm</dimensions></specs>';
+  ```
+
+- **JSON**: Stored as NVARCHAR  
+  _Use for JSON data (SQL Server 2016+). Provides JSON-specific functions for querying._
+  ```sql
+  DECLARE @ProductJSON NVARCHAR(MAX) = '{"id":123,"name":"Widget","price":19.99,"colors":["red","blue"]}';
+  ```
+
+### Shopping Cart Table Example
+
+```sql
+CREATE TABLE ShoppingCart (
+    CartID UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    UserID BIGINT NOT NULL,
+    SessionID VARCHAR(64) NOT NULL,
+    ProductID INT NOT NULL,
+    SKU CHAR(12) NOT NULL,
+    ProductName NVARCHAR(100) NOT NULL,
+    ProductDescription NVARCHAR(MAX),
+    Quantity SMALLINT NOT NULL DEFAULT 1,
+    UnitPrice MONEY NOT NULL,
+    DiscountAmount SMALLMONEY DEFAULT 0.00,
+    TotalPrice AS (Quantity * UnitPrice - DiscountAmount),
+    IsGiftWrapped BIT DEFAULT 0,
+    GiftWrapPrice DECIMAL(5,2) NULL,
+    ProductImage VARBINARY(MAX),
+    ProductSpecs XML,
+    ProductAttributes JSON,
+    DateAdded DATETIME2 DEFAULT SYSDATETIME(),
+    LastUpdated DATETIME2 DEFAULT SYSDATETIME(),
+    ExpiryDate DATE,
+    IsActive BIT DEFAULT 1,
+    Notes VARCHAR(500),
+
+    CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
+    CONSTRAINT CHK_Quantity CHECK (Quantity > 0),
+    CONSTRAINT CHK_Price CHECK (UnitPrice >= 0 AND DiscountAmount >= 0)
+);
+
+CREATE INDEX IX_ShoppingCart_UserID ON ShoppingCart(UserID);
+CREATE INDEX IX_ShoppingCart_SessionID ON ShoppingCart(SessionID);
+```
+
+### General Notes:
+
+1. Always choose the smallest data type that will accommodate your data to optimize storage and performance.
+2. For monetary values, prefer DECIMAL or MONEY types over FLOAT/REAL to avoid rounding errors.
+3. For new development, prefer DATETIME2 over DATETIME for better precision and range.
+4. Use NVARCHAR instead of VARCHAR when international character support might be needed.
+5. Consider using computed columns (like TotalPrice) for derived values to maintain data integrity.
+6. For large binary data, consider storing file paths in the database and the actual files in a filesystem or blob storage.
