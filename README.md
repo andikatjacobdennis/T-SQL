@@ -53,6 +53,14 @@ The documentation is organized into the following sections:
 12. **FAQ** - Common questions and answers
 13. **Glossary** - Key terms and definitions
 
+## Requirements
+
+To build the documentation site locally:
+
+- Python 3.x
+- MkDocs (`pip install mkdocs`)
+- Any MkDocs themes/plugins specified in `mkdocs.yml`
+
 ## How to Use This Repository
 
 1. **Browse the documentation** - Navigate through the markdown files in the `docs/` directory
@@ -65,14 +73,6 @@ The documentation is organized into the following sections:
    mkdocs serve
    ```
 4. **Contribute** - Submit pull requests or issues for improvements
-
-## Requirements
-
-To build the documentation site locally:
-
-- Python 3.x
-- MkDocs (`pip install mkdocs`)
-- Any MkDocs themes/plugins specified in `mkdocs.yml`
 
 ## License
 
