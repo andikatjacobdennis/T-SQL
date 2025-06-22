@@ -97,7 +97,4 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
 
-extra_css:
-  - stylesheets/extra.css
-
 copyright: "&copy;2025. All rights reserved."
