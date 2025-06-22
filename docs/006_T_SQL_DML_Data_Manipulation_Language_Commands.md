@@ -2,7 +2,8 @@
 
 This guide covers all Data Manipulation Language (DML) commands with executable examples for the `OrderDB` database.
 
-Note: Technically: SELECT is DQL. Practically (in T-SQL contexts): SELECT is often grouped under DML due to its importance in data operations.
+> **Note**
+> Technically: SELECT is DQL. Practically (in T-SQL contexts): SELECT is often grouped under DML due to its importance in data operations.
 
 ## 1. INSERT (Add New Data)
 
