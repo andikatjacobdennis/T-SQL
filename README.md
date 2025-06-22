@@ -44,14 +44,6 @@ Create a professional, searchable documentation site locally using MkDocs:
    ```
    - Access at: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-#### Key Features
-
-✔ **Instant search** across all documentation
-✔ **Dark/light mode** toggle
-✔ **Mobile-responsive** design
-✔ **Auto-refresh** when files change
-✔ **PDF export** (via browser print)
-
 ## Troubleshooting
 
 | Issue                 | Solution                                                                            |
