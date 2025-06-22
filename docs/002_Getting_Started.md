@@ -249,8 +249,6 @@ Centralized repositories for analytical reporting, integrating data from multipl
 - Oven temperatures → Time-Series (InfluxDB)
 - Sales reports → Data Warehouse (BigQuery)
 
-Here's the updated version with usage notes and descriptions for each data type:
-
 ## Data Types in T-SQL
 
 ### 1. Exact Numeric Data Types
@@ -411,38 +409,130 @@ Here's the updated version with usage notes and descriptions for each data type:
 ### Shopping Cart Table Example
 
 ```sql
+-- Create a new table named 'ShoppingCart' to store shopping cart information
 CREATE TABLE ShoppingCart (
+    -- A unique identifier for each cart item, automatically generated if not provided
+    -- PRIMARY KEY means this uniquely identifies each row in the table
+    -- NEWID() generates a new random unique identifier
     CartID UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+
+    -- Stores the ID of the user who owns this cart item
+    -- BIGINT is a large integer type (can store very big numbers)
+    -- NOT NULL means this field must always have a value
     UserID BIGINT NOT NULL,
+
+    -- Stores a session identifier (for users who aren't logged in)
+    -- VARCHAR(64) means a text field up to 64 characters long
     SessionID VARCHAR(64) NOT NULL,
+
+    -- Stores the ID of the product in this cart item
+    -- INT is an integer type (whole numbers)
     ProductID INT NOT NULL,
+
+    -- Stock Keeping Unit - a unique identifier for product variations
+    -- CHAR(12) means exactly 12 characters (fixed length)
     SKU CHAR(12) NOT NULL,
+
+    -- The name of the product (up to 100 characters)
+    -- NVARCHAR supports international characters
     ProductName NVARCHAR(100) NOT NULL,
+
+    -- Detailed description of the product (unlimited length)
+    -- NVARCHAR(MAX) can store very large amounts of text
     ProductDescription NVARCHAR(MAX),
+
+    -- How many of this product are in the cart
+    -- SMALLINT is a small integer (range -32,768 to 32,767)
+    -- DEFAULT 1 means if not specified, it will be set to 1
     Quantity SMALLINT NOT NULL DEFAULT 1,
+
+    -- The price of one unit of this product
+    -- MONEY is a data type for currency values
     UnitPrice MONEY NOT NULL,
+
+    -- Any discount applied to this product
+    -- SMALLMONEY is like MONEY but with smaller range
+    -- DEFAULT 0.00 means if not specified, no discount is applied
     DiscountAmount SMALLMONEY DEFAULT 0.00,
+
+    -- A calculated field that shows total price for this line item
+    -- (quantity × unit price) minus any discount
+    -- This value is computed automatically and not stored
     TotalPrice AS (Quantity * UnitPrice - DiscountAmount),
+
+    -- Whether this item should be gift wrapped (1 = yes, 0 = no)
+    -- BIT is like a boolean (can be 0 or 1)
     IsGiftWrapped BIT DEFAULT 0,
+
+    -- Cost for gift wrapping (up to 999.99 with 2 decimal places)
+    -- DECIMAL(5,2) means 5 total digits with 2 after decimal point
+    -- NULL means this can be empty if no gift wrap is selected
     GiftWrapPrice DECIMAL(5,2) NULL,
+
+    -- Stores the product image as binary data
+    -- VARBINARY(MAX) can store large binary files like images
     ProductImage VARBINARY(MAX),
+
+    -- Stores product specifications in XML format
+    -- XML is a structured data format
     ProductSpecs XML,
+
+    -- Stores additional product attributes in JSON format
+    -- JSON is a popular data interchange format
     ProductAttributes JSON,
+
+    -- When this item was added to the cart
+    -- DATETIME2 stores date and time with high precision
+    -- SYSDATETIME() gets the current date and time
     DateAdded DATETIME2 DEFAULT SYSDATETIME(),
+
+    -- When this cart item was last modified
     LastUpdated DATETIME2 DEFAULT SYSDATETIME(),
+
+    -- When this cart item should expire/be removed
+    -- DATE stores just the date (no time)
     ExpiryDate DATE,
+
+    -- Whether this cart item is active (1) or inactive (0)
+    -- DEFAULT 1 means items are active by default
     IsActive BIT DEFAULT 1,
+
+    -- Any additional notes about this cart item
+    -- VARCHAR(500) means text up to 500 characters
     Notes VARCHAR(500),
 
+    -- Creates a foreign key relationship to the Users table
+    -- This ensures the UserID exists in the Users table
     CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES Users(UserID),
+
+    -- Creates a foreign key relationship to the Products table
+    -- This ensures the ProductID exists in the Products table
     CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
+
+    -- Adds a check constraint to ensure quantity is always positive
     CONSTRAINT CHK_Quantity CHECK (Quantity > 0),
+
+    -- Adds a check constraint to ensure prices are never negative
     CONSTRAINT CHK_Price CHECK (UnitPrice >= 0 AND DiscountAmount >= 0)
 );
 
+-- Creates an index on the UserID column to speed up searches by user
+-- Indexes help the database find data faster
 CREATE INDEX IX_ShoppingCart_UserID ON ShoppingCart(UserID);
+
+-- Creates an index on the SessionID column to speed up searches by session
 CREATE INDEX IX_ShoppingCart_SessionID ON ShoppingCart(SessionID);
 ```
+
+#### Key concepts explained:
+
+1. Data types (INT, VARCHAR, MONEY, BIT, etc.) define what kind of data each column holds
+2. Constraints (PRIMARY KEY, FOREIGN KEY, CHECK) enforce data integrity rules
+3. DEFAULT values are used when no value is provided
+4. NOT NULL means the field is required
+5. NULL means the field is optional
+6. Indexes improve query performance
+7. Computed columns (like TotalPrice) are calculated automatically
 
 ### General Notes:
 
