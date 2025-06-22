@@ -43,7 +43,7 @@ Since MkDocs runs on Python, you need to install it first:
      ```
      https://github.com/andikatjacobdennis/T-SQL.git
      ```
-   - Select a folder (e.g., `C:\Users\%USERPROFILE%\source\repos\T-SQL`).
+   - Select a folder (e.g., `%USERPROFILE%\source\repos\`).
 3. **Open the Project**:
    - Go to **File → Open Folder** → Select the cloned `T-SQL` folder.
 
@@ -53,7 +53,7 @@ Now, generate the website from the Markdown files:
 
 1. **Navigate to the Project Folder** (in VS Code Terminal):
    ```bash
-   cd C:\Users\%USERPROFILE%\source\repos\T-SQL
+   cd "$env:USERPROFILE\source\repos\T-SQL"
    ```
 2. **Build the Static Site**:
    ```bash
