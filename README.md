@@ -1,4 +1,4 @@
-# T-SQL Learning Resources for Beginners
+# T-SQL Learning Resources
 
 Welcome to this T-SQL learning repository! This guide will help you get started with T-SQL (Transact-SQL), Microsoft's powerful database language used in SQL Server.
 
