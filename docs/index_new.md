@@ -1,394 +1,277 @@
 ## T-SQL & SQL Server Mastery
 
-### Module 1: Database Fundamentals
+### Module 1: Database & SQL Foundations
 
-#### Section 1.1: Core Concepts
+#### 1.1 Database Concepts
 
-1.1.1 What is a Database?  
-1.1.2 Relational vs NoSQL Databases  
-1.1.3 Tables, Rows, and Columns Explained  
-1.1.4 Primary Keys and Foreign Keys  
-1.1.5 Understanding Database Schemas
+- What is a Database?
+- Relational vs NoSQL Databases
+- Tables, Rows, and Columns
+- Primary Keys and Foreign Keys
+- Schemas & Normalization
 
-#### Section 1.2: SQL Server Overview
+#### 1.2 SQL Language Overview
 
-1.2.1 History of SQL Server  
-1.2.2 SQL Server Editions Compared  
-1.2.3 SQL Server Architecture  
-1.2.4 SQL Server Management Studio (SSMS) Tour
+- What is T-SQL?
+- History & Evolution of T-SQL
+- SQL Server Editions & Architecture
 
-### Module 2: Environment Setup
+### Module 2: SQL Server Environment
 
-#### Section 2.1: Installation Guide
+#### 2.1 Installation & Setup
 
-2.1.1 Downloading SQL Server Developer Edition  
-2.1.2 Step-by-Step Installation  
-2.1.3 Installing SSMS  
-2.1.4 Basic Configuration
+- Downloading SQL Server/SSMS
+- Step-by-Step Installation
+- Basic Configuration
 
-#### Section 2.2: SSMS Deep Dive
+#### 2.2 SSMS Essentials
 
-2.2.1 Navigating the Interface  
-2.2.2 Connection Management  
-2.2.3 Object Explorer Features  
-2.2.4 Query Window Essentials
+- Navigating the Interface
+- Connection Management
+- Object Explorer Features
 
-### Module 3: T-SQL Basics
+### Module 3: SQL Command Categories (Core SQL)
 
-#### Section 3.1: Data Types
+#### 3.1 DDL (Data Definition Language)
 
-3.1.1 Numeric Data Types  
-3.1.2 Character Strings  
-3.1.3 Date/Time Types  
-3.1.4 Special Data Types
+- CREATE DATABASE/TABLE
+- ALTER TABLE Operations
+- DROP/TRUNCATE
 
-#### Section 3.2: DDL Commands
+#### 3.2 DML (Data Manipulation Language)
 
-3.2.1 CREATE DATABASE  
-3.2.2 CREATE TABLE with Constraints  
-3.2.3 ALTER TABLE Operations  
-3.2.4 DROP vs TRUNCATE
+- INSERT (Single, Bulk, SELECT INTO)
+- UPDATE (with JOIN, OUTPUT)
+- DELETE (Safe Deletes, Cascading)
 
-#### Section 3.3: SQL Command Categories
+#### 3.3 DQL (Data Query Language)
 
-3.3.1 DML (Data Manipulation Language)  
-3.3.2 DDL (Data Definition Language)  
-3.3.3 DCL (Data Control Language)  
-3.3.4 TCL (Transaction Control Language)
+- SELECT Syntax & Clauses
+- Filtering, Sorting, DISTINCT
+- Aggregates, GROUP BY, HAVING
 
-### Module 4: Querying Data
+#### 3.4 DCL (Data Control Language)
 
-#### Section 4.1: SELECT Fundamentals
+- GRANT, REVOKE, DENY
+- Managing Permissions
 
-4.1.1 Basic SELECT Syntax  
-4.1.2 Filtering with WHERE  
-4.1.3 Sorting with ORDER BY  
-4.1.4 Using DISTINCT
+#### 3.5 TCL (Transaction Control Language)
 
-#### Section 4.2: Advanced Filtering
+- BEGIN, COMMIT, ROLLBACK
+- Savepoints, Transaction Safety
 
-4.2.1 LIKE Operator  
-4.2.2 IN and BETWEEN  
-4.2.3 NULL Handling  
-4.2.4 Logical Operators
+### Module 4: Data Types & Expressions
 
-#### Section 4.3: Handling Duplicates
+#### 4.1 Data Types
 
-4.3.1 Identifying Duplicates (ROW_NUMBER)  
-4.3.2 Removing Duplicates  
-4.3.3 Data Quality Checks
+- Numeric, Character, Date/Time, Special Types
 
-### Module 5: Joins and Relationships
+#### 4.2 Expressions & Operators
 
-#### Section 5.1: Join Types
+- Arithmetic, Logical, String, Date Functions
 
-5.1.1 INNER JOIN  
-5.1.2 LEFT/RIGHT JOIN  
-5.1.3 FULL OUTER JOIN  
-5.1.4 CROSS JOIN
+### Module 5: Querying & Filtering Data
 
-#### Section 5.2: Practical Joins
+#### 5.1 SELECT Mastery
 
-5.2.1 Self-Joins  
-5.2.2 Multi-Table Joins  
-5.2.3 Join Performance  
-5.2.4 Common Pitfalls
+- Basic to Advanced SELECT
+- WHERE, ORDER BY, TOP, OFFSET/FETCH
 
-#### Section 5.3: Join Techniques
+#### 5.2 Advanced Filtering
 
-5.3.1 Join Order Optimization  
-5.3.2 Hash/Merge/Nested Loops Joins  
-5.3.3 Avoiding Cartesian Products
+- LIKE, IN, BETWEEN, NULL Handling
+- Logical Operators
 
-### Module 6: Aggregating Data
+#### 5.3 Handling Duplicates
 
-#### Section 6.1: GROUP BY
+- ROW_NUMBER, Removing Duplicates
 
-6.1.1 Basic Grouping  
-6.1.2 HAVING Clause  
-6.1.3 Aggregate Functions  
-6.1.4 GROUPING SETS
+### Module 6: Joins, Relationships & Set Operations
 
-#### Section 6.2: Window Functions
+#### 6.1 Join Types
 
-6.2.1 OVER() Clause  
-6.2.2 Ranking Functions (ROW_NUMBER, RANK)  
-6.2.3 LEAD/LAG  
-6.2.4 Running Totals
+- INNER, LEFT, RIGHT, FULL, CROSS
 
-### Module 7: Subqueries and CTEs
+#### 6.2 Advanced Join Techniques
 
-#### Section 7.1: Subquery Essentials
+- Self-Joins, Multi-Table Joins
+- Join Performance & Pitfalls
 
-7.1.1 Basic Subqueries  
-7.1.2 Correlated Subqueries  
-7.1.3 EXISTS/NOT EXISTS  
-7.1.4 Subquery Performance
+#### 6.3 Set Operations
 
-#### Section 7.2: Common Table Expressions
+- UNION, INTERSECT, EXCEPT
 
-7.2.1 Basic CTEs  
-7.2.2 Recursive CTEs  
-7.2.3 Multiple CTEs  
-7.2.4 Practical Applications
+### Module 7: Subqueries, CTEs & Views
 
-### Module 8: Data Modification
+#### 7.1 Subqueries
 
-#### Section 8.1: INSERT Operations
+- Basic, Correlated, EXISTS/NOT EXISTS
 
-8.1.1 Basic INSERT  
-8.1.2 INSERT with SELECT  
-8.1.3 OUTPUT Clause  
-8.1.4 Bulk Insert
+#### 7.2 Common Table Expressions (CTEs)
 
-#### Section 8.2: UPDATE/DELETE
+- Basic, Recursive, Multiple CTEs
 
-8.2.1 Basic UPDATE  
-8.2.2 Joins in UPDATE  
-8.2.3 DELETE Operations  
-8.2.4 Transaction Safety
+#### 7.3 Views
 
-### Module 9: Stored Procedures
+- Creating, Modifying, Indexed Views
 
-#### Section 9.1: Procedure Basics
+### Module 8: Data Modification & Transactions
 
-9.1.1 Creating Procedures  
-9.1.2 Parameters  
-9.1.3 Return Values  
-9.1.4 Error Handling
+#### 8.1 Data Modification
 
-#### Section 9.2: Advanced Topics
+- INSERT, UPDATE, DELETE Deep Dive
+- OUTPUT Clause, Bulk Operations
 
-9.2.1 Dynamic SQL  
-9.2.2 Nested Procedures  
-9.2.3 Temporary Tables  
-9.2.4 Optimization
+#### 8.2 Transactions & Concurrency
 
-### Module 10: Functions and Triggers
+- ACID Properties, Isolation Levels
+- Locking, Deadlocks, Optimistic Concurrency
 
-#### Section 10.1: User Functions
+### Module 9: Stored Procedures, Functions & Triggers
 
-10.1.1 Scalar Functions  
-10.1.2 Table-Valued Functions  
-10.1.3 Deterministic Functions  
-10.1.4 Limitations
+#### 9.1 Stored Procedures
 
-#### Section 10.2: Trigger Implementation
+- Creation, Parameters, Error Handling
 
-10.2.1 AFTER Triggers  
-10.2.2 INSTEAD OF Triggers  
-10.2.3 Best Practices  
-10.2.4 Common Issues
+#### 9.2 Functions
 
-#### Section 10.3: System Functions
+- Scalar, Table-Valued, Deterministic
 
-10.3.1 Built-in Functions (GETDATE, COALESCE)  
-10.3.2 Metadata Functions (OBJECT_ID)
+#### 9.3 Triggers
 
-### Module 11: Transactions
+- AFTER, INSTEAD OF, Best Practices
 
-#### Section 11.1: Transaction Basics
+### Module 10: Indexing & Performance Tuning
 
-11.1.1 ACID Properties  
-11.1.2 BEGIN TRANSACTION  
-11.1.3 COMMIT/ROLLBACK  
-11.1.4 Savepoints
+#### 10.1 Indexing
 
-#### Section 11.2: Concurrency
+- Index Types, Covering Indexes, Maintenance
 
-11.2.1 Isolation Levels  
-11.2.2 Locking Mechanisms  
-11.2.3 Deadlocks  
-11.2.4 Optimistic Concurrency
+#### 10.2 Query Optimization
 
-### Module 12: Performance Tuning
+- Execution Plans, Query Hints, Statistics
 
-#### Section 12.1: Indexing
+### Module 11: Security & Permissions
 
-12.1.1 Index Types  
-12.1.2 Covering Indexes  
-12.1.3 Index Maintenance  
-12.1.4 Missing Indexes
+#### 11.1 Authentication & Authorization
 
-#### Section 12.2: Query Optimization
+- Modes, Roles, Permissions
 
-12.2.1 Execution Plans  
-12.2.2 Parameter Sniffing  
-12.2.3 Query Hints  
-12.2.4 Statistics
+#### 11.2 Encryption & Row-Level Security
 
-#### Section 12.3: Query Plan Analysis
+- Encryption Techniques, RLS
 
-12.3.1 Reading Execution Plans  
-12.3.2 Scans vs. Seeks  
-12.3.3 Avoiding SELECT \*
+### Module 12: Administration & Maintenance
 
-### Module 13: Advanced Features
+#### 12.1 Backup & Restore
 
-#### Section 13.1: Temporal Tables
+- Backup Types, Recovery Models
 
-13.1.1 Creating Temporal Tables  
-13.1.2 Querying History  
-13.1.3 Retention Policies  
-13.1.4 Use Cases
+#### 12.2 Maintenance Tasks
 
-#### Section 13.2: JSON/XML
+- Index/Statistics Maintenance, Integrity Checks
 
-13.2.1 JSON Storage  
-13.2.2 JSON Functions  
-13.2.3 XML Basics  
-13.2.4 XQuery
+### Module 13: Advanced Query Patterns
 
-### Module 14: Security
+#### 13.1 Window Functions
 
-#### Section 14.1: Authentication
+- OVER(), Ranking, LEAD/LAG, Running Totals
 
-14.1.1 Authentication Modes  
-14.1.2 Contained Databases  
-14.1.3 Password Policies  
-14.1.4 Encryption
+#### 13.2 Pivoting & Unpivoting
 
-#### Section 14.2: Authorization
+- PIVOT, UNPIVOT, CASE WHEN
 
-14.2.1 Server Roles  
-14.2.2 Database Roles  
-14.2.3 Permissions  
-14.2.4 Row-Level Security
+#### 13.3 Error Handling
 
-### Module 15: Administration
+- TRY...CATCH, THROW, Error Logging
 
-#### Section 15.1: Backup/Restore
+### Module 14: Advanced Data Features
 
-15.1.1 Backup Types  
-15.1.2 Recovery Models  
-15.1.3 Point-in-Time Recovery  
-15.1.4 Restore Scenarios
+#### 14.1 Temporal Tables
 
-#### Section 15.2: Maintenance
+- System-Versioned Tables, Querying History
 
-15.2.1 Index Maintenance  
-15.2.2 Statistics Updates  
-15.2.3 Integrity Checks  
-15.2.4 SQL Agent Jobs
+#### 14.2 JSON & XML
 
-#### Section 15.3: Temporary Objects
+- Storage, Functions, XQuery
 
-15.3.1 Temp Tables vs. Table Variables  
-15.3.2 Scope and Lifetime  
-15.3.3 TempDB Best Practices
+### Module 15: Enterprise & Cloud Solutions
 
-### Module 16: Advanced Query Patterns
+#### 15.1 Partitioning & In-Memory OLTP
 
-#### Section 16.1: Cursors
+- Partitioned Tables, Memory-Optimized Tables
 
-16.1.1 Cursor Components  
-16.1.2 Cursor Types  
-16.1.3 Performance Comparison  
-16.1.4 Practical Uses
+#### 15.2 Cloud & Big Data Integration
 
-#### Section 16.2: Graph Processing
+- Azure SQL, PolyBase, Hadoop
 
-16.2.1 Graph Algorithms  
-16.2.2 Social Network Demo  
-16.2.3 Performance Considerations
+### Module 16: Business Intelligence Integration
 
-#### Section 16.3: Pivoting/Unpivoting
+#### 16.1 ETL & Data Warehousing
 
-16.3.1 PIVOT Operator  
-16.3.2 UNPIVOT Operator  
-16.3.3 CASE WHEN Alternatives  
-16.3.4 Real-World Scenarios
+- ETL Patterns, Data Warehouse Loading
 
-#### Section 16.4: Advanced Analytics
+#### 16.2 Advanced Analytics
 
-16.4.1 Gaps and Islands  
-16.4.2 Top N per Group  
-16.4.3 Relational Division  
-16.4.4 STRING_AGG()
+- Statistical Functions, ML Integration
 
-#### Section 16.5: Error Handling
+### Module 17: Auditing, Logging & Monitoring **(New Module)**
 
-16.5.1 TRY...CATCH Blocks  
-16.5.2 THROW vs. RAISERROR  
-16.5.3 Error Logging
+#### 17.1 Auditing
 
-### Module 17: Enterprise Solutions
+- Change Data Capture, Temporal Auditing
 
-#### Section 17.1: Partitioning
+#### 17.2 Logging
 
-17.1.1 Partitioned Tables  
-17.1.2 Partition Strategies  
-17.1.3 SWITCH Trick  
-17.1.4 Partition Elimination
+- Error Logging, Custom Logging Tables
 
-#### Section 17.2: In-Memory OLTP
+#### 17.3 Monitoring
 
-17.2.1 Memory-Optimized Tables  
-17.2.2 Natively Compiled Procedures  
-17.2.3 Transaction Handling  
-17.2.4 Benchmarking
+- DMV Queries, Wait Statistics, Alerts
 
-### Module 18: BI Integration
+### Module 18: Automation & Scripting **(New Module)**
 
-#### Section 18.1: ETL Patterns
+#### 18.1 SQL Agent Jobs
 
-18.1.1 Slowly Changing Dimensions  
-18.1.2 Data Warehouse Loading  
-18.1.3 Change Data Capture  
-18.1.4 Bulk Loading
+- Creating & Scheduling Jobs
 
-#### Section 18.2: Advanced Analytics
+#### 18.2 Scripting
 
-18.2.1 Statistical Functions  
-18.2.2 Predictive Maintenance  
-18.2.3 R/Python Integration  
-18.2.4 ML Deployment
+- PowerShell Integration, Automated Backups
 
-### Module 19: Cloud Hybrid
+### Module 19: Data Migration & Integration **(New Module)**
 
-#### Section 19.1: Azure SQL
+#### 19.1 Data Import/Export
 
-19.1.1 Managed Instance  
-19.1.2 Migration Strategies  
-19.1.3 Security Models  
-19.1.4 Hybrid Connectivity
+- BCP, BULK INSERT, SSIS Basics
 
-#### Section 19.2: Big Data
+#### 19.2 Data Synchronization
 
-19.2.1 PolyBase  
-19.2.2 Hadoop Integration  
-19.2.3 Data Virtualization  
-19.2.4 Performance Tuning
+- Replication, Change Tracking
 
-### Module 20: Troubleshooting
+### Module 20: Compliance, Governance & Best Practices **(New Module)**
 
-#### Section 20.1: Diagnostics
+#### 20.1 Compliance
 
-20.1.1 DMV Queries  
-20.1.2 Monitoring Solutions  
-20.1.3 Wait Statistics  
-20.1.4 Custom Alerts
+- GDPR, Data Masking, Auditing
 
-#### Section 20.2: Recovery
+#### 20.2 Governance
 
-20.2.1 Corruption Scenarios  
-20.2.2 Emergency Repair  
-20.2.3 Log File Crises  
-20.2.4 DR Playbooks
+- Naming Conventions, Documentation
 
-#### Section 20.3: Data Issues
+### Module 21: Troubleshooting & Recovery **(New Module)**
 
-20.3.1 NULL Handling Strategies  
-20.3.2 Data Type Conversion  
-20.3.3 Invalid Data Detection
+#### 21.1 Diagnostics
+
+- Corruption Scenarios, Emergency Repair
+
+#### 21.2 Recovery
+
+- Point-in-Time, Log File Crises, DR Playbooks
 
 ### Final Project
 
-#### End-to-End Solution
-
-1. Requirements Gathering
-2. Database Design (Normalization, ER Diagrams)
-3. Implementation (Schema, Stored Procedures)
-4. Performance Tuning (Indexing, Query Optimization)
-5. Documentation (Schema, Process Flows)
-
+- Requirements Gathering
+- Database Design & Implementation
+- Performance Tuning
+- Documentation & Presentation
