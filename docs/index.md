@@ -1,4 +1,4 @@
-# T-SQL Tutorial
+# Introduction
 
 Welcome to this T-SQL tutorial, where we’ll take you from the foundations of SQL to modern Transact-SQL (T-SQL) used in Microsoft SQL Server. Whether you're a beginner or looking to refine your skills, this guide will walk you through essential concepts, commands, and best practices.
 
