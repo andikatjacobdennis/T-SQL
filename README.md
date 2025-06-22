@@ -8,12 +8,7 @@ This repository contains comprehensive documentation and learning resources for 
 T-SQL/
 ├── docs/                                # Documentation files
 │   ├── images/                          # Supporting images
-│   │   ├── DatabaseManagementSystems.jpg
-│   │   ├── Edgar_F_Codd.jpg
-│   │   ├── erd.png
-│   │   └── History_Of_SQL_To_Modern_T-SQL.png
 │   ├── puml/                            # PlantUML source files
-│   │   └── erd.puml
 │   ├── 001_History_of_SQL_to_modern_T_SQL.md
 │   ├── 002_Getting_Started.md
 │   ├── 003_Installation.md
