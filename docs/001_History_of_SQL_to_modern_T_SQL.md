@@ -16,6 +16,8 @@ SQL is essential because it provides:
 6. **Integration** – Works with applications, analytics tools, and cloud services
 7. **Performance** – Optimized execution through indexing and query planning
 
+![Key benefits of SQL](./images/KeyBenefitsOfSql.jpg "A visual overview of SQL's advantages.")
+
 ## Key Developments
 
 ### 1970s: Origins of SQL
