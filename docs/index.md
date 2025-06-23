@@ -25,7 +25,67 @@ By the end, you’ll have a solid grasp of T-SQL to query, manipulate, and manag
 
 ### Advanced Topics
 
+#### Performance Optimization
+
 - [010. Indexing in T-SQL](010_Indexing_in_T_SQL.md)
-- [011. T-SQL Practice Problems](011_T_SQL_Practice_Problems.md)
-- [012. Frequently Asked Questions](012_Frequently_Asked_Questions.md)
-- [013. Glossary of Key Terms](013_Glossary_of_Key_Terms.md)
+  - Clustered vs. Non-Clustered Indexes
+  - Index Maintenance (Rebuild/Reorganize)
+  - Covering Indexes and Included Columns
+- [011. Query Performance Tuning](011_Query_Performance_Tuning.md)
+  - Execution Plans (Actual vs. Estimated)
+  - Statistics and Cardinality Estimation
+  - Parameter Sniffing and Optimization Hints
+
+#### Data Integrity & Security
+
+- [012. Constraints and Triggers](012_Constraints_and_Triggers.md)
+  - Advanced Constraint Types (CHECK, UNIQUE, FOREIGN KEY)
+  - INSTEAD OF vs. AFTER Triggers
+- [013. Row-Level Security (RLS) & Dynamic Data Masking](013_Row_Level_Security_and_Dynamic_Data_Masking.md)
+  - Implementing RLS with Security Policies
+  - Masking Sensitive Data (Partial, Random, Default Masks)
+
+#### Advanced Query Techniques
+
+- [014. Window Functions & Advanced Aggregation](014_Window_Functions_and_Advanced_Aggregation.md)
+  - `PARTITION BY`, `ORDER BY`, and Framing (ROWS/RANGE)
+  - `LEAD()`, `LAG()`, `FIRST_VALUE()`, and `NTILE()`
+- [015. Common Table Expressions (CTEs) & Recursive Queries](015_CTEs_and_Recursive_Queries.md)
+  - Hierarchical Data (Employee/Org Charts)
+  - Graph Processing with Recursive CTEs
+
+#### Error Handling & Transactions
+
+- [016. TRY-CATCH & Custom Error Handling](016_TRY_CATCH_and_Custom_Error_Handling.md)
+  - `THROW` vs. `RAISERROR`
+  - Custom Error Logging
+- [017. Transaction Isolation Levels](017_Transaction_Isolation_Levels.md)
+  - Read Uncommitted to Serializable
+  - Deadlock Prevention Strategies
+
+#### Temporal & Spatial Data
+
+- [018. Temporal Tables (Time-Travel Queries)](018_Temporal_Tables.md)
+  - System-Versioned Tables
+  - Querying Historical Data with `FOR SYSTEM_TIME`
+- [019. Spatial Data in T-SQL](019_Spatial_Data_in_T_SQL.md)
+  - `GEOGRAPHY` vs. `GEOMETRY`
+  - Distance, Intersection, and Buffer Queries
+
+#### Automation & Dynamic SQL
+
+- [020. Dynamic SQL & Stored Procedures](020_Dynamic_SQL_and_Stored_Procedures.md)
+  - Safe Execution with `sp_executesql`
+  - SQL Injection Mitigation
+- [021. SQL Agent Jobs & Automation](021_SQL_Agent_Jobs_and_Automation.md)
+  - Scheduling Maintenance Tasks
+  - Alerting and Notifications
+
+### Practice
+
+- [022. T-SQL Practice Problems](022_T_SQL_Practice_Problems.md)
+
+### Appendix
+
+- [023. Frequently Asked Questions](023_Frequently_Asked_Questions.md)
+- [024. Glossary of Key Terms](024_Glossary_of_Key_Terms.md)

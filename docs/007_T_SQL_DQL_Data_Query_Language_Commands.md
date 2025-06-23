@@ -557,6 +557,8 @@ SELECT
     create_date
 FROM sys.objects
 WHERE is_ms_shipped = 0
-AND type IN ('P','FN','IF','TF','TR','V','U')  -- P=Proc, FN=Func, etc.
+AND type IN ('P','FN','IF','TF','TR','V','U')
+-- P=Stored Procedure, FN=Scalar Function, IF=Inline Table Function,
+-- TF=Table Function, TR=Trigger, V=View, U=User Table
 ORDER BY type_desc, schema_name, object_name;
 ```
