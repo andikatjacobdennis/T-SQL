@@ -251,160 +251,92 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 ## Data Types in T-SQL
 
-### 1. Exact Numeric Data Types
+Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, storage sizes, usage examples, and deprecation status**, organized for clarity:
 
-- **INT**: 4 bytes (-2^31 to 2^31-1) or -2,147,483,648 to 2,147,483,647  
-  _Use for whole numbers like counts, IDs, or any integer value within this range._
+---
 
-  ```sql
-  DECLARE @ProductCount INT = 1000;
-  ```
+### **1. Exact Numerics**
+| Type          | Size  | Range/Precision                     | Usage Example                          | Notes                          |
+|---------------|-------|-------------------------------------|----------------------------------------|--------------------------------|
+| **`bit`**     | 1 bit | 0, 1, or NULL                       | `DECLARE @IsActive BIT = 1;` (Boolean flags) | Optimized for multiple bit columns. |
+| **`tinyint`** | 1 byte | 0 to 255                            | `DECLARE @Age TINYINT = 30;` (Small counts) | Ideal for status codes.         |
+| **`smallint`**| 2 bytes | -32,768 to 32,767                  | `DECLARE @Qty SMALLINT = 1000;` (Inventory) | Use for medium-range integers.  |
+| **`int`**     | 4 bytes | -2.1B to 2.1B                      | `DECLARE @ProductID INT = 100000;` (PKs)   | Default for IDs/counts.        |
+| **`bigint`**  | 8 bytes | ±9.2 quintillion                   | `DECLARE @GlobalOrderID BIGINT = 9000000001;` | For very large numbers.        |
+| **`decimal(p,s)`** | 5–17 bytes | Up to 38 digits (precision `p`, scale `s`) | `DECLARE @Price DECIMAL(10,2) = 99.99;` (Currency) | Exact precision; prefer over `float`. |
+| **`numeric`** | =`decimal` | Same as `decimal`                | `DECLARE @Pi NUMERIC(9,7) = 3.1415926;` (Math) | Synonym for `decimal`.         |
+| **`smallmoney`** | 4 bytes | -214,748.3648 to 214,748.3647    | `DECLARE @Fee SMALLMONEY = 199.99;` (Legacy systems) | Prefer `decimal(10,2)`.        |
+| **`money`**   | 8 bytes | ±922 trillion                     | `DECLARE @Revenue MONEY = 1500000.99;` (Financial) | Legacy; use `decimal(19,4)`.   |
 
-- **BIGINT**: 8 bytes (-2^63 to 2^63-1) or -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  
-  _Use for very large whole numbers like global inventory counts or scientific calculations._
+---
 
-  ```sql
-  DECLARE @GlobalInventory BIGINT = 9223372036854775807;
-  ```
+### **2. Approximate Numerics**
+| Type       | Size  | Range              | Usage Example                          | Notes                          |
+|------------|-------|--------------------|----------------------------------------|--------------------------------|
+| **`float`**| 4/8 bytes | ±1.79E+308       | `DECLARE @Scientific FLOAT = 2.5E-20;` (Calculations) | Avoid for financial data.      |
+| **`real`** | 4 bytes | ±3.40E+38        | `DECLARE @Temp REAL = 98.6;` (Measurements) | Less precise than `float`.     |
 
-- **SMALLINT**: 2 bytes (-2^15 to 2^15-1) or -32,768 to 32,767  
-  _Use for smaller whole numbers to save space when range is known to be limited._
+---
 
-  ```sql
-  DECLARE @WarehouseCount SMALLINT = 200;
-  ```
+### **3. Date/Time**
+| Type               | Size  | Range/Precision                     | Usage Example                          | Notes                          |
+|--------------------|-------|-------------------------------------|----------------------------------------|--------------------------------|
+| **`date`**         | 3 bytes | 0001-01-01 to 9999-12-31          | `DECLARE @Birthday DATE = '1990-05-15';` | Date-only storage.             |
+| **`time(n)`**      | 3–5 bytes | 00:00:00.0000000 to 23:59:59.9999999 | `DECLARE @OpenTime TIME(0) = '09:00';` | Precision `n` (0–7).           |
+| **`datetime`**     | 8 bytes | 1753-01-01 to 9999-12-31 (3.33ms) | `DECLARE @OrderDate DATETIME = GETDATE();` | ⚠️ Legacy; use `datetime2`.     |
+| **`datetime2(n)`** | 6–8 bytes | 0001-01-01 to 9999-12-31 (100ns)  | `DECLARE @LogTime DATETIME2(7) = SYSDATETIME();` | Modern replacement.            |
+| **`smalldatetime`**| 4 bytes | 1900-01-01 to 2079-06-06 (1min)   | `DECLARE @PromoEnd SMALLDATETIME = '2023-12-31 23:59';` | Low precision.                 |
+| **`datetimeoffset`** | 10 bytes | 0001-9999 + timezone offset      | `DECLARE @EventTime DATETIMEOFFSET = '2023-11-15 09:00 +08:00';` | For global apps.               |
 
-- **TINYINT**: 1 byte (0 to 2^8-1) or 0 to 255  
-  _Use for very small non-negative numbers like ratings, small quantities, or status codes._
+---
 
-  ```sql
-  DECLARE @Rating TINYINT = 5;
-  ```
+### **4. Character Strings**
+| Type             | Size          | Usage Example                          | Notes                          |
+|------------------|---------------|----------------------------------------|--------------------------------|
+| **`char(n)`**    | Fixed (`n` bytes) | `DECLARE @CountryCode CHAR(2) = 'US';` | Padded with spaces.            |
+| **`varchar(n)`** | Variable (1–8,000 bytes) | `DECLARE @Email VARCHAR(100) = 'user@example.com';` | Variable-length ASCII.         |
+| **`varchar(max)`** | Up to 2GB    | `DECLARE @Description VARCHAR(MAX);`   | Replaces `text`.               |
+| **`text`**       | Up to 2GB    | ❌ Deprecated (use `varchar(max)`).     |                                |
+| **`nchar(n)`**   | Fixed (`2n` bytes) | `DECLARE @Currency NCHAR(3) = N'USD';` | Unicode equivalent of `char`.  |
+| **`nvarchar(n)`** | Variable (2–8,000 bytes) | `DECLARE @ProductName NVARCHAR(100) = N'東京タワー';` | Variable-length Unicode.       |
+| **`nvarchar(max)`** | Up to 1GB  | `DECLARE @Manual NVARCHAR(MAX);`       | Replaces `ntext`.              |
+| **`ntext`**      | Up to 1GB    | ❌ Deprecated (use `nvarchar(max)`).    |                                |
 
-- **DECIMAL/NUMERIC**: Precision 1-38 (storage varies)  
-  _Use for exact decimal numbers like monetary values where precision is critical (e.g., DECIMAL(10,2) for currency)._
-  ```sql
-  DECLARE @ExactPrice DECIMAL(10,2) = 199.99;
-  ```
+---
 
-### 2. Approximate Numeric Data Types
+### **5. Binary Data**
+| Type             | Size          | Usage Example                          | Notes                          |
+|------------------|---------------|----------------------------------------|--------------------------------|
+| **`binary(n)`**  | Fixed (`n` bytes) | `DECLARE @Hash BINARY(32) = 0x4A3B...;` | For fixed-length binary data.  |
+| **`varbinary(n)`** | Variable (1–8,000 bytes) | `DECLARE @Thumbnail VARBINARY(8000);` | Variable-length binary.        |
+| **`varbinary(max)`** | Up to 2GB  | `DECLARE @PDF VARBINARY(MAX);`         | Replaces `image`.              |
+| **`image`**      | Up to 2GB    | ❌ Deprecated (use `varbinary(max)`).   |                                |
 
-- **FLOAT**: 4 or 8 bytes (±1.79E+308)  
-  _Use for scientific calculations where approximate values are acceptable. Avoid for financial calculations._
+---
 
-  ```sql
-  DECLARE @ScientificValue FLOAT = 2.5E-20;
-  ```
+### **6. Special Types**
+| Type               | Size  | Usage Example                          | Notes                          |
+|--------------------|-------|----------------------------------------|--------------------------------|
+| **`uniqueidentifier`** | 16 bytes | `DECLARE @CartID UNIQUEIDENTIFIER = NEWID();` | GUIDs (globally unique).       |
+| **`xml`**          | Up to 2GB | `DECLARE @Config XML = '<settings><theme>dark</theme></settings>';` | Supports XQuery.               |
+| **`json`** (stored as `nvarchar`) | Variable | `DECLARE @ProductJSON NVARCHAR(MAX) = '{"id":123}';` | SQL Server 2016+.              |
+| **`hierarchyid`**  | Variable | `DECLARE @OrgNode HIERARCHYID;` (Org charts) | For hierarchical data.         |
+| **`geometry`**     | Variable | `DECLARE @Location GEOMETRY = POINT(10, 20);` | Flat spatial data.             |
+| **`geography`**    | Variable | `DECLARE @GPS GEOGRAPHY = POINT(47.6062, -122.3321);` | Earth-based coordinates.       |
 
-- **REAL**: 4 bytes (±3.40E+38)  
-  _Use for floating-point numbers when storage space is critical and precision can be sacrificed._
-  ```sql
-  DECLARE @ApproxValue REAL = 1.23456;
-  ```
+---
 
-### 3. Monetary Data Types
+### **Key Takeaways:**
+1. **Deprecated Types**: `text`, `ntext`, `image`, `timestamp` (use `rowversion`).
+2. **Modern Replacements**:  
+   - `datetime2` > `datetime`  
+   - `varchar(max)` > `text`  
+   - `nvarchar(max)` > `ntext`  
+3. **Best Practices**:  
+   - Use `decimal` for money, `nvarchar` for text, and `datetime2` for timestamps.  
+   - Avoid deprecated types in new development.  
 
-- **MONEY**: 8 bytes (-2^63/10000 to 2^63-1/10000) or -922,337,203,685,477.5808 to 922,337,203,685,477.5807  
-  _Use for currency values. Provides better accuracy for financial calculations than FLOAT/REAL._
-
-  ```sql
-  DECLARE @TotalAmount MONEY = 999999.99;
-  ```
-
-- **SMALLMONEY**: 4 bytes (-214,748.3648 to 214,748.3647)  
-  _Use for smaller currency values when storage space is a concern._
-  ```sql
-  DECLARE @ItemPrice SMALLMONEY = 199.99;
-  ```
-
-### 4. Date and Time Data Types
-
-- **DATE**: 3 bytes (0001-01-01 to 9999-12-31)  
-  _Use when only the date component is needed (no time). Most efficient for pure date storage._
-
-  ```sql
-  DECLARE @OrderDate DATE = '2023-11-15';
-  ```
-
-- **TIME**: 3-5 bytes (00:00:00.0000000 to 23:59:59.9999999)  
-  _Use when only the time component is needed (no date). Precision can be specified._
-
-  ```sql
-  DECLARE @ShipTime TIME = '14:30:00.1234567';
-  ```
-
-- **DATETIME**: 8 bytes (1753-01-01 to 9999-12-31, 3.33ms accuracy)  
-  _Legacy type - prefer DATETIME2 for new development. Compatible with older systems._
-
-  ```sql
-  DECLARE @Created DATETIME = '2023-11-15 09:30:25';
-  ```
-
-- **DATETIME2**: 6-8 bytes (0001-01-01 to 9999-12-31, 100ns accuracy)  
-  _Modern replacement for DATETIME. Allows precision specification (e.g., DATETIME2(7) for maximum precision)._
-
-  ```sql
-  DECLARE @Updated DATETIME2(7) = '2023-11-15 09:30:25.1234567';
-  ```
-
-- **SMALLDATETIME**: 4 bytes (1900-01-01 to 2079-06-06, 1 minute accuracy)  
-  _Use when space is critical and minute precision is sufficient._
-  ```sql
-  DECLARE @PromoEnd SMALLDATETIME = '2023-12-31 23:59';
-  ```
-
-### 5. Character and Unicode Data Types
-
-- **CHAR/VARCHAR**: 1 byte per character (VARCHAR(MAX) up to 2^31-1 bytes)  
-  _CHAR for fixed-length strings (e.g., codes), VARCHAR for variable-length. Use VARCHAR(MAX) for very large text._
-
-  ```sql
-  DECLARE @SKU CHAR(10) = 'PROD12345';
-  DECLARE @Description VARCHAR(500) = 'High-quality product description';
-  ```
-
-- **NCHAR/NVARCHAR**: 2 bytes per character (NVARCHAR(MAX) up to 2^30-1 characters)  
-  _Use for Unicode text (international characters). NVARCHAR is preferred over VARCHAR unless ASCII-only is guaranteed._
-  ```sql
-  DECLARE @ProductName NVARCHAR(100) = N'Produit de qualité supérieure';
-  ```
-
-### 6. Binary Data Types
-
-- **BINARY/VARBINARY**: Up to VARBINARY(MAX) with 2^31-1 bytes  
-  _Use for storing binary data like images, files, or serialized objects._
-  ```sql
-  DECLARE @ProductImage VARBINARY(MAX) = 0x89504E470D0A1A0A...;
-  ```
-
-### 7. Special Data Types
-
-- **BIT**: 1 bit (0, 1, or NULL)  
-  _Use for boolean values (true/false). Storage optimized - multiple BIT columns are packed together._
-
-  ```sql
-  DECLARE @InStock BIT = 1;
-  ```
-
-- **UNIQUEIDENTIFIER**: 16 bytes (GUID)  
-  _Use for globally unique identifiers. Larger than INT/BIGINT but guaranteed unique across systems._
-
-  ```sql
-  DECLARE @CartID UNIQUEIDENTIFIER = NEWID();
-  ```
-
-- **XML**: Up to 2GB  
-  _Use for storing and querying XML data. Provides XML-specific methods for querying._
-
-  ```sql
-  DECLARE @ProductSpecs XML = '<specs><weight>1.2kg</weight><dimensions>10x20x30cm</dimensions></specs>';
-  ```
-
-- **JSON**: Stored as NVARCHAR  
-  _Use for JSON data (SQL Server 2016+). Provides JSON-specific functions for querying._
-  ```sql
-  DECLARE @ProductJSON NVARCHAR(MAX) = '{"id":123,"name":"Widget","price":19.99,"colors":["red","blue"]}';
-  ```
+Need more details? Ask below! 🚀
 
 ### Shopping Cart Table Example
 
