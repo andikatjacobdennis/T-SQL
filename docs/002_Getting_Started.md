@@ -273,7 +273,7 @@ Centralized repositories for analytical reporting, integrating data from multipl
    - **XML Schema Collections**: XSD definitions for XML validation.
 
 **Screenshot Guide**:  
-![SSMS Object Explorer Path](images/SSMS_Object_Explorer_Path.png)
+![SSMS Object Explorer Path](images/SSMS_Object_Explorer_Path.jpg)
 
 ### 1. Exact Numerics
 
