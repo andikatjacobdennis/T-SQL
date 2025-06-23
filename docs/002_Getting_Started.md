@@ -253,12 +253,12 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 ### \*\*How to View Data Types in SSMS
 
-#### **1. Accessing System & User-Defined Types in Object Explorer**
+#### 1. Accessing System & User-Defined Types in Object Explorer
 
-**Steps**:
+Steps:
 
-1. **Open SSMS** and connect to your SQL Server instance.
-2. In the **Object Explorer** panel (left side), expand:
+1. Open SSMS and connect to your SQL Server instance.
+2. In the Object Explorer panel (left side), expand:
    ```
    Server Name
    → Databases
@@ -267,12 +267,12 @@ Centralized repositories for analytical reporting, integrating data from multipl
    → Types
    ```
 3. Explore the subfolders:
-   - **System Data Types**: All built-in types (e.g., `int`, `varchar`, `datetime2`).
-   - **User-Defined Data Types**: Alias types you created (e.g., `PhoneNumber` from `varchar(15)`).
-   - **User-Defined Table Types**: Table-valued parameters (e.g., `OrderItemsType`).
-   - **XML Schema Collections**: XSD definitions for XML validation.
+   - System Data Types: All built-in types (e.g., `int`, `varchar`, `datetime2`).
+   - User-Defined Data Types: Alias types you created (e.g., `PhoneNumber` from `varchar(15)`).
+   - User-Defined Table Types: Table-valued parameters (e.g., `OrderItemsType`).
+   - XML Schema Collections: XSD definitions for XML validation.
 
-**Screenshot Guide**:  
+Screenshot Guide:  
 ![SSMS Object Explorer Path](images/SSMS_Object_Explorer_Path.jpg)
 
 ### 1. Exact Numerics
@@ -306,8 +306,6 @@ Centralized repositories for analytical reporting, integrating data from multipl
 | `datetime2(n)`   | 6–8 bytes | 0001-01-01 to 9999-12-31 (100ns)     | `DECLARE @LogTime DATETIME2(7) = SYSDATETIME();`                 | Modern replacement.         |
 | `smalldatetime`  | 4 bytes   | 1900-01-01 to 2079-06-06 (1min)      | `DECLARE @PromoEnd SMALLDATETIME = '2023-12-31 23:59';`          | Low precision.              |
 | `datetimeoffset` | 10 bytes  | 0001-9999 + timezone offset          | `DECLARE @EventTime DATETIMEOFFSET = '2023-11-15 09:00 +08:00';` | For global apps.            |
-
----
 
 ### 4. Character Strings
 
@@ -357,8 +355,6 @@ Key Points:
 - Adds semantic meaning to base types (e.g., `SSN` vs raw `CHAR(9)`)
 - Use `CREATE TYPE` (modern) instead of legacy `sp_addtype`
 
----
-
 ### 2. User-Defined Table Types (UDTTs)
 
 ```sql
@@ -382,8 +378,6 @@ Key Features:
 - Supports PKs, constraints, and indexes
 - Memory-optimized versions available
 - Ideal for passing multi-row data to stored procedures
-
----
 
 ### 3. User-Defined Types (CLR)
 
