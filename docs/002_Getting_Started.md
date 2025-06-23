@@ -253,8 +253,6 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, storage sizes, usage examples, and deprecation status**, organized for clarity:
 
----
-
 ### **1. Exact Numerics**
 | Type          | Size  | Range/Precision                     | Usage Example                          | Notes                          |
 |---------------|-------|-------------------------------------|----------------------------------------|--------------------------------|
@@ -268,15 +266,11 @@ Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, s
 | **`smallmoney`** | 4 bytes | -214,748.3648 to 214,748.3647    | `DECLARE @Fee SMALLMONEY = 199.99;` (Legacy systems) | Prefer `decimal(10,2)`.        |
 | **`money`**   | 8 bytes | ±922 trillion                     | `DECLARE @Revenue MONEY = 1500000.99;` (Financial) | Legacy; use `decimal(19,4)`.   |
 
----
-
 ### **2. Approximate Numerics**
 | Type       | Size  | Range              | Usage Example                          | Notes                          |
 |------------|-------|--------------------|----------------------------------------|--------------------------------|
 | **`float`**| 4/8 bytes | ±1.79E+308       | `DECLARE @Scientific FLOAT = 2.5E-20;` (Calculations) | Avoid for financial data.      |
 | **`real`** | 4 bytes | ±3.40E+38        | `DECLARE @Temp REAL = 98.6;` (Measurements) | Less precise than `float`.     |
-
----
 
 ### **3. Date/Time**
 | Type               | Size  | Range/Precision                     | Usage Example                          | Notes                          |
@@ -302,8 +296,6 @@ Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, s
 | **`nvarchar(max)`** | Up to 1GB  | `DECLARE @Manual NVARCHAR(MAX);`       | Replaces `ntext`.              |
 | **`ntext`**      | Up to 1GB    | ❌ Deprecated (use `nvarchar(max)`).    |                                |
 
----
-
 ### **5. Binary Data**
 | Type             | Size          | Usage Example                          | Notes                          |
 |------------------|---------------|----------------------------------------|--------------------------------|
@@ -311,8 +303,6 @@ Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, s
 | **`varbinary(n)`** | Variable (1–8,000 bytes) | `DECLARE @Thumbnail VARBINARY(8000);` | Variable-length binary.        |
 | **`varbinary(max)`** | Up to 2GB  | `DECLARE @PDF VARBINARY(MAX);`         | Replaces `image`.              |
 | **`image`**      | Up to 2GB    | ❌ Deprecated (use `varbinary(max)`).   |                                |
-
----
 
 ### **6. Special Types**
 | Type               | Size  | Usage Example                          | Notes                          |
@@ -323,20 +313,6 @@ Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, s
 | **`hierarchyid`**  | Variable | `DECLARE @OrgNode HIERARCHYID;` (Org charts) | For hierarchical data.         |
 | **`geometry`**     | Variable | `DECLARE @Location GEOMETRY = POINT(10, 20);` | Flat spatial data.             |
 | **`geography`**    | Variable | `DECLARE @GPS GEOGRAPHY = POINT(47.6062, -122.3321);` | Earth-based coordinates.       |
-
----
-
-### **Key Takeaways:**
-1. **Deprecated Types**: `text`, `ntext`, `image`, `timestamp` (use `rowversion`).
-2. **Modern Replacements**:  
-   - `datetime2` > `datetime`  
-   - `varchar(max)` > `text`  
-   - `nvarchar(max)` > `ntext`  
-3. **Best Practices**:  
-   - Use `decimal` for money, `nvarchar` for text, and `datetime2` for timestamps.  
-   - Avoid deprecated types in new development.  
-
-Need more details? Ask below! 🚀
 
 ### Shopping Cart Table Example
 
