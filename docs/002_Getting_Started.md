@@ -251,7 +251,7 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 ## Data Types in T-SQL
 
-### \*\*How to View Data Types in SSMS
+### How to View Data Types in SSMS
 
 #### 1. Accessing System & User-Defined Types in Object Explorer
 
