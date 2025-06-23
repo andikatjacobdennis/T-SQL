@@ -251,68 +251,159 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 ## Data Types in T-SQL
 
-Here’s a **comprehensive breakdown** of SQL Server data types with **ranges, storage sizes, usage examples, and deprecation status**, organized for clarity:
-
-### **1. Exact Numerics**
+### 1. Exact Numerics
 | Type          | Size  | Range/Precision                     | Usage Example                          | Notes                          |
 |---------------|-------|-------------------------------------|----------------------------------------|--------------------------------|
-| **`bit`**     | 1 bit | 0, 1, or NULL                       | `DECLARE @IsActive BIT = 1;` (Boolean flags) | Optimized for multiple bit columns. |
-| **`tinyint`** | 1 byte | 0 to 255                            | `DECLARE @Age TINYINT = 30;` (Small counts) | Ideal for status codes.         |
-| **`smallint`**| 2 bytes | -32,768 to 32,767                  | `DECLARE @Qty SMALLINT = 1000;` (Inventory) | Use for medium-range integers.  |
-| **`int`**     | 4 bytes | -2.1B to 2.1B                      | `DECLARE @ProductID INT = 100000;` (PKs)   | Default for IDs/counts.        |
-| **`bigint`**  | 8 bytes | ±9.2 quintillion                   | `DECLARE @GlobalOrderID BIGINT = 9000000001;` | For very large numbers.        |
-| **`decimal(p,s)`** | 5–17 bytes | Up to 38 digits (precision `p`, scale `s`) | `DECLARE @Price DECIMAL(10,2) = 99.99;` (Currency) | Exact precision; prefer over `float`. |
-| **`numeric`** | =`decimal` | Same as `decimal`                | `DECLARE @Pi NUMERIC(9,7) = 3.1415926;` (Math) | Synonym for `decimal`.         |
-| **`smallmoney`** | 4 bytes | -214,748.3648 to 214,748.3647    | `DECLARE @Fee SMALLMONEY = 199.99;` (Legacy systems) | Prefer `decimal(10,2)`.        |
-| **`money`**   | 8 bytes | ±922 trillion                     | `DECLARE @Revenue MONEY = 1500000.99;` (Financial) | Legacy; use `decimal(19,4)`.   |
+| `bit`     | 1 bit | 0, 1, or NULL                       | `DECLARE @IsActive BIT = 1;` (Boolean flags) | Optimized for multiple bit columns. |
+| `tinyint` | 1 byte | 0 to 255                            | `DECLARE @Age TINYINT = 30;` (Small counts) | Ideal for status codes.         |
+| `smallint`| 2 bytes | -32,768 to 32,767                  | `DECLARE @Qty SMALLINT = 1000;` (Inventory) | Use for medium-range integers.  |
+| `int`     | 4 bytes | -2.1B to 2.1B                      | `DECLARE @ProductID INT = 100000;` (PKs)   | Default for IDs/counts.        |
+| `bigint`  | 8 bytes | ±9.2 quintillion                   | `DECLARE @GlobalOrderID BIGINT = 9000000001;` | For very large numbers.        |
+| `decimal(p,s)` | 5–17 bytes | Up to 38 digits (precision `p`, scale `s`) | `DECLARE @Price DECIMAL(10,2) = 99.99;` (Currency) | Exact precision; prefer over `float`. |
+| `numeric` | =`decimal` | Same as `decimal`                | `DECLARE @Pi NUMERIC(9,7) = 3.1415926;` (Math) | Synonym for `decimal`.         |
+| `smallmoney` | 4 bytes | -214,748.3648 to 214,748.3647    | `DECLARE @Fee SMALLMONEY = 199.99;` (Legacy systems) | Prefer `decimal(10,2)`.        |
+| `money`   | 8 bytes | ±922 trillion                     | `DECLARE @Revenue MONEY = 1500000.99;` (Financial) | Legacy; use `decimal(19,4)`.   |
 
-### **2. Approximate Numerics**
+### 2. Approximate Numerics
 | Type       | Size  | Range              | Usage Example                          | Notes                          |
 |------------|-------|--------------------|----------------------------------------|--------------------------------|
-| **`float`**| 4/8 bytes | ±1.79E+308       | `DECLARE @Scientific FLOAT = 2.5E-20;` (Calculations) | Avoid for financial data.      |
-| **`real`** | 4 bytes | ±3.40E+38        | `DECLARE @Temp REAL = 98.6;` (Measurements) | Less precise than `float`.     |
+| `float`| 4/8 bytes | ±1.79E+308       | `DECLARE @Scientific FLOAT = 2.5E-20;` (Calculations) | Avoid for financial data.      |
+| `real` | 4 bytes | ±3.40E+38        | `DECLARE @Temp REAL = 98.6;` (Measurements) | Less precise than `float`.     |
 
-### **3. Date/Time**
+### 3. Date/Time
 | Type               | Size  | Range/Precision                     | Usage Example                          | Notes                          |
 |--------------------|-------|-------------------------------------|----------------------------------------|--------------------------------|
-| **`date`**         | 3 bytes | 0001-01-01 to 9999-12-31          | `DECLARE @Birthday DATE = '1990-05-15';` | Date-only storage.             |
-| **`time(n)`**      | 3–5 bytes | 00:00:00.0000000 to 23:59:59.9999999 | `DECLARE @OpenTime TIME(0) = '09:00';` | Precision `n` (0–7).           |
-| **`datetime`**     | 8 bytes | 1753-01-01 to 9999-12-31 (3.33ms) | `DECLARE @OrderDate DATETIME = GETDATE();` | ⚠️ Legacy; use `datetime2`.     |
-| **`datetime2(n)`** | 6–8 bytes | 0001-01-01 to 9999-12-31 (100ns)  | `DECLARE @LogTime DATETIME2(7) = SYSDATETIME();` | Modern replacement.            |
-| **`smalldatetime`**| 4 bytes | 1900-01-01 to 2079-06-06 (1min)   | `DECLARE @PromoEnd SMALLDATETIME = '2023-12-31 23:59';` | Low precision.                 |
-| **`datetimeoffset`** | 10 bytes | 0001-9999 + timezone offset      | `DECLARE @EventTime DATETIMEOFFSET = '2023-11-15 09:00 +08:00';` | For global apps.               |
+| `date`         | 3 bytes | 0001-01-01 to 9999-12-31          | `DECLARE @Birthday DATE = '1990-05-15';` | Date-only storage.             |
+| `time(n)`      | 3–5 bytes | 00:00:00.0000000 to 23:59:59.9999999 | `DECLARE @OpenTime TIME(0) = '09:00';` | Precision `n` (0–7).           |
+| `datetime`     | 8 bytes | 1753-01-01 to 9999-12-31 (3.33ms) | `DECLARE @OrderDate DATETIME = GETDATE();` | ⚠️ Legacy; use `datetime2`.     |
+| `datetime2(n)` | 6–8 bytes | 0001-01-01 to 9999-12-31 (100ns)  | `DECLARE @LogTime DATETIME2(7) = SYSDATETIME();` | Modern replacement.            |
+| `smalldatetime`| 4 bytes | 1900-01-01 to 2079-06-06 (1min)   | `DECLARE @PromoEnd SMALLDATETIME = '2023-12-31 23:59';` | Low precision.                 |
+| `datetimeoffset` | 10 bytes | 0001-9999 + timezone offset      | `DECLARE @EventTime DATETIMEOFFSET = '2023-11-15 09:00 +08:00';` | For global apps.               |
 
 ---
 
-### **4. Character Strings**
+### 4. Character Strings
 | Type             | Size          | Usage Example                          | Notes                          |
 |------------------|---------------|----------------------------------------|--------------------------------|
-| **`char(n)`**    | Fixed (`n` bytes) | `DECLARE @CountryCode CHAR(2) = 'US';` | Padded with spaces.            |
-| **`varchar(n)`** | Variable (1–8,000 bytes) | `DECLARE @Email VARCHAR(100) = 'user@example.com';` | Variable-length ASCII.         |
-| **`varchar(max)`** | Up to 2GB    | `DECLARE @Description VARCHAR(MAX);`   | Replaces `text`.               |
-| **`text`**       | Up to 2GB    | ❌ Deprecated (use `varchar(max)`).     |                                |
-| **`nchar(n)`**   | Fixed (`2n` bytes) | `DECLARE @Currency NCHAR(3) = N'USD';` | Unicode equivalent of `char`.  |
-| **`nvarchar(n)`** | Variable (2–8,000 bytes) | `DECLARE @ProductName NVARCHAR(100) = N'東京タワー';` | Variable-length Unicode.       |
-| **`nvarchar(max)`** | Up to 1GB  | `DECLARE @Manual NVARCHAR(MAX);`       | Replaces `ntext`.              |
-| **`ntext`**      | Up to 1GB    | ❌ Deprecated (use `nvarchar(max)`).    |                                |
+| `char(n)`    | Fixed (`n` bytes) | `DECLARE @CountryCode CHAR(2) = 'US';` | Padded with spaces.            |
+| `varchar(n)` | Variable (1–8,000 bytes) | `DECLARE @Email VARCHAR(100) = 'user@example.com';` | Variable-length ASCII.         |
+| `varchar(max)` | Up to 2GB    | `DECLARE @Description VARCHAR(MAX);`   | Replaces `text`.               |
+| `text`       | Up to 2GB    | ❌ Deprecated (use `varchar(max)`).     |                                |
+| `nchar(n)`   | Fixed (`2n` bytes) | `DECLARE @Currency NCHAR(3) = N'USD';` | Unicode equivalent of `char`.  |
+| `nvarchar(n)` | Variable (2–8,000 bytes) | `DECLARE @ProductName NVARCHAR(100) = N'東京タワー';` | Variable-length Unicode.       |
+| `nvarchar(max)` | Up to 1GB  | `DECLARE @Manual NVARCHAR(MAX);`       | Replaces `ntext`.              |
+| `ntext`      | Up to 1GB    | ❌ Deprecated (use `nvarchar(max)`).    |                                |
 
-### **5. Binary Data**
+### 5. Binary Data
 | Type             | Size          | Usage Example                          | Notes                          |
 |------------------|---------------|----------------------------------------|--------------------------------|
-| **`binary(n)`**  | Fixed (`n` bytes) | `DECLARE @Hash BINARY(32) = 0x4A3B...;` | For fixed-length binary data.  |
-| **`varbinary(n)`** | Variable (1–8,000 bytes) | `DECLARE @Thumbnail VARBINARY(8000);` | Variable-length binary.        |
-| **`varbinary(max)`** | Up to 2GB  | `DECLARE @PDF VARBINARY(MAX);`         | Replaces `image`.              |
-| **`image`**      | Up to 2GB    | ❌ Deprecated (use `varbinary(max)`).   |                                |
+| `binary(n)`  | Fixed (`n` bytes) | `DECLARE @Hash BINARY(32) = 0x4A3B...;` | For fixed-length binary data.  |
+| `varbinary(n)` | Variable (1–8,000 bytes) | `DECLARE @Thumbnail VARBINARY(8000);` | Variable-length binary.        |
+| `varbinary(max)` | Up to 2GB  | `DECLARE @PDF VARBINARY(MAX);`         | Replaces `image`.              |
+| `image`      | Up to 2GB    | ❌ Deprecated (use `varbinary(max)`).   |                                |
 
-### **6. Special Types**
+### 6. Special Types
 | Type               | Size  | Usage Example                          | Notes                          |
 |--------------------|-------|----------------------------------------|--------------------------------|
-| **`uniqueidentifier`** | 16 bytes | `DECLARE @CartID UNIQUEIDENTIFIER = NEWID();` | GUIDs (globally unique).       |
-| **`xml`**          | Up to 2GB | `DECLARE @Config XML = '<settings><theme>dark</theme></settings>';` | Supports XQuery.               |
-| **`json`** (stored as `nvarchar`) | Variable | `DECLARE @ProductJSON NVARCHAR(MAX) = '{"id":123}';` | SQL Server 2016+.              |
-| **`hierarchyid`**  | Variable | `DECLARE @OrgNode HIERARCHYID;` (Org charts) | For hierarchical data.         |
-| **`geometry`**     | Variable | `DECLARE @Location GEOMETRY = POINT(10, 20);` | Flat spatial data.             |
-| **`geography`**    | Variable | `DECLARE @GPS GEOGRAPHY = POINT(47.6062, -122.3321);` | Earth-based coordinates.       |
+| `uniqueidentifier` | 16 bytes | `DECLARE @CartID UNIQUEIDENTIFIER = NEWID();` | GUIDs (globally unique).       |
+| `xml`          | Up to 2GB | `DECLARE @Config XML = '<settings><theme>dark</theme></settings>';` | Supports XQuery.               |
+| `json` (stored as `nvarchar`) | Variable | `DECLARE @ProductJSON NVARCHAR(MAX) = '{"id":123}';` | SQL Server 2016+.              |
+| `hierarchyid`  | Variable | `DECLARE @OrgNode HIERARCHYID;` (Org charts) | For hierarchical data.         |
+| `geometry`     | Variable | `DECLARE @Location GEOMETRY = POINT(10, 20);` | Flat spatial data.             |
+| `geography`    | Variable | `DECLARE @GPS GEOGRAPHY = POINT(47.6062, -122.3321);` | Earth-based coordinates.       |
+
+## User-Defined Data Types (UDTs)
+
+### 1. Alias Types (Based on System Types)
+| Type Definition | Base Type | Usage Example | Notes |
+|----------------|-----------|---------------|-------|
+| `CREATE TYPE SSN FROM CHAR(9);` | `CHAR(9)` | `DECLARE @CustomerSSN SSN = '123456789';` | Enforces consistency for SSN fields |
+| `CREATE TYPE Percent FROM DECIMAL(5,2);` | `DECIMAL(5,2)` | `DECLARE @Discount Percent = 15.50;` | Ensures values 0.00-100.00 |
+| `CREATE TYPE PhoneNumber FROM VARCHAR(15);` | `VARCHAR(15)` | `DECLARE @ContactPhone PhoneNumber = '+1-800-555-1234';` | Standardizes phone formats |
+
+Key Points:
+- Adds semantic meaning to base types (e.g., `SSN` vs raw `CHAR(9)`)
+- Use `CREATE TYPE` (modern) instead of legacy `sp_addtype`
+
+---
+
+### 2. User-Defined Table Types (UDTTs)
+```sql
+CREATE TYPE OrderItemsType AS TABLE (
+    ProductID INT,
+    Quantity INT,
+    Price DECIMAL(10,2)
+);
+```
+
+Usage Example:
+```sql
+DECLARE @Items OrderItemsType;
+INSERT INTO @Items VALUES (101, 2, 19.99);
+EXEC ProcessOrder @Items;
+```
+
+Key Features:
+- Supports PKs, constraints, and indexes
+- Memory-optimized versions available
+- Ideal for passing multi-row data to stored procedures
+
+---
+
+### 3. User-Defined Types (CLR)
+C# Definition:
+```csharp
+[Serializable]
+[SqlUserDefinedType(Format.Native)]
+public struct Point3D {
+    public double X, Y, Z;
+    // Custom methods...
+}
+```
+
+SQL Usage:
+```sql
+CREATE TYPE dbo.Point3D EXTERNAL NAME MyAssembly.[Namespace.Point3D];
+DECLARE @Location Point3D = CONVERT(Point3D, '10,20,30');
+```
+
+Common Uses:
+- Advanced geospatial calculations
+- Custom financial algorithms
+- Complex data structures
+
+### 4. XML Schema Collections
+Definition:
+```sql
+CREATE XML SCHEMA COLLECTION ProductSchema AS '
+<xsd:schema>
+  <xsd:element name="Product">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ID" type="xsd:int"/>
+        <xsd:element name="Name" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>';
+```
+
+Validation Example:
+```sql
+DECLARE @Product XML(CONTENT ProductSchema) = '
+<Product>
+  <ID>100</ID>
+  <Name>Widget</Name>
+</Product>';
+```
+
+### Comparison Table
+| Type | Best For | Limitations |
+|------|----------|-------------|
+| Alias Types | Standardizing column definitions | No custom methods |
+| Table Types | Passing multi-row parameters | Cannot be altered after creation |
+| CLR Types | Complex business logic | Requires CLR integration |
+| XML Schemas | Validating XML structure | XSD processing overhead |
 
 ### Shopping Cart Table Example
 
