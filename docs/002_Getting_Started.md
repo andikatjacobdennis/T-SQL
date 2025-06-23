@@ -251,6 +251,30 @@ Centralized repositories for analytical reporting, integrating data from multipl
 
 ## Data Types in T-SQL
 
+### \*\*How to View Data Types in SSMS
+
+#### **1. Accessing System & User-Defined Types in Object Explorer**
+
+**Steps**:
+
+1. **Open SSMS** and connect to your SQL Server instance.
+2. In the **Object Explorer** panel (left side), expand:
+   ```
+   Server Name
+   → Databases
+   → Your_Database (e.g., "AdventureWorks")
+   → Programmability
+   → Types
+   ```
+3. Explore the subfolders:
+   - **System Data Types**: All built-in types (e.g., `int`, `varchar`, `datetime2`).
+   - **User-Defined Data Types**: Alias types you created (e.g., `PhoneNumber` from `varchar(15)`).
+   - **User-Defined Table Types**: Table-valued parameters (e.g., `OrderItemsType`).
+   - **XML Schema Collections**: XSD definitions for XML validation.
+
+**Screenshot Guide**:  
+![SSMS Object Explorer Path](images/SSMS_Object_Explorer_Path.png)
+
 ### 1. Exact Numerics
 
 | Type           | Size       | Range/Precision                            | Usage Example                                        | Notes                                 |
